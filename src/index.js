@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import stores from './stores/stores';
-
+import 'antd/dist/antd.css';
+import Home from './pages/home/home';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={stores}>
-      <App />
+      <Home />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
