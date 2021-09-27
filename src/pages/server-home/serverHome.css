@@ -1,0 +1,29 @@
+.serverhome-body {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.function-select {
+  width: 80%;
+  border: 1px solid rgb(226, 224, 224);
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+.function-select-left {
+  width: 30%;
+  text-align: center;
+  padding: 20px;
+  float: left;
+}
+.function-select-left img {
+  width: 60%;
+  margin: 0 auto;
+}
+.function-select-right {
+  padding: 60px;
+  padding-top: 70px;
+  width: 69%;
+  float: left;
+}

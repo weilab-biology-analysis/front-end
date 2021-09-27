@@ -1,11 +1,11 @@
 import { inject, observer } from 'mobx-react';
 import { useEffect } from 'react';
-
-function About(store) {
+import './homePage.css';
+function HomePage(store) {
   useEffect(() => {
     console.log(store);
   }, []);
-  return <div>about</div>;
+  return <div>homepage</div>;
 }
 
-export default inject('store')(observer(About));
+export default inject('store')(observer(HomePage));
