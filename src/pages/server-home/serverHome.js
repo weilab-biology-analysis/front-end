@@ -58,7 +58,7 @@ function ServerHome(store) {
             Integrating the functionality of feature calculation / extraction,
             clustering, feature normalization, feature selection, dimension
             reduction, model construction for classification and result
-            visualization for DNA sequence.
+            visualization for RNA sequence.
           </div>
         </div>
         <div
@@ -70,7 +70,7 @@ function ServerHome(store) {
         >
           <div className="function-select-title"> 
           <div className="function-select-title-inner-up"><div></div></div>
-          Peptide
+          Protein
           <div className="function-select-title-inner-down"><div></div></div>
           </div>
           <div className="function-select-img-outer">
@@ -81,7 +81,7 @@ function ServerHome(store) {
             Integrating the functionality of feature calculation / extraction,
             clustering, feature normalization, feature selection, dimension
             reduction, model construction for classification and result
-            visualization for DNA sequence.
+            visualization for Protein sequence.
           </div>
         </div>
       </div>

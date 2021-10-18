@@ -59,7 +59,7 @@ function Home(store) {
             <TabPane tab="RNA" key="2" className="ServerPage-tabs-TabPane">
               <RNAServerForm />
             </TabPane>
-            <TabPane tab="Peptide" key="3" className="ServerPage-tabs-TabPane">
+            <TabPane tab="Protein" key="3" className="ServerPage-tabs-TabPane">
               <PeptideServerForm />
             </TabPane>
           </Tabs>
@@ -79,7 +79,7 @@ function Home(store) {
             <TabPane tab="RNA" key="2" className="ServerPage-tabs-TabPane">
               <RNAServerForm />
             </TabPane>
-            <TabPane tab="Peptide" key="3" className="ServerPage-tabs-TabPane">
+            <TabPane tab="Protein" key="3" className="ServerPage-tabs-TabPane">
               <PeptideServerForm />
             </TabPane>
           </Tabs>
@@ -98,7 +98,7 @@ function Home(store) {
             <TabPane tab="RNA" key="2" className="ServerPage-tabs-TabPane">
               <RNAServerForm />
             </TabPane>
-            <TabPane tab="Peptide" key="3" className="ServerPage-tabs-TabPane">
+            <TabPane tab="Protein" key="3" className="ServerPage-tabs-TabPane">
               <PeptideServerForm />
             </TabPane>
           </Tabs>
@@ -115,7 +115,7 @@ function Home(store) {
   return (
     <Layout>
       <Header className="Menu-header-home-outer-inite">
-        <div className="Menu-header-home-outer-in-item">   </div>
+        <div className="Menu-header-home-outer-in-item">  
           <div className="logo-welab">Wei Lab</div>
 
           <div className="Menu-header-home">
@@ -140,7 +140,7 @@ function Home(store) {
               })}
             </Menu>
           </div>
-     
+          </div>
       </Header>
       <Content style={{ padding: "0 50px", backgroundColor: "white" }}>
         <PageCon />

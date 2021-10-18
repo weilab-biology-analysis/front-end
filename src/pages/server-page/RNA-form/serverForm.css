@@ -126,3 +126,11 @@
   font-weight: 600;
   color: #747b8c;
 }
+.ServerPage-tabs .ant-tabs-nav-list .ant-tabs-tab{
+  width: 200px !important;
+  font-family: sans-serif;
+  font-size: 14px;
+  line-height: 1.6em;
+  font-weight: 600;
+  color: #747b8c;
+}
