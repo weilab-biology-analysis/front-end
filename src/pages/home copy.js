@@ -10,11 +10,6 @@ import ServerForm from "./server-page/server-form/serverForm";
 import RNAServerForm from "./server-page/RNA-form/serverForm";
 import PeptideServerForm from "./server-page/Peptide-form/serverForm";
 import Result from "./result/result";
-import {
-  HomeOutlined,
-  CloudServerOutlined,
-  UnorderedListOutlined
-} from '@ant-design/icons';
 const { Header, Content, Footer } = Layout;
 const { TabPane } = Tabs;
 
@@ -23,10 +18,9 @@ function Home(store) {
     setPage(store.store.servers.homeStatus);
   }, [store.store.servers.homeStatus]);
   const headerCon = {
-    1: <div ><HomeOutlined className="headerCon-tab" style={{fontSize:"20px"}}/>Home</div>
-      ,
-    2: <div ><CloudServerOutlined className="headerCon-tab" style={{fontSize:"20px"}}/>Server</div>,
-    3: <div ><UnorderedListOutlined className="headerCon-tab" style={{fontSize:"20px"}}/>Job list</div>,
+    1: "WeiLab",
+    2: "Server",
+    3: "Job list",
     //4: "Contact",
   };
   const [page, setPage] = useState(1);
@@ -113,17 +107,22 @@ function Home(store) {
   };
 
   return (
-    <Layout>
-      <Header className="Menu-header-home-outer-inite">
-        <div className="Menu-header-home-outer-in-item">   </div>
-          <div className="logo-welab">Wei Lab</div>
-
-          <div className="Menu-header-home">
+    <Layout className="layout">
+      <Header className="home-head">
+        <div className="home-head-binary">
+          <div className="home-head-binary-title">
+            Wei Lab
+            <div className="home-head-introduction">
+              developing an automated computational pipeline for peptide drug
+              design and discovery
+            </div>
+          </div>
+          <div className="home-head-memu">
             <Menu
               theme="light"
               mode="horizontal"
               defaultSelectedKeys={["1"]}
-              className="Menu-header-home-item"
+              className="home-head-memu-bar"
             >
               {new Array(4).fill(null).map((_, index) => {
                 const key = index + 1;
@@ -131,6 +130,7 @@ function Home(store) {
                   <Menu.Item
                     key={key}
                     onClick={() => {
+                      ///setPage(key);
                       store.store.servers.changeHomeStatue(key);
                     }}
                   >
@@ -139,8 +139,8 @@ function Home(store) {
                 );
               })}
             </Menu>
-          </div>
-     
+          </div>{" "}
+        </div>
       </Header>
       <Content style={{ padding: "0 50px", backgroundColor: "white" }}>
         <PageCon />

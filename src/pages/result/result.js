@@ -107,7 +107,7 @@ function Result(store) {
           );
         } else if (result_title[i] == "3kmer") {
           list.push(
-            <TabPane tab={result_title[i]} key={i} className="picture-body-con">
+            <TabPane tab={"model"} key={i} className="picture-body-con">
               <div className="Result-Result-row-pictures">
                 <Popover
                   content={
