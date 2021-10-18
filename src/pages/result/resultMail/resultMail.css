@@ -1,37 +1,121 @@
-.Result-body {
-    width: 100%;
-  }
-  .Result-title{
-    margin: 40px auto;
-    width: 100%;
-    text-align: center;
-    font-size: xx-large;
-  }
-  .Result-row{
-  width: 50%;
+.Result-Result-body {
+  width: 100%;
+}
+.Result-Result-title{
+  margin: 40px auto;
+  width: 20%;
+  text-align: center;
+  font-size: xx-large;
+}
+.Result-Result-row{
+width: 100%;
+/* border: 1px rgba(185, 185, 185, 0.685) solid;  */
+/* padding: 20px; */
+border-radius: 20px;
+}
+.Result-Result-result{
+  width: 100%;
   margin: 20px auto;
-  border: 1px rgba(185, 185, 185, 0.685) solid; 
-  padding: 30px;
-  border-radius: 20px;
-  }
-  .Result-result{
-    width: 50%;
-    margin: 20px auto;
-  
-  }
-  .result-zip-text{
-    font-size: small;
-  }
-  .Result-row-pictures{
-    width: 50%;
-    margin: 0 auto;
-    margin-bottom: 20px;
-  }
-  .Result-row-pictures-item{
-    width: 100%;
-  
-  }
-  .Result-row-pictures-text{
-    width: 100%;
-    text-align: center;
-  }
+}
+.Result-result-zip-text{
+  font-size: small;
+}
+.Result-Result-row-pictures{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Result-Result-row-pictures-item{
+  width: 100%;
+
+}
+.Result-Result-row-pictures-text{
+  width: 100%;
+  text-align: center;
+}
+.Result-Result-body-outline{
+  width: 100%;
+margin: 0 auto;
+}
+.Result-Result-title-line-left{
+width: 40%;
+float: left;
+border: 1px #08f3d4 solid;
+}
+.Result-Result-title-line-right{
+width: 40%;
+float: right;
+border: 1px #08f3d4 solid;
+}
+.Result-Result-title-content{
+  margin: 0 auto;
+  text-align: center;
+  width: fit-content;
+}
+.warn-text{
+  width: 100%;
+  text-align: center;
+}
+.result-button-basck-outer{
+  width: fit-content;
+  margin: 10px auto;
+}
+.result-button-basck{
+
+margin: 20px;
+  font-size: 16px;
+  line-height: 1.6em;
+  font-weight: 600;
+  width: 180px;
+  text-align: center;
+  border-radius: 5px;
+  height: max-content;
+
+}
+.resultPictures-Popover-contant{
+  width: 600px;
+}
+.ant-tabs-nav{
+  margin-bottom: 0 !important;
+}
+.ServerPage-tabs .ant-tabs-tab{
+  width: 100px !important;
+  text-align: center ;
+   display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+.picture-body-con {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  border-left: 1px solid rgb(230, 230, 230);
+  border-right: 1px solid rgb(230, 230, 230);
+  border-bottom: 1px solid rgb(230, 230, 230);
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px gray;
+}
+.Data-load{
+  width: 100%;
+  height: 100%;
+  background-color: rgb(247, 247, 247);
+  padding: 15px;
+  font-weight: 700;
+  font-size: large;
+}
+.Data-load strong{
+  font-weight: 700;
+}
+.result-Descriptions-item{
+  font-size: 18px;
+  font-weight: 600;
+}
+.resultPictures-Popover-contant-card{
+  margin: 30px;
+}
