@@ -156,7 +156,7 @@ function ServerForm(store) {
     formData.append("mail", eMail);
 
     console.log(formData);
-    if ((DAN_text != "" || fileList[0]) && eMail || (selectMulMethodData_1+selectMulMethodData_2+selectMulMethodData_3)>0) {
+    if ((DAN_text != "" && fileList[0]) && eMail && (selectMulMethodData_1+selectMulMethodData_2+selectMulMethodData_3)>0) {
       store.store.servers.request();
       let result = await submitForm(formData);
       console.log(result);
@@ -601,8 +601,9 @@ function ServerForm(store) {
                         className="button-serverForm-button-timeline"
                         onClick={() => submit()}
                         disabled={uploading}
+                        type="primary"
                       >
-                        {uploading ? <Spin indicator={antIcon} /> : ""} submit
+                        {uploading ? <Spin indicator={antIcon} /> : ""} Submit
                       </Button>{" "}
                       <Button
                         className="button-serverForm-button-timeline"
@@ -610,7 +611,7 @@ function ServerForm(store) {
                           resetData();
                         }}
                       >
-                        reset
+                        Reset
                       </Button>
                       <Button
                         className="button-serverForm-button-timeline"
@@ -618,7 +619,7 @@ function ServerForm(store) {
                           store.store.servers.changeHomeStatue(2);
                         }}
                       >
-                        return
+                        Return
                       </Button>
                     </div>,
                   ]}

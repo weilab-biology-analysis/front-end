@@ -54,6 +54,7 @@ function Result(store) {
             <TabPane tab={"STATISTICS"} key={i} className="picture-body-con">
               <div className="Result-Result-row-pictures">
                 <Popover
+                  className="resultPictures-Popover-contant-card"
                   content={
                     <img
                       src={store.store.results.data.result.pictures[i]}
@@ -82,6 +83,7 @@ function Result(store) {
             <TabPane tab={result_title[i]} key={i} className="picture-body-con">
               <div className="Result-Result-row-pictures">
                 <Popover
+                  className="resultPictures-Popover-contant-card"
                   content={
                     <img
                       src={store.store.results.data.result.pictures[i]}
@@ -110,6 +112,7 @@ function Result(store) {
             <TabPane tab={"FEATURE"} key={i} className="picture-body-con">
               <div className="Result-Result-row-pictures">
                 <Popover
+                  className="resultPictures-Popover-contant-card"
                   content={
                     <img
                       src={store.store.results.data.result.pictures[i]}
@@ -132,7 +135,8 @@ function Result(store) {
                 </Popover>
                 {store.store.results.data.result.pictures[i + 1] ? (
                   <Popover
-                    content={
+                  className="resultPictures-Popover-contant-card"
+                  content={
                       <img
                         src={store.store.results.data.result.pictures[i + 1]}
                         className="resultPictures-Popover-contant"
@@ -157,7 +161,8 @@ function Result(store) {
                 )}
                 {store.store.results.data.result.pictures[i + 2] ? (
                   <Popover
-                    content={
+                  className="resultPictures-Popover-contant-card"
+                  content={
                       <img
                         src={store.store.results.data.result.pictures[i + 2]}
                         className="resultPictures-Popover-contant"
@@ -244,16 +249,12 @@ function Result(store) {
                       : true
                     : true
                 ) {
-                  message.info("Your result hasn't been already, please wait");
+                  message.info("Your result hasn't been already, please wait. Or it is failed");
+                }else{
+                  window.location.href=store.store.results.data.result.zip
                 }
               }}
-              href={
-                store.store.results.data.result
-                  ? store.store.results.data.result.zip
-                    ? store.store.results.data.result.zip
-                    : ""
-                  : ""
-              }
+              
               className="result-button-basck"
             >
               Result Download

@@ -133,8 +133,9 @@ status: "等待运行"
     if (result.resultType) {
       setSearchLoading(false);
       store.store.results.request_success(result.data);
+      store.store.servers.changeHomeStatue(7);
 
-      history.push("/result");
+      // history.push("/result");
     } else {
       setSearchLoading(false);
       store.store.results.request_fail();

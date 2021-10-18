@@ -1,11 +1,31 @@
 import { inject, observer } from "mobx-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { jobInfo, jobListGet } from "../../stores/request";
 import "./homePage.css";
 import BLMs_v1 from "../../constants/img/BLMs_v1.png";
+import Search from "antd/lib/transfer/search";
 function HomePage(store) {
   useEffect(() => {
     console.log(store);
   }, []);
+  const [searchLoading, setSearchLoading] = useState(false);
+  const onSearch = async (value) => {
+    setSearchLoading(true);
+    store.store.results.request();
+    let result = await jobInfo(value);
+    if (result.resultType) {
+      setSearchLoading(false);
+      store.store.results.request_success(result.data);
+      store.store.servers.changeHomeStatue(7);
+
+      // history.push("/result");
+    } else {
+      setSearchLoading(false);
+      store.store.results.request_fail();
+    }
+
+    console.log(value);
+  };
   return (
     <div className="homepage-body">
       <div className="homepage-works-instro">
@@ -48,6 +68,15 @@ function HomePage(store) {
   
         </div>
       </div>
+      {/* <div className="JobHome-search">
+        <Search
+          placeholder="input search jobId"
+          // enterButton="Search"
+          // size="large"
+          // loading={searchLoading}
+          // onSearch={onSearch}
+        />
+      </div> */}
     </div>
   );
 }

@@ -66,10 +66,15 @@ border: 1px #08f3d4 solid;
   margin: 10px auto;
 }
 .result-button-basck{
-  width: 150px;
-  margin: 0 auto;
-  margin: 20px;
 
+margin: 20px;
+  font-size: 16px;
+  line-height: 1.6em;
+  font-weight: 600;
+  width: 180px;
+  text-align: center;
+  border-radius: 5px;
+  height: max-content;
 
 }
 .resultPictures-Popover-contant{
@@ -110,4 +115,7 @@ border: 1px #08f3d4 solid;
 .result-Descriptions-item{
   font-size: 18px;
   font-weight: 600;
+}
+.resultPictures-Popover-contant-card{
+  margin: 30px;
 }
