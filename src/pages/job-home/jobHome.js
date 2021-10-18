@@ -1,9 +1,9 @@
-import { inject, observer } from 'mobx-react';
-import { useEffect, useState } from 'react';
-import { jobInfo, jobListGet } from '../../stores/request';
-import './jobHome.css';
-import { Table, Tag, Space, Button, message, Input } from 'antd';
-import { useHistory } from 'react-router';
+import { inject, observer } from "mobx-react";
+import { useEffect, useState } from "react";
+import { jobInfo, jobListGet } from "../../stores/request";
+import "./jobHome.css";
+import { Table, Tag, Space, Button, message, Input } from "antd";
+import { useHistory } from "react-router";
 const { Search } = Input;
 function JobHome(store) {
   useEffect(() => {
@@ -19,8 +19,8 @@ function JobHome(store) {
         dataCurrent.push({
           key: v.jobId,
           completeTime:
-            v.completeTime != null ? v.completeTime : 'not completed',
-          createTime: v.createTime != null ? v.createTime : 'not created',
+            v.completeTime != null ? v.completeTime : "not completed",
+          createTime: v.createTime != null ? v.createTime : "not created",
           jobId: v.jobId,
           requestTime: v.requestTime,
           status: [v.status],
@@ -28,9 +28,9 @@ function JobHome(store) {
       });
       console.log(result.data);
       store.store.jobLists.request_success(dataCurrent);
-      message.success('Get infomation successfully');
+      message.success("Get infomation successfully");
     } else {
-      message.error('There is something in trouble');
+      message.error("There is something in trouble");
     }
   };
 
@@ -43,47 +43,47 @@ status: "等待运行"
    */
   const columns = [
     {
-      title: 'jobId',
-      dataIndex: 'jobId',
-      key: 'jobId',
+      title: "jobId",
+      dataIndex: "jobId",
+      key: "jobId",
     },
     {
-      title: 'completeTime',
-      dataIndex: 'completeTime',
-      key: 'completeTime',
+      title: "completeTime",
+      dataIndex: "completeTime",
+      key: "completeTime",
     },
     {
-      title: 'createTime',
-      dataIndex: 'createTime',
-      key: 'createTime',
+      title: "createTime",
+      dataIndex: "createTime",
+      key: "createTime",
     },
 
     {
-      title: 'requestTime',
-      dataIndex: 'requestTime',
-      key: 'requestTime',
+      title: "requestTime",
+      dataIndex: "requestTime",
+      key: "requestTime",
     },
     {
-      title: 'status',
-      key: 'status',
-      dataIndex: 'status',
+      title: "status",
+      key: "status",
+      dataIndex: "status",
       render: (tags) => (
         <>
           {tags.map((tag) => {
-            let color = 'geekblue';
+            let color = "geekblue";
             switch (tag) {
-              case '等待运行':
-                color = 'blue';
+              case "等待运行":
+                color = "blue";
                 break;
-              case '正在运行':
-                color = 'geekblue';
+              case "正在运行":
+                color = "geekblue";
                 break;
-              case 'failed':
-                color = 'red';
+              case "failed":
+                color = "red";
                 break;
 
               default:
-                color = 'green';
+                color = "green";
                 break;
             }
             return (
@@ -96,29 +96,31 @@ status: "等待运行"
       ),
     },
     {
-      title: 'Detail',
-      key: 'Detail',
+      title: "Detail",
+      key: "Detail",
       render: (text, record) => (
         <Space size="middle">
-          {' '}
+          {" "}
           <Button
             onClick={async () => {
-              if (record.status[0] === 'success') {
-                store.store.results.request();
-                let result = await jobInfo(record.jobId);
-                console.log(result);
-                if (result.resultType) {
-                  store.store.results.request_success(result.data);
-                  history.push('/result');
-                } else {
-                  store.store.results.request_fail();
-                }
+              //if (record.status[0] === 'success') {
+              //这里是因为无服务才注释掉的，后端好了，以后直接弄回来就可以了
+              store.store.results.request();
+              let result = await jobInfo(record.jobId);
+              console.log(result);
+              if (result.resultType) {
+                store.store.results.request_success(result.data);
+                // history.push('/result');
+                store.store.servers.changeHomeStatue(7);
               } else {
-                message.info('Please reinput your task');
+                store.store.results.request_fail();
               }
+
+              //下面内容属于无服务测试内容
             }}
+            className="jobhome-Button-click"
           >
-            Click me
+            Details
           </Button>
         </Space>
       ),
@@ -131,27 +133,29 @@ status: "等待运行"
     if (result.resultType) {
       setSearchLoading(false);
       store.store.results.request_success(result.data);
-      history.push('/result');
+
+      history.push("/result");
     } else {
       setSearchLoading(false);
       store.store.results.request_fail();
     }
-    //
 
     console.log(value);
   };
   return (
     <div className="JobHome-body">
-      <Search
-        placeholder="input search jobId"
-        enterButton="Search"
-        size="large"
-        loading={searchLoading}
-        onSearch={onSearch}
-      />
+      <div className="JobHome-search">
+        <Search
+          placeholder="input search jobId"
+          enterButton="Search"
+          size="large"
+          loading={searchLoading}
+          onSearch={onSearch}
+        />
+      </div>
       <Table dataSource={store.store.jobLists.data} columns={columns}></Table>,
     </div>
   );
 }
 
-export default inject('store')(observer(JobHome));
+export default inject("store")(observer(JobHome));

@@ -4,6 +4,7 @@ class server {
   constructor() {
     makeAutoObservable(this);
   }
+  @observable homeStatus=1
   @observable status = UNSET;
 
   @action request = () => {
@@ -15,5 +16,8 @@ class server {
   @action request_fail = () => {
     this.status = FAILURE;
   };
+  @action changeHomeStatue=(sum)=>{
+    this.homeStatus=sum
+  }
 }
 export default server;

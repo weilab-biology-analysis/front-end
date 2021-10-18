@@ -51,6 +51,7 @@ export const jobListGet = async () => {
   });
 };
 
+
 export const submitForm = async (dataForm) => {
   let result = { resultType: false, data: {} };
   await Axios.post(JOBSUB, dataForm, {

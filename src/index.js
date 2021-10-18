@@ -12,6 +12,7 @@ import JobHome from './pages/job-home/jobHome';
 import Result from './pages/result/result';
 import ServerHome from './pages/server-home/serverHome';
 import ServerPage from './pages/server-page/serverPage';
+import ResultMail from './pages/result/resultMail/resultMail';
 ReactDOM.render(
   <Provider store={stores}>
     <Router>
@@ -22,6 +23,7 @@ ReactDOM.render(
         <Route exact path="/result" component={Result} />
         <Route exact path="/serverHome" component={ServerHome} />
         <Route exact path="/serverPage" component={ServerPage} />
+        <Route exact path="/resultMail" component={ResultMail} />
       </Switch>
     </Router>
   </Provider>,
