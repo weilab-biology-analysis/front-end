@@ -15,6 +15,7 @@ import {
   CloudServerOutlined,
   UnorderedListOutlined
 } from '@ant-design/icons';
+import logo from '../constants/img/2.svg'
 const { Header, Content, Footer } = Layout;
 const { TabPane } = Tabs;
 
@@ -116,7 +117,8 @@ function Home(store) {
     <Layout>
       <Header className="Menu-header-home-outer-inite">
         <div className="Menu-header-home-outer-in-item">  
-          <div className="logo-welab">Wei Lab</div>
+          <div className="logo-welab">Wei Lab<img src={logo} className="logo-welab-img"/></div>
+          <div></div>
 
           <div className="Menu-header-home">
             <Menu

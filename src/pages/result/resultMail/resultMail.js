@@ -1,8 +1,7 @@
 import { inject, observer } from "mobx-react";
 import { useEffect } from "react";
 import "./resultMail.css";
-import {
-  Descriptions,
+import {   Descriptions,
   Button,
   Card,
   Tabs,
@@ -10,14 +9,28 @@ import {
   Typography,
   Popover,
   message,
-} from "antd";
+ } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
+import { jobInfo } from "../../../stores/request";
+import { useHistory } from 'react-router';
 const { TabPane } = Tabs;
-const { Meta } = Card;
-function Result(store) {
+function ResultMail(store) {
   useEffect(() => {
-    console.log(store);
-  }, []);
+    getInforOfResultParams(window.location.href.split('?')[1].split("=")[1])
+      
+  }, [window.location.href]);
+
+  const history =useHistory()
+  const getInforOfResultParams=async(jobId)=>{
+    store.store.results.request();
+    let result = await jobInfo(jobId);
+    console.log(result);
+    if (result.resultType) {
+      store.store.results.request_success(result.data);
+    } else {
+      store.store.results.request_fail();
+    }
+  }
   const result_title = [
     "statistics",
     "ROC_PRC",
@@ -385,4 +398,4 @@ function Result(store) {
     </div>
   );
 }
-export default inject("store")(observer(Result));
+export default inject("store")(observer(ResultMail));

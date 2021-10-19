@@ -6,14 +6,15 @@ class jobList {
   }
   @observable test = 'qwq';
   @observable status = UNSET;
-  @observable data = [{
-    completeTime: '',
-    createTime: '',
-    jobId: 27,
-    param: {},
-    result: null,
-    status: ['正在运行'],
-  }];
+  @observable data = [];
+  // {
+  //   completeTime: '',
+  //   createTime: '',
+  //   jobId: 27,
+  //   param: {},
+  //   result: null,
+  //   status: ['正在运行'],
+  // }
   @action request = () => {
     this.status = REQUEST;
   };
