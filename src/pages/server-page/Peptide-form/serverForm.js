@@ -265,7 +265,7 @@ function ServerForm(store) {
     </div>,
 
     <div className="descriptions-con-Dragger">
-      <div className="serverForm-form-text-con">Or upload a file</div>
+      <div className="serverForm-form-text-con">Or upload a training set file</div>
       <Dragger {...props} className="testAdd-Dragger-con">
         <p className="ant-upload-drag-icon">
           <InboxOutlined />

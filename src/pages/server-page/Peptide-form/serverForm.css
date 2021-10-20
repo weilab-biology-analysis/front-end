@@ -100,18 +100,29 @@
   padding-right: 30px !;
 }
 .ServerPage-tabs .ant-tabs-nav-wrap {
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(241, 241, 241);
   border-right: 1px rgb(236, 236, 236) solid;
   border-left: 1px rgb(236, 236, 236) solid;
   border-top: 1px rgb(236, 236, 236) solid;
   box-shadow: 1px 0px 1px gray;
   padding-top: 15px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
 }
 .ant-tabs-tab .ant-tabs-tab-btn {
   color: gray;
+  
+
 }
 .ant-tabs-tab-active .ant-tabs-tab-btn {
   color: gray;
+
+}
+.ant-tabs-nav-list .ant-tabs-tab-active{
+  background-color: rgb(255, 255, 255) !important;
+}
+.ant-tabs-tab-active{
+ 
 }
 .serverForm-form-text-con {
   font-family: sans-serif;
@@ -126,6 +137,7 @@
 .card-title-text{
   font-family: sans-serif;
   font-size: 16px;
+
   line-height: 1.6em;
   font-weight: 600;
   color: #747b8c;
@@ -134,8 +146,12 @@
 .ServerPage-tabs .ant-tabs-nav-list .ant-tabs-tab{
   width: 200px !important;
   font-family: sans-serif;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1.6em;
   font-weight: 600;
-  color: #747b8c;
+  color: #353535;
+  background-color: rgb(241, 241, 241);
+
+  border:none;
+
 }

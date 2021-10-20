@@ -1,6 +1,6 @@
 import { inject, observer } from "mobx-react";
 import { useEffect, useState } from "react";
-import { Layout, Menu, Tabs, Breadcrumb } from "antd";
+import { Layout, Menu, Tabs, Breadcrumb} from "antd";
 import "./home.css";
 import HomePage from "./home/homePage";
 import ServerHome from "./server-home/serverHome";
@@ -13,11 +13,14 @@ import Result from "./result/result";
 import {
   HomeOutlined,
   CloudServerOutlined,
-  UnorderedListOutlined
+  UnorderedListOutlined,
+  MailOutlined, AppstoreOutlined, SettingOutlined
 } from '@ant-design/icons';
 import logo from '../constants/img/2.svg'
 const { Header, Content, Footer } = Layout;
 const { TabPane } = Tabs;
+const { SubMenu } = Menu;
+
 
 function Home(store) {
   useEffect(() => {

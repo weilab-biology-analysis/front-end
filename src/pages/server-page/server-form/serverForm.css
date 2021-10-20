@@ -78,6 +78,8 @@
 .card-selectMethod {
   margin-top: 20px;
   margin-bottom: 30px;
+  box-shadow: 1px 1px 10px rgb(161, 161, 161);
+  
 }
 .serverform-Collapse-ADVANCED {
   /* width: fit-content; */
@@ -100,7 +102,7 @@
   padding-right: 30px !;
 }
 .ServerPage-tabs .ant-tabs-nav-wrap {
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(197, 197, 197);
   border-right: 1px rgb(236, 236, 236) solid;
   border-left: 1px rgb(236, 236, 236) solid;
   border-top: 1px rgb(236, 236, 236) solid;
@@ -115,10 +117,11 @@
 }
 .serverForm-form-text-con {
   font-family: sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6em;
   font-weight: 600;
   color: #747b8c;
+  margin-bottom: 10px;
 }
 .testAdd-Dragger-con p .serverForm-form-text-con{
   font-size: large;
@@ -129,6 +132,7 @@
   line-height: 1.6em;
   font-weight: 600;
   color: #747b8c;
+  /* 可能会改 */
 }
 
 .ServerPage-tabs .ant-tabs-nav-list .ant-tabs-tab{
@@ -137,5 +141,8 @@
   font-size: 14px;
   line-height: 1.6em;
   font-weight: 600;
-  color: #747b8c;
+  color: #353535;
+}
+.serverForm-form-text-con-test{
+  font-size: 16px;
 }
