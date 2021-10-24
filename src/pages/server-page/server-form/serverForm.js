@@ -19,10 +19,13 @@ import {
   Card,
   Steps,
   Popover,
+  Tooltip,
+  Breadcrumb,
 } from "antd";
 
 import {
   UploadOutlined,
+  QuestionCircleOutlined,
   LoadingOutlined,
   InboxOutlined,
 } from "@ant-design/icons";
@@ -250,24 +253,24 @@ function ServerForm(store) {
     <div className="serverForm-descriptions-con-outer">
       <div className="serverForm-form-text-con">
         <div className="serverForm-form-text-con-test">
-        <div>
-          Enter the query DNA sequences in training dataset with FASTA format (
+          <div>
+            Enter the query DNA sequences in training dataset with FASTA format
+            (
             <a
-            onClick={() => {
-              example();
-            }}
+              onClick={() => {
+                example();
+              }}
+            >
+              Example
+            </a>
+            ):<Tooltip className="serverForm-form-text-con-test-Tooltip-QuestionCircleOutlined" title="maximum2000 sequences for each submission">
+            <QuestionCircleOutlined />
+            </Tooltip>
+          </div>
+          
             
-          >
-          Example
-          </a>
-          ):<p>
-          (maximum2000
-          sequences for each submission)
-            </p>
-         
+    
         </div>
-        </div>
-        
       </div>
       <div className="descriptions-con-Dragger">
         <TextArea
@@ -297,14 +300,16 @@ function ServerForm(store) {
       <div className="descriptions-con-Dragger">
         {testAddValue == 1 ? (
           <div>
-            <div className="serverForm-form-text-con">Upload testing dataset</div>
+            <div className="serverForm-form-text-con">
+              Upload testing dataset
+            </div>
             <Dragger {...testProps} className="testAdd-Dragger-con">
               <p className="ant-upload-drag-icon">
                 <InboxOutlined />
               </p>
               <p className="ant-upload-text">
                 <div className="serverForm-form-text-con">
-                  Click or drag file to this area to upload
+                  Click or drag testing dataset to this area to upload
                 </div>
               </p>
 
@@ -338,7 +343,7 @@ function ServerForm(store) {
   ];
   const selectMethod = [
     <Card
-      title={<div className="card-title-text">Deep Learning:</div>}
+      title={<div className="card-title-text">Basic deep learning models</div>}
       className="card-selectMethod"
     >
       <Select
@@ -348,6 +353,8 @@ function ServerForm(store) {
         defaultValue={[]}
         onChange={selectMulMethod_1}
         optionLabelProp="label"
+        showArrow
+        showSearch={false}
       >
         <Option value="CNN" label="CNN">
           <div className="demo-option-label-item">CNN</div>
@@ -358,7 +365,7 @@ function ServerForm(store) {
       </Select>
     </Card>,
     <Card
-      title={<div className="card-title-text">GCN:</div>}
+      title={<div className="card-title-text">Natural Language Processing</div>}
       className="card-selectMethod"
     >
       <Select
@@ -368,6 +375,8 @@ function ServerForm(store) {
         defaultValue={[]}
         onChange={selectMulMethod_2}
         optionLabelProp="label"
+        showArrow
+        showSearch={false}
       >
         <Option value="TestGCN" label="TestGCN">
           <div className="demo-option-label-item">TestGCN</div>
@@ -375,7 +384,7 @@ function ServerForm(store) {
       </Select>
     </Card>,
     <Card
-      title={<div className="card-title-text">Visulation:</div>}
+      title={<div className="card-title-text">Graph Neural Netowork</div>}
       className="card-selectMethod"
     >
       <Select
@@ -385,6 +394,8 @@ function ServerForm(store) {
         defaultValue={[]}
         onChange={selectMulMethod_3}
         optionLabelProp="label"
+        showArrow
+        showSearch={false}
       >
         <Option value="Bert" label="Bert">
           <div className="demo-option-label-item">Bert</div>
@@ -503,6 +514,7 @@ function ServerForm(store) {
   ]);
   return (
     <div className="serverForm-body-outer">
+      
       <div className="serverForm-body-con">
         <Modal
           title="Success"
@@ -556,25 +568,29 @@ function ServerForm(store) {
                       key="1"
                     >
                       <p>
+                      <div >
+                      Balanced Data:
+                        </div>
                         <Radio.Group
                           onChange={(e) => {
                             setAValue(e.target.value);
                           }}
                           value={aValue}
                         >
-                          <Radio value={1}>balanced data</Radio>
-                          <Radio value={2}>imbalanced data</Radio>
+                          <Radio value={1}>Yes</Radio>
+                          <Radio value={2}>No</Radio>
                         </Radio.Group>
                       </p>
                       <p>
+                        <div>CD-Hit:</div>
                         <Radio.Group
                           onChange={(e) => {
                             setBValue(e.target.value);
                           }}
                           value={bValue}
                         >
-                          <Radio value={1}>CD-Hit</Radio>
-                          <Radio value={2}>none CD-Hit</Radio>
+                          <Radio value={1}>Yes</Radio>
+                          <Radio value={2}>No</Radio>
                         </Radio.Group>
                       </p>
                     </Panel>
@@ -585,7 +601,11 @@ function ServerForm(store) {
                 {" "}
                 <List
                   grid={{ gutter: 0, column: 3 }}
-                  header={<div className="Data-load">Select Deep Learning Models<div >support multiple models</div></div>}
+                  header={
+                    <div className="Data-load">
+                      Select Deep Learning Models<Tooltip title="support multiple models" className="Models-Timeline-Item-question"><QuestionCircleOutlined/></Tooltip>
+                    </div>
+                  }
                   bordered
                   dataSource={selectMethod}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
@@ -608,9 +628,11 @@ function ServerForm(store) {
                         }}
                       />
                       <div className="serverForm-form-text-con">
-                        Optional: The running time usually takes several hours for training a deep learning model depending on your data size. Hence, we strongly recommend
-                        you to leave your email below, and you will be notified
-                        by email when the job is done:
+                        Optional: The running time usually takes several hours
+                        for training a deep learning model depending on your
+                        data size. Hence, we strongly recommend you to leave
+                        your email below, and you will be notified by email when
+                        the job is done:
                       </div>
                     </div>,
                   ]}

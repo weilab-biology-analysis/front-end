@@ -1,6 +1,6 @@
 import { inject, observer } from "mobx-react";
 import { useEffect, useState } from "react";
-import { Layout, Menu, Tabs, Breadcrumb} from "antd";
+import { Layout, Menu, Tabs, Breadcrumb, Button } from "antd";
 import "./home.css";
 import HomePage from "./home/homePage";
 import ServerHome from "./server-home/serverHome";
@@ -14,23 +14,44 @@ import {
   HomeOutlined,
   CloudServerOutlined,
   UnorderedListOutlined,
-  MailOutlined, AppstoreOutlined, SettingOutlined
-} from '@ant-design/icons';
-import logo from '../constants/img/2.svg'
+  MailOutlined,
+  AppstoreOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+import logo from "../constants/img/2.svg";
 const { Header, Content, Footer } = Layout;
 const { TabPane } = Tabs;
 const { SubMenu } = Menu;
-
 
 function Home(store) {
   useEffect(() => {
     setPage(store.store.servers.homeStatus);
   }, [store.store.servers.homeStatus]);
   const headerCon = {
-    1: <div ><HomeOutlined className="headerCon-tab" style={{fontSize:"20px"}}/>Home</div>
-      ,
-    2: <div ><CloudServerOutlined className="headerCon-tab" style={{fontSize:"20px"}}/>Server</div>,
-    3: <div ><UnorderedListOutlined className="headerCon-tab" style={{fontSize:"20px"}}/>Job list</div>,
+    1: (
+      <div>
+        <HomeOutlined className="headerCon-tab" style={{ fontSize: "20px" }} />
+        Home
+      </div>
+    ),
+    2: (
+      <div>
+        <CloudServerOutlined
+          className="headerCon-tab"
+          style={{ fontSize: "20px" }}
+        />
+        Server
+      </div>
+    ),
+    3: (
+      <div>
+        <UnorderedListOutlined
+          className="headerCon-tab"
+          style={{ fontSize: "20px" }}
+        />
+        Job list
+      </div>
+    ),
     //4: "Contact",
   };
   const [page, setPage] = useState(1);
@@ -40,37 +61,94 @@ function Home(store) {
   const PageCon = () => {
     switch (page) {
       case 1:
-        return <HomePage />;
+        return <div>
+          <div className="Result-Result-body-Breadcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Home
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Related Work
+                </Breadcrumb.Item>
+
+              </Breadcrumb>
+            </div>
+          <HomePage /></div>;
       case 2:
         return <ServerHome />;
       case 3:
         return (
           <div className="JobHome-class">
+
+            <div className="Result-Result-body-Breadcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Home
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Job List
+                </Breadcrumb.Item>
+              </Breadcrumb>
+              
+            </div>
             <JobHome />
           </div>
         );
       case 4:
         return (
-          <Tabs
-            type="card"
-            defaultActiveKey="1"
-            onChange={callback}
-            className="ServerPage-tabs"
-          >
-            <TabPane tab="DNA" key="1" className="ServerPage-tabs-TabPane">
-              <ServerForm />
-            </TabPane>
-            <TabPane tab="RNA" key="2" className="ServerPage-tabs-TabPane">
-              <RNAServerForm />
-            </TabPane>
-            <TabPane tab="Protein" key="3" className="ServerPage-tabs-TabPane">
-              <PeptideServerForm />
-            </TabPane>
-          </Tabs>
+          <div>
+            <div className="Result-Result-body-Breadcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Home
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Server Select
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Submit
+                </Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
+            <Tabs
+              type="card"
+              defaultActiveKey="1"
+              onChange={callback}
+              className="ServerPage-tabs"
+            >
+              <TabPane tab="DNA" key="1" className="ServerPage-tabs-TabPane">
+                <ServerForm />
+              </TabPane>
+              <TabPane tab="RNA" key="2" className="ServerPage-tabs-TabPane">
+                <RNAServerForm />
+              </TabPane>
+              <TabPane
+                tab="Protein"
+                key="3"
+                className="ServerPage-tabs-TabPane"
+              >
+                <PeptideServerForm />
+              </TabPane>
+            </Tabs>
+          </div>
         );
 
       case 5:
         return (
+          <div>
+            <div className="Result-Result-body-Breadcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Home
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Server Select
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Submit
+                </Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
           <Tabs
             type="card"
             defaultActiveKey="2"
@@ -86,10 +164,24 @@ function Home(store) {
             <TabPane tab="Protein" key="3" className="ServerPage-tabs-TabPane">
               <PeptideServerForm />
             </TabPane>
-          </Tabs>
+          </Tabs></div>
         );
       case 6:
         return (
+          <div>
+            <div className="Result-Result-body-Breadcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Home
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Server Select
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Submit
+                </Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
           <Tabs
             defaultActiveKey="3"
             onChange={callback}
@@ -105,7 +197,7 @@ function Home(store) {
             <TabPane tab="Protein" key="3" className="ServerPage-tabs-TabPane">
               <PeptideServerForm />
             </TabPane>
-          </Tabs>
+          </Tabs></div>
         );
       case 7:
         return <Result />;
@@ -116,11 +208,21 @@ function Home(store) {
     }
   };
 
+  const [current, setCurrent] = useState("mail");
+
+  const handleClick = (e) => {
+    console.log("click ", e);
+    this.setState({ current: e.key });
+  };
+
   return (
     <Layout>
       <Header className="Menu-header-home-outer-inite">
-        <div className="Menu-header-home-outer-in-item">  
-          <div className="logo-welab">Wei Lab<img src={logo} className="logo-welab-img"/></div>
+        <div className="Menu-header-home-outer-in-item">
+          <div className="logo-welab">
+            Wei Lab
+            <img src={logo} className="logo-welab-img" />
+          </div>
           <div></div>
 
           <div className="Menu-header-home">
@@ -132,20 +234,88 @@ function Home(store) {
             >
               {new Array(4).fill(null).map((_, index) => {
                 const key = index + 1;
-                return (
-                  <Menu.Item
-                    key={key}
-                    onClick={() => {
-                      store.store.servers.changeHomeStatue(key);
-                    }}
-                  >
-                    {headerCon[key]}
-                  </Menu.Item>
-                );
+                if (key === 2) {
+                  return (
+                    <SubMenu
+                      title={
+                        <div className="SubMenu-title-text">
+                          {headerCon[key]}
+                        </div>
+                      }
+                      key={key}
+                      onClick={() => {
+                        store.store.servers.changeHomeStatue(key);
+                      }}
+                      className="Menu-header-home-item-SubMenu"
+                    >
+                      <Menu.ItemGroup>
+                        <Menu.Item
+                          key="2"
+                          className="SubMenu-Menu-ItemGroup-Item"
+                        >
+                          1
+                        </Menu.Item>
+                        <Menu.Item
+                          key="2"
+                          className="SubMenu-Menu-ItemGroup-Item"
+                        >
+                          2
+                        </Menu.Item>
+                      </Menu.ItemGroup>
+                    </SubMenu>
+                  );
+                } else {
+                  return (
+                    <Menu.Item
+                      key={key}
+                      onClick={() => {
+                        store.store.servers.changeHomeStatue(key);
+                      }}
+                      className="commen-Menu-Item"
+                    >
+                      {headerCon[key]}
+                    </Menu.Item>
+                  );
+                }
               })}
             </Menu>
           </div>
-          </div>
+          {/* <Menu
+            onClick={e=>{setCurrent(e.target)}}
+            selectedKeys={[current]}
+            mode="horizontal"
+          >
+            <Menu.Item key="mail" icon={<MailOutlined />}>
+              Navigation One
+            </Menu.Item>
+            <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
+              Navigation Two
+            </Menu.Item>
+            <SubMenu
+              key="SubMenu"
+              icon={<SettingOutlined />}
+              title="Navigation Three - Submenu"
+            >
+              <Menu.ItemGroup title="Item 1">
+                <Menu.Item key="setting:1">Option 1</Menu.Item>
+                <Menu.Item key="setting:2">Option 2</Menu.Item>
+              </Menu.ItemGroup>
+              <Menu.ItemGroup title="Item 2">
+                <Menu.Item key="setting:3">Option 3</Menu.Item>
+                <Menu.Item key="setting:4">Option 4</Menu.Item>
+              </Menu.ItemGroup>
+            </SubMenu>
+            <Menu.Item key="alipay">
+              <a
+                href="https://ant.design"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Navigation Four - Link
+              </a>
+            </Menu.Item>
+          </Menu> */}
+        </div>
       </Header>
       <Content style={{ padding: "0 50px", backgroundColor: "white" }}>
         <PageCon />

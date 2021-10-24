@@ -19,10 +19,13 @@ import {
   Card,
   Steps,
   Popover,
+  Tooltip,
+  Breadcrumb,
 } from "antd";
 
 import {
   UploadOutlined,
+  QuestionCircleOutlined,
   LoadingOutlined,
   InboxOutlined,
 } from "@ant-design/icons";
@@ -156,7 +159,12 @@ function ServerForm(store) {
     formData.append("mail", eMail);
 
     console.log(formData);
-    if ((DAN_text != "" && fileList[0]) && eMail && (selectMulMethodData_1+selectMulMethodData_2+selectMulMethodData_3)>0) {
+    if (
+      DAN_text != "" &&
+      fileList[0] &&
+      eMail &&
+      selectMulMethodData_1 + selectMulMethodData_2 + selectMulMethodData_3 > 0
+    ) {
       store.store.servers.request();
       let result = await submitForm(formData);
       console.log(result);
@@ -168,14 +176,17 @@ function ServerForm(store) {
         message.error("failed");
       }
     } else {
-      if(DAN_text == ""&&fileList.length==0){
-        setStepStatus_step_1("red")
+      if (DAN_text == "" && fileList.length == 0) {
+        setStepStatus_step_1("red");
       }
-      if(eMail==""){
-        setStepStatus_step_4("red")
+      if (eMail == "") {
+        setStepStatus_step_4("red");
       }
-      if((selectMulMethodData_1+selectMulMethodData_2+selectMulMethodData_3)==0){
-        setStepStatus_step_3("red")
+      if (
+        selectMulMethodData_1 + selectMulMethodData_2 + selectMulMethodData_3 ==
+        0
+      ) {
+        setStepStatus_step_3("red");
       }
       message.info("please input all data");
     }
@@ -241,16 +252,24 @@ function ServerForm(store) {
   const daraCollection = [
     <div className="serverForm-descriptions-con-outer">
       <div className="serverForm-form-text-con">
-        <div>
-          Enter the query DNA sequences in special FASTA format:(maximum2000
-          sequences for each submission)
-          <a
-            onClick={() => {
-              example();
-            }}
-          >
-            example
-          </a>
+        <div className="serverForm-form-text-con-test">
+          <div>
+            Enter the query DNA sequences in training dataset with FASTA format
+            (
+            <a
+              onClick={() => {
+                example();
+              }}
+            >
+              Example
+            </a>
+            ):<Tooltip className="serverForm-form-text-con-test-Tooltip-QuestionCircleOutlined" title="maximum2000 sequences for each submission">
+            <QuestionCircleOutlined />
+            </Tooltip>
+          </div>
+          
+            
+    
         </div>
       </div>
       <div className="descriptions-con-Dragger">
@@ -265,14 +284,14 @@ function ServerForm(store) {
     </div>,
 
     <div className="descriptions-con-Dragger">
-      <div className="serverForm-form-text-con">Or upload a training set file</div>
+      <div className="serverForm-form-text-con">Upload training dataset</div>
       <Dragger {...props} className="testAdd-Dragger-con">
         <p className="ant-upload-drag-icon">
           <InboxOutlined />
         </p>
         <p className="ant-upload-text">
           <div className="serverForm-form-text-con">
-            Click or drag file to this area to upload
+            Click or drag training dataset to this area to upload
           </div>
         </p>
       </Dragger>
@@ -280,18 +299,23 @@ function ServerForm(store) {
     <div className="descriptions-con-Dragger">
       <div className="descriptions-con-Dragger">
         {testAddValue == 1 ? (
-          <Dragger {...testProps} className="testAdd-Dragger-con">
-            <p className="ant-upload-drag-icon">
-              <InboxOutlined />
-            </p>
-            <p className="ant-upload-text">
-              <div className="serverForm-form-text-con">
-                Click or drag file to this area to upload
-              </div>
-            </p>
+          <div>
+            <div className="serverForm-form-text-con">
+              Upload testing dataset
+            </div>
+            <Dragger {...testProps} className="testAdd-Dragger-con">
+              <p className="ant-upload-drag-icon">
+                <InboxOutlined />
+              </p>
+              <p className="ant-upload-text">
+                <div className="serverForm-form-text-con">
+                  Click or drag testing dataset to this area to upload
+                </div>
+              </p>
 
-            {/* <Button icon={<UploadOutlined />}>Select File</Button> */}
-          </Dragger>
+              {/* <Button icon={<UploadOutlined />}>Select File</Button> */}
+            </Dragger>{" "}
+          </div>
         ) : (
           ""
         )}
@@ -302,6 +326,7 @@ function ServerForm(store) {
           onClick={() => {
             setTestAddValue(1);
           }}
+          type="primary"
         >
           Add test set
         </Button>
@@ -324,10 +349,12 @@ function ServerForm(store) {
       <Select
         mode="multiple"
         style={{ width: "100%" }}
-        placeholder="select methord"
+        placeholder="select method"
         defaultValue={[]}
         onChange={selectMulMethod_1}
         optionLabelProp="label"
+        showArrow
+        showSearch={false}
       >
         <Option value="CNN" label="CNN">
           <div className="demo-option-label-item">CNN</div>
@@ -344,10 +371,12 @@ function ServerForm(store) {
       <Select
         mode="multiple"
         style={{ width: "100%" }}
-        placeholder="select methord"
+        placeholder="select method"
         defaultValue={[]}
         onChange={selectMulMethod_2}
         optionLabelProp="label"
+        showArrow
+        showSearch={false}
       >
         <Option value="TestGCN" label="TestGCN">
           <div className="demo-option-label-item">TestGCN</div>
@@ -361,10 +390,12 @@ function ServerForm(store) {
       <Select
         mode="multiple"
         style={{ width: "100%" }}
-        placeholder="select methord"
+        placeholder="select method"
         defaultValue={[]}
         onChange={selectMulMethod_3}
         optionLabelProp="label"
+        showArrow
+        showSearch={false}
       >
         <Option value="Bert" label="Bert">
           <div className="demo-option-label-item">Bert</div>
@@ -396,7 +427,7 @@ function ServerForm(store) {
   const [stepStatus_step_5, setStepStatus_step_5] = useState("gray");
   useEffect(() => {
     if (fileList.length > 0 || DAN_text) {
-      setStepStatus_step_1("blue")
+      setStepStatus_step_1("blue");
       // setStepStatus({
       //   step_1: "blue",
       //   step_2: stepStatus.step_2,
@@ -407,7 +438,7 @@ function ServerForm(store) {
 
       console.log(DAN_text.length);
     } else {
-      setStepStatus_step_1("gray")
+      setStepStatus_step_1("gray");
 
       // setStepStatus({
       //   step_1: "gray",
@@ -416,14 +447,14 @@ function ServerForm(store) {
       //   step_4: stepStatus.step_4,
       //   step_5: stepStatus.step_5,
       // });
-      console.log(DAN_text,"123");
+      console.log(DAN_text, "123");
     }
     if (
       selectMulMethodData_1.length > 0 ||
       selectMulMethodData_2.length > 0 ||
       selectMulMethodData_3.length > 0
     ) {
-      setStepStatus_step_3("blue")
+      setStepStatus_step_3("blue");
       // setStepStatus({
       //   step_1: stepStatus.step_1,
       //   step_2: "blue",
@@ -431,7 +462,11 @@ function ServerForm(store) {
       //   step_4: stepStatus.step_4,
       //   step_5: stepStatus.step_5,
       // });
-      console.log(selectMulMethodData_1.length,selectMulMethodData_2.length,selectMulMethodData_3.length)
+      console.log(
+        selectMulMethodData_1.length,
+        selectMulMethodData_2.length,
+        selectMulMethodData_3.length
+      );
     } else {
       // setStepStatus({
       //   step_1: stepStatus.step_1,
@@ -440,8 +475,8 @@ function ServerForm(store) {
       //   step_4: stepStatus.step_4,
       //   step_5: stepStatus.step_5,
       // });
-      setStepStatus_step_3("gray")
-      console.log("asdasds")
+      setStepStatus_step_3("gray");
+      console.log("asdasds");
     }
     if (eMail != "") {
       // setStepStatus({
@@ -451,16 +486,22 @@ function ServerForm(store) {
       //   step_4: "gray",
       //   step_5: stepStatus.step_5,
       // });
-      setStepStatus_step_4("blue")
-    }else{
-      setStepStatus_step_4("gray")
-
+      setStepStatus_step_4("blue");
+    } else {
+      setStepStatus_step_4("gray");
     }
 
-    if((fileList.length > 0 || DAN_text)&&(selectMulMethodData_1.length+selectMulMethodData_2.length+selectMulMethodData_3.length)>0&&eMail != ""){
-      setStepStatus_step_5("blue")
-    }else{
-      setStepStatus_step_5("gray")
+    if (
+      (fileList.length > 0 || DAN_text) &&
+      selectMulMethodData_1.length +
+        selectMulMethodData_2.length +
+        selectMulMethodData_3.length >
+        0 &&
+      eMail != ""
+    ) {
+      setStepStatus_step_5("blue");
+    } else {
+      setStepStatus_step_5("gray");
     }
   }, [
     fileList,
@@ -473,6 +514,7 @@ function ServerForm(store) {
   ]);
   return (
     <div className="serverForm-body-outer">
+      
       <div className="serverForm-body-con">
         <Modal
           title="Success"
@@ -501,7 +543,7 @@ function ServerForm(store) {
                 <List
                   header={
                     <div className="Data-load">
-                      <strong>Data load</strong>
+                      <strong>Input Dataset</strong>
                     </div>
                   }
                   footer={<div></div>}
@@ -512,37 +554,43 @@ function ServerForm(store) {
               </Timeline.Item>
               <Timeline.Item color={stepStatus_step_2}>
                 <div className="serverform-Collapse">
-                  <Collapse onChange={() => {
-                    setStepStatus_step_2("blue")
-                  }}>
+                  <Collapse
+                    onChange={() => {
+                      setStepStatus_step_2("blue");
+                    }}
+                  >
                     <Panel
                       header={
                         <div className="serverform-Collapse-ADVANCED">
-                          <strong>Advance Options</strong>
+                          <strong>Advanced Options</strong>
                         </div>
                       }
                       key="1"
                     >
                       <p>
+                      <div >
+                      Balanced Data:
+                        </div>
                         <Radio.Group
                           onChange={(e) => {
                             setAValue(e.target.value);
                           }}
                           value={aValue}
                         >
-                          <Radio value={1}>balanced data</Radio>
-                          <Radio value={2}>imbalanced data</Radio>
+                          <Radio value={1}>Yes</Radio>
+                          <Radio value={2}>No</Radio>
                         </Radio.Group>
                       </p>
                       <p>
+                        <div>CD-Hit:</div>
                         <Radio.Group
                           onChange={(e) => {
                             setBValue(e.target.value);
                           }}
                           value={bValue}
                         >
-                          <Radio value={1}>CD-Hit</Radio>
-                          <Radio value={2}>none CD-Hit</Radio>
+                          <Radio value={1}>Yes</Radio>
+                          <Radio value={2}>No</Radio>
                         </Radio.Group>
                       </p>
                     </Panel>
@@ -552,8 +600,12 @@ function ServerForm(store) {
               <Timeline.Item color={stepStatus_step_3}>
                 {" "}
                 <List
-                  grid={{ gutter: 16, column: 3 }}
-                  header={<div className="Data-load">Select Method</div>}
+                  grid={{ gutter: 0, column: 3 }}
+                  header={
+                    <div className="Data-load">
+                      Select Deep Learning Models<Tooltip title="support multiple models" className="Models-Timeline-Item-question"><QuestionCircleOutlined/></Tooltip>
+                    </div>
+                  }
                   bordered
                   dataSource={selectMethod}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
@@ -563,7 +615,7 @@ function ServerForm(store) {
                 <List
                   header={
                     <div className="Data-load">
-                      <strong>EMail</strong>
+                      <strong>Input Your E-mail</strong>
                     </div>
                   }
                   bordered
@@ -576,11 +628,11 @@ function ServerForm(store) {
                         }}
                       />
                       <div className="serverForm-form-text-con">
-                        Optional: The running time usually takes a few hours,
-                        and can be more than 10 hours if there are more than
-                        5000 cells in your data. Hence, we strongly recommend
-                        you to leave your email below, and you will be notified
-                        by email when the job is done:
+                        Optional: The running time usually takes several hours
+                        for training a deep learning model depending on your
+                        data size. Hence, we strongly recommend you to leave
+                        your email below, and you will be notified by email when
+                        the job is done:
                       </div>
                     </div>,
                   ]}

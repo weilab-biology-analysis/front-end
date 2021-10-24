@@ -64,7 +64,7 @@
   /* -webkit-animation: mymove 5s infinite; Chrome, Safari, Opera */
     /* animation: mymove 5s infinite; */
 }
-.ant-menu-item{
+.commen-Menu-Item{
   font-size: 20px;
   font-weight:bolder;
     /* background-color: rgba(255, 255, 255, 0); */
@@ -90,17 +90,44 @@ background-color: #6c61ff !important;
   
 }
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after {
-  border-bottom: 2px solid #08f3d4;
+  border-bottom: 2px solid white;
 }
 .ant-menu-item-active .ant-menu-title-content{
-  color: #08f3d4;
+  /* color: white; */
 }
 .ant-menu-overflow-item .ant-menu-item .ant-menu-item-only-child .ant-menu-item-active .ant-menu-title-content
-{  color: #08f3d4;
-}
+{  color: white;
+}canvas
+
 .JobHome-class{
   width: 70%;
+ 
   margin: 0 auto;
+}
+.Menu-header-home-item.ant-menu-submenu {
+  background-color: rgb(6, 44, 49) !important;
+
+}
+.ant-menu-submenu-horizontal{
+  background-color: rgb(6, 44, 49) !important;
+
+}
+.Menu-header-home-item-SubMenu{
+  background-color: #062c31 !important;
+  color: white;
+font-size: 20px;
+}
+
+/* .ant-menu-item .ant-menu-item-pupop::before{
+  background-color: white;
+} */
+.SubMenu-Menu-ItemGroup-Item{
+  /* background-color: blue ;
+  */ color: black;
+}
+.SubMenu-Menu-ItemGroup-Item::after{
+  background-color: black !important;
+  color: black;
 }
 .home-head-introduction{
   width: 600px;
@@ -146,6 +173,7 @@ justify-content: center;
   font-weight: 800;
   text-align: center;
   background-color: rgb(6, 44, 49) !important;
+  color: white;;
 
   /* background-color: rgb(23, 149, 158); */
 
@@ -205,4 +233,7 @@ justify-content: center;
 .logo-welab-img{
   width: 60px;
   margin: 0 30px ;
+}
+.SubMenu-title-text{
+  fontSize: "20px"
 }

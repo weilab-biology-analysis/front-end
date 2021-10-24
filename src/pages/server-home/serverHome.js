@@ -4,6 +4,7 @@ import "./serverHome.css";
 import { useHistory } from "react-router";
 // @ts-ignore
 import DNA from "../../constants/img/DNA.png";
+import { Breadcrumb } from "antd";
 function ServerHome(store) {
   useEffect(() => {
     console.log(store);
@@ -13,7 +14,21 @@ function ServerHome(store) {
     history.push("/serverPage");
   };
   return (
+    <div>
+<div className="Result-Result-body-Breadcrumb">
+        <Breadcrumb>
+          <Breadcrumb.Item className="Breadcrumb-Item-text">
+            Home
+          </Breadcrumb.Item>
+          <Breadcrumb.Item className="Breadcrumb-Item-text">
+            Server Select
+          </Breadcrumb.Item>
+
+        </Breadcrumb>
+      </div>
+   
     <div className="serverhome-body">
+       
       <div className="function-select">
         <div
           className="function-select-con"
@@ -85,7 +100,7 @@ function ServerHome(store) {
           </div>
         </div>
       </div>
-    </div>
+    </div></div>
   );
 }
 
