@@ -101,11 +101,11 @@
   > .ant-collapse-item
   > .ant-collapse-header
   .ant-collapse-arrow {
-  float: right;
+  float: left;
   margin: 8px;
   font-weight: 600 !important;
   padding-right: 30px !;
-}
+} 
 .ServerPage-tabs .ant-tabs-nav-wrap {
   background-color: rgb(241, 241, 241);
   border-right: 1px rgb(236, 236, 236) solid;

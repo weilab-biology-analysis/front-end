@@ -101,7 +101,7 @@
   > .ant-collapse-item
   > .ant-collapse-header
   .ant-collapse-arrow {
-  float: right;
+  float: left;
   margin: 8px;
   font-weight: 600 !important;
   padding-right: 30px !;

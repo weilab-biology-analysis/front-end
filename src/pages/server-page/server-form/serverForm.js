@@ -21,7 +21,7 @@ import {
   Steps,
   Popover,
   Tooltip,
-  Breadcrumb,
+  Breadcrumb,Switch
 } from "antd";
 
 import {
@@ -43,7 +43,7 @@ function ServerForm(store) {
   const [aValue, setAValue] = useState(2);
   const [bValue, setBValue] = useState(2);
   const [testAddValue, setTestAddValue] = useState(0);
-
+  const [switchCol,setSwitchCol]=useState(false)
   useEffect(() => {
     console.log(store);
   }, []);
@@ -716,12 +716,16 @@ function ServerForm(store) {
                   <Collapse
                     onChange={() => {
                       setStepStatus_step_2("blue");
+                      setSwitchCol(!switchCol)
                     }}
+                    checked={switchCol}
+
                   >
                     <Panel
                       header={
                         <div className="serverform-Collapse-ADVANCED">
                           <strong>Advanced Options</strong>
+                          <Switch checkedChildren="Yes" unCheckedChildren="No" className="switch-collapse" checked={switchCol}  onClick={()=>{setSwitchCol(!switchCol)}}/>
                         </div>
                       }
                       key="1"
