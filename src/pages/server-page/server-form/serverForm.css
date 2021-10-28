@@ -197,3 +197,18 @@
 .switch-collapse{
   float: right;
 }
+.select-advance-options-item{
+  width:100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+.select-advance-options-item-right{
+  width: 30%
+
+}
+.select-advance-options-item-left{
+  width: 30%;
+
+}
