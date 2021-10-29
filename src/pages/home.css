@@ -124,6 +124,8 @@ font-size: 20px;
 .SubMenu-Menu-ItemGroup-Item{
   /* background-color: blue ;
   */ color: black;
+  margin: 0 !important;
+
 }
 .SubMenu-Menu-ItemGroup-Item::after{
   background-color: black !important;

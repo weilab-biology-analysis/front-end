@@ -2,9 +2,8 @@ import { inject, observer } from "mobx-react";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import "./serverForm.css";
-import testSet from "./test.txt";
 import {
-  Descriptions,
+
   Input,
   Upload,
   Button,
@@ -40,7 +39,7 @@ const antIcon = <LoadingOutlined style={{ fontSize: 16 }} spin />;
 const { Option } = Select;
 const { Step } = Steps;
 
-function ServerForm(store) {
+function PridictForm(store) {
   const [aValue, setAValue] = useState(0);
   const [bValue, setBValue] = useState(0);
   const [cValue, setCValue] = useState(0.8);
@@ -723,7 +722,7 @@ function ServerForm(store) {
             <Timeline>
               <Timeline.Item color={stepStatus_step_1}>
                 {" "}
-                <List
+                {/* <List
                   header={
                     <div className="Data-load">
                       <strong>Input Dataset</strong>
@@ -733,10 +732,21 @@ function ServerForm(store) {
                   bordered
                   dataSource={daraCollection}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
+                /> */}
+                <List
+                 header={
+                  <div className="Data-load">
+                    <strong>Input Dataset</strong>
+                  </div>
+                }
+                footer={<div></div>}
+                bordered
+                dataSource={daraCollection}
+                renderItem={(item) => <List.Item>{item}</List.Item>}
                 />
               </Timeline.Item>
               <Timeline.Item color={stepStatus_step_2}>
-                <div className="serverform-Collapse">
+                {/* <div className="serverform-Collapse">
                   <Collapse
                     onChange={() => {
                       setStepStatus_step_2("blue");
@@ -841,11 +851,11 @@ function ServerForm(store) {
                       </p>
                     </Panel>
                   </Collapse>
-                </div>
+                </div> */}
               </Timeline.Item>
               <Timeline.Item color={stepStatus_step_3}>
                 {" "}
-                <List
+                {/* <List
                   grid={{ gutter: 0, column: 3 }}
                   header={
                     <div className="Data-load">
@@ -861,10 +871,10 @@ function ServerForm(store) {
                   bordered
                   dataSource={selectMethod}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
-                />
+                /> */}
               </Timeline.Item>
               <Timeline.Item color={stepStatus_step_4}>
-                <List
+                {/* <List
                   header={
                     <div className="Data-load">
                       <strong>Input Your E-mail</strong>
@@ -889,10 +899,10 @@ function ServerForm(store) {
                     </div>,
                   ]}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
-                />
+                /> */}
               </Timeline.Item>
               <Timeline.Item color={stepStatus_step_5}>
-                <List
+                {/* <List
                   header={
                     <div className="Data-load">
                       <strong>Submit</strong>
@@ -928,7 +938,7 @@ function ServerForm(store) {
                     </div>,
                   ]}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
-                />
+                /> */}
               </Timeline.Item>
             </Timeline>
           </div>
@@ -938,4 +948,4 @@ function ServerForm(store) {
   );
 }
 
-export default inject("store")(observer(ServerForm));
+export default inject("store")(observer(PridictForm));

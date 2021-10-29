@@ -7,7 +7,12 @@ import ServerHome from "./server-home/serverHome";
 import JobHome from "./job-home/jobHome";
 import About from "./about/about";
 import ServerForm from "./server-page/server-form/serverForm";
+import ServerPredictHome from "./server-predict-home/serverHome";
 import RNAServerForm from "./server-page/RNA-form/serverForm";
+import ServerPredictForm from "./server-page/server-predict/PridictForm";
+import RNAPredictForm from "./server-page/RNA-predict/serverForm";
+import PeptidePredictForm from "./server-page/Peptide-predict/serverForm";
+
 import PeptideServerForm from "./server-page/Peptide-form/serverForm";
 import Result from "./result/result";
 import {
@@ -61,8 +66,9 @@ function Home(store) {
   const PageCon = () => {
     switch (page) {
       case 1:
-        return <div>
-          <div className="Result-Result-body-Breadcrumb">
+        return (
+          <div>
+            <div className="Result-Result-body-Breadcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
                   Home
@@ -70,16 +76,15 @@ function Home(store) {
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
                   Related Work
                 </Breadcrumb.Item>
-
               </Breadcrumb>
             </div>
-          <HomePage /></div>;
-      case 2:
-        return <ServerHome />;
+            <HomePage />
+          </div>
+        );
+
       case 3:
         return (
           <div className="JobHome-class">
-
             <div className="Result-Result-body-Breadcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
@@ -89,7 +94,6 @@ function Home(store) {
                   Job List
                 </Breadcrumb.Item>
               </Breadcrumb>
-              
             </div>
             <JobHome />
           </div>
@@ -149,22 +153,27 @@ function Home(store) {
                 </Breadcrumb.Item>
               </Breadcrumb>
             </div>
-          <Tabs
-            type="card"
-            defaultActiveKey="2"
-            onChange={callback}
-            className="ServerPage-tabs"
-          >
-            <TabPane tab="DNA" key="1" className="ServerPage-tabs-TabPane">
-              <ServerForm />
-            </TabPane>
-            <TabPane tab="RNA" key="2" className="ServerPage-tabs-TabPane">
-              <RNAServerForm />
-            </TabPane>
-            <TabPane tab="Protein" key="3" className="ServerPage-tabs-TabPane">
-              <PeptideServerForm />
-            </TabPane>
-          </Tabs></div>
+            <Tabs
+              type="card"
+              defaultActiveKey="2"
+              onChange={callback}
+              className="ServerPage-tabs"
+            >
+              <TabPane tab="DNA" key="1" className="ServerPage-tabs-TabPane">
+                <ServerForm />
+              </TabPane>
+              <TabPane tab="RNA" key="2" className="ServerPage-tabs-TabPane">
+                <RNAServerForm />
+              </TabPane>
+              <TabPane
+                tab="Protein"
+                key="3"
+                className="ServerPage-tabs-TabPane"
+              >
+                <PeptideServerForm />
+              </TabPane>
+            </Tabs>
+          </div>
         );
       case 6:
         return (
@@ -182,25 +191,149 @@ function Home(store) {
                 </Breadcrumb.Item>
               </Breadcrumb>
             </div>
-          <Tabs
-            defaultActiveKey="3"
-            onChange={callback}
-            className="ServerPage-tabs"
-            type="card"
-          >
-            <TabPane tab="DNA" key="1" className="ServerPage-tabs-TabPane">
-              <ServerForm />
-            </TabPane>
-            <TabPane tab="RNA" key="2" className="ServerPage-tabs-TabPane">
-              <RNAServerForm />
-            </TabPane>
-            <TabPane tab="Protein" key="3" className="ServerPage-tabs-TabPane">
-              <PeptideServerForm />
-            </TabPane>
-          </Tabs></div>
+            <Tabs
+              defaultActiveKey="3"
+              onChange={callback}
+              className="ServerPage-tabs"
+              type="card"
+            >
+              <TabPane tab="DNA" key="1" className="ServerPage-tabs-TabPane">
+                <ServerForm />
+              </TabPane>
+              <TabPane tab="RNA" key="2" className="ServerPage-tabs-TabPane">
+                <RNAServerForm />
+              </TabPane>
+              <TabPane
+                tab="Protein"
+                key="3"
+                className="ServerPage-tabs-TabPane"
+              >
+                <PeptideServerForm />
+              </TabPane>
+            </Tabs>
+          </div>
         );
       case 7:
         return <Result />;
+
+      case 2:
+        return <ServerHome />;
+      case 8:
+        return <ServerPredictHome />;
+      case 9:
+        return (
+          <div>
+            <div className="Result-Result-body-Breadcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Home
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Server Select
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Submit
+                </Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
+            <Tabs
+              defaultActiveKey="1"
+              onChange={callback}
+              className="ServerPage-tabs"
+              type="card"
+            >
+              <TabPane tab="DNA" key="1" className="ServerPage-tabs-TabPane">
+                <ServerPredictForm />
+              </TabPane>
+              <TabPane tab="RNA" key="2" className="ServerPage-tabs-TabPane">
+                <RNAPredictForm />
+              </TabPane>
+              <TabPane
+                tab="Protein"
+                key="3"
+                className="ServerPage-tabs-TabPane"
+              >
+                <PeptidePredictForm />
+              </TabPane>
+            </Tabs>
+          </div>
+        );
+      case 10:
+        return (
+          <div>
+            <div className="Result-Result-body-Breadcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Home
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Server Select
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Submit
+                </Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
+            <Tabs
+              defaultActiveKey="2"
+              onChange={callback}
+              className="ServerPage-tabs"
+              type="card"
+            >
+              <TabPane tab="DNA" key="1" className="ServerPage-tabs-TabPane">
+                <ServerPredictForm />
+              </TabPane>
+              <TabPane tab="RNA" key="2" className="ServerPage-tabs-TabPane">
+                <RNAPredictForm />
+              </TabPane>
+              <TabPane
+                tab="Protein"
+                key="3"
+                className="ServerPage-tabs-TabPane"
+              >
+                <PeptidePredictForm />
+              </TabPane>
+            </Tabs>
+          </div>
+        );
+      case 11:
+        return (
+          <div>
+            <div className="Result-Result-body-Breadcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Home
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Server Select
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Submit
+                </Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
+            <Tabs
+              defaultActiveKey="3"
+              onChange={callback}
+              className="ServerPage-tabs"
+              type="card"
+            >
+              <TabPane tab="DNA" key="1" className="ServerPage-tabs-TabPane">
+                <ServerPredictForm />
+              </TabPane>
+              <TabPane tab="RNA" key="2" className="ServerPage-tabs-TabPane">
+                <RNAPredictForm />
+              </TabPane>
+              <TabPane
+                tab="Protein"
+                key="3"
+                className="ServerPage-tabs-TabPane"
+              >
+                <PeptidePredictForm />
+              </TabPane>
+            </Tabs>
+          </div>
+        );
       default:
         window.location.href = "http://wei-group.net/contact";
 
@@ -233,33 +366,37 @@ function Home(store) {
               className="Menu-header-home-item"
             >
               {new Array(4).fill(null).map((_, index) => {
-                const key = index + 1;
-                if (key === 2) {
+                const keyValue = index + 1;
+                if (keyValue === 2) {
                   return (
                     <SubMenu
                       title={
                         <div className="SubMenu-title-text">
-                          {headerCon[key]}
+                          {headerCon[keyValue]}
                         </div>
                       }
-                      key={key}
-                      onClick={() => {
-                        store.store.servers.changeHomeStatue(key);
-                      }}
+                      key={keyValue}
+                      
                       className="Menu-header-home-item-SubMenu"
                     >
                       <Menu.ItemGroup>
                         <Menu.Item
-                          key="2"
+                          key={2}
                           className="SubMenu-Menu-ItemGroup-Item"
+                          onClick={() => {
+                            store.store.servers.changeHomeStatue(2);
+                          }}
                         >
-                          1
+                          Train
                         </Menu.Item>
                         <Menu.Item
-                          key="2"
+                          key={8}
                           className="SubMenu-Menu-ItemGroup-Item"
+                          onClick={() => {
+                            store.store.servers.changeHomeStatue(8);
+                          }}
                         >
-                          2
+                          Prediction
                         </Menu.Item>
                       </Menu.ItemGroup>
                     </SubMenu>
@@ -267,13 +404,13 @@ function Home(store) {
                 } else {
                   return (
                     <Menu.Item
-                      key={key}
+                      key={keyValue}
                       onClick={() => {
-                        store.store.servers.changeHomeStatue(key);
+                        store.store.servers.changeHomeStatue(keyValue);
                       }}
                       className="commen-Menu-Item"
                     >
-                      {headerCon[key]}
+                      {headerCon[keyValue]}
                     </Menu.Item>
                   );
                 }

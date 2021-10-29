@@ -2,7 +2,6 @@ import { inject, observer } from "mobx-react";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import "./serverForm.css";
-import testSet from "./test.txt";
 import {
   Descriptions,
   Input,

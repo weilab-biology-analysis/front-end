@@ -23,7 +23,9 @@ function ServerHome(store) {
           <Breadcrumb.Item className="Breadcrumb-Item-text">
             Server Select
           </Breadcrumb.Item>
-
+          <Breadcrumb.Item className="Breadcrumb-Item-text">
+            Training
+          </Breadcrumb.Item>
         </Breadcrumb>
       </div>
    
