@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import "./serverForm.css";
 import {
-
+  Descriptions,
   Input,
   Upload,
   Button,
@@ -22,6 +22,7 @@ import {
   Tooltip,
   Breadcrumb,
   Switch,
+  Slider,
 } from "antd";
 
 import {
@@ -39,7 +40,7 @@ const antIcon = <LoadingOutlined style={{ fontSize: 16 }} spin />;
 const { Option } = Select;
 const { Step } = Steps;
 
-function PridictForm(store) {
+function ServerForm(store) {
   const [aValue, setAValue] = useState(0);
   const [bValue, setBValue] = useState(0);
   const [cValue, setCValue] = useState(0.8);
@@ -416,7 +417,7 @@ function PridictForm(store) {
     console.log(`selected ${value}`);
   };
   const selectMulMethod_3 = (value) => {
-    setSelectMulMethodData_3(value);
+    setSelectMulMethodData_2(value);
 
     console.log(`selected ${value}`);
   };
@@ -517,7 +518,7 @@ function PridictForm(store) {
         </Option>
         <Option value="LSTMAttention" label="LSTMAttention">
           <div className="demo-option-label-item">LSTMAttention</div>
-        </Option>
+        </Option>{" "}
       </Select>
     </Card>,
     <Card
@@ -695,6 +696,11 @@ function PridictForm(store) {
     eMail,
     current,
   ]);
+  const [type, setType] = useState(0);
+  const onCangeType = (e) => {
+    console.log(e.target.value);
+    setType(e.target.value);
+  };
   return (
     <div className="serverForm-body-outer">
       <div className="serverForm-body-con">
@@ -718,7 +724,7 @@ function PridictForm(store) {
           />
         </Modal>
         <div className="serverForm-timeline-serverForm-body">
-          <div>
+          <div className="serverForm-timeline-serverForm-timline-outer">
             <Timeline>
               <Timeline.Item color={stepStatus_step_1}>
                 {" "}
@@ -733,19 +739,122 @@ function PridictForm(store) {
                   dataSource={daraCollection}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
                 /> */}
-                <List
-                 header={
-                  <div className="Data-load">
-                    <strong>Input Dataset</strong>
-                  </div>
-                }
-                footer={<div></div>}
-                bordered
-                dataSource={daraCollection}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-                />
+                <div>
+                  Tasks：
+                  <Radio.Group onChange={onCangeType} value={type}>
+                    <Radio value={1}>4mc</Radio>
+                    <Radio value={2}>5mc</Radio>
+                    <Radio value={3}>6mc</Radio>
+                  </Radio.Group>
+                </div>
               </Timeline.Item>
               <Timeline.Item color={stepStatus_step_2}>
+                <List
+                  header={
+                    <div className="Data-load">
+                      <strong>Target Seqence input</strong>
+                    </div>
+                  }
+                  footer={<div></div>}
+                  bordered
+                  dataSource={[
+                    <div className="targetSeq-body">
+                      <Collapse
+                        onChange={() => {}}
+                        className="targetSeqInput-body"
+                      >
+                        <Panel header="Target Seqence input">
+                          <div className="serverForm-descriptions-con-outer">
+                            <div className="serverForm-form-text-con">
+                              <div className="serverForm-form-text-con-test">
+                                <div>
+                                  Enter the query DNA sequences in training
+                                  dataset with FASTA format (
+                                  <a
+                                    onClick={() => {
+                                      example();
+                                    }}
+                                  >
+                                    Example
+                                  </a>
+                                  ):
+                                  <Tooltip
+                                    className="serverForm-form-text-con-test-Tooltip-QuestionCircleOutlined"
+                                    title="maximum2000 sequences for each submission"
+                                  >
+                                    <QuestionCircleOutlined />
+                                  </Tooltip>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="descriptions-con-Dragger">
+                              <TextArea
+                                value={DAN_text}
+                                onChange={({ target: { value } }) => {
+                                  setDAN_text(value);
+                                }}
+                                autoSize={{ minRows: 4, maxRows: 4 }}
+                              />
+                            </div>
+                          </div>
+
+                          <div className="descriptions-con-Dragger">
+                            <div className="serverForm-form-text-con">
+                              Upload training dataset
+                            </div>
+                            <Dragger {...props} className="testAdd-Dragger-con">
+                              <p className="ant-upload-drag-icon">
+                                <InboxOutlined />
+                              </p>
+                              <p className="ant-upload-text">
+                                <div className="serverForm-form-text-con">
+                                  Click or drag training dataset to this area to
+                                  upload
+                                </div>
+                              </p>
+                            </Dragger>
+                          </div>
+                        </Panel>
+                      </Collapse>
+                    </div>,
+                    <div>
+                      <div>
+                        Species:
+                        <Select
+                          onChange={(value) => {
+                            console.log(value);
+                          }}
+                        >
+                          <Option value="Human">Human</Option>
+                          <Option value="Mouse">Mouse</Option>
+                        </Select>
+                      </div>
+                      <div>
+                        Chrome:
+                        <Select
+                          onChange={(value) => {
+                            console.log(value);
+                          }}
+                        >
+                          <Option value="Human">Human</Option>
+                          <Option value="Mouse">Mouse</Option>
+                        </Select>
+                      </div>
+                      <div>
+                        Position:
+                        <Slider
+                          step={1}
+                          range
+                          defaultValue={[20, 50]}
+                          onChange={(value) => {
+                            console.log(value);
+                          }}
+                        />
+                      </div>
+                    </div>,
+                  ]}
+                  renderItem={(item) => <List.Item>{item}</List.Item>}
+                />
                 {/* <div className="serverform-Collapse">
                   <Collapse
                     onChange={() => {
@@ -809,7 +918,7 @@ function PridictForm(store) {
                         </div>
                       </p>
                       <p>
-                        <div className="select-advance-options-item">
+                        <div className="select-advance-options-item"  >
                           <div className="select-advance-options-item-left">
                             Data argumentation:{" "}
                           </div>
@@ -841,10 +950,9 @@ function PridictForm(store) {
                                 setCValue(value);
                               }}
                             >
-                               <Option value={0.8}>0.8</Option>
                               <Option value={0.6}>0.6</Option>
-                              <Option value={0.9}>0.4</Option>
-                             
+                              <Option value={0.9}>0.9</Option>
+                              <Option value={0.8}>0.8</Option>
                             </Select>
                           </div>
                         </div>
@@ -854,7 +962,34 @@ function PridictForm(store) {
                 </div> */}
               </Timeline.Item>
               <Timeline.Item color={stepStatus_step_3}>
-                {" "}
+                <div>
+                  <Collapse>
+                    <Panel header="Target Seqence input">
+                      <div>
+                        Job Id: <Input />
+                      </div>
+                    </Panel>
+                    <Panel>
+                      <List
+                        grid={{ gutter: 0, column: 3 }}
+                        header={
+                          <div className="Data-load">
+                            Select Deep Learning Models
+                            <Tooltip
+                              title="support multiple models"
+                              className="Models-Timeline-Item-question"
+                            >
+                              <QuestionCircleOutlined />
+                            </Tooltip>
+                          </div>
+                        }
+                        bordered
+                        dataSource={selectMethod}
+                        renderItem={(item) => <List.Item>{item}</List.Item>}
+                      />
+                    </Panel>
+                  </Collapse>
+                </div>{" "}
                 {/* <List
                   grid={{ gutter: 0, column: 3 }}
                   header={
@@ -902,7 +1037,7 @@ function PridictForm(store) {
                 /> */}
               </Timeline.Item>
               <Timeline.Item color={stepStatus_step_5}>
-                {/* <List
+                 <List
                   header={
                     <div className="Data-load">
                       <strong>Submit</strong>
@@ -938,7 +1073,7 @@ function PridictForm(store) {
                     </div>,
                   ]}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
-                /> */}
+                /> 
               </Timeline.Item>
             </Timeline>
           </div>
@@ -948,4 +1083,4 @@ function PridictForm(store) {
   );
 }
 
-export default inject("store")(observer(PridictForm));
+export default inject("store")(observer(ServerForm));

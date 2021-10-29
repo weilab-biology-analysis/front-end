@@ -17,6 +17,9 @@
   float: right;
   margin: 16px 0 16px 24px;
 }
+.home-depart-outer{
+  width: 70%;
+}
 .home-head {
   width: 100%;
   height: 300px;
@@ -100,9 +103,11 @@ background-color: #6c61ff !important;
 }canvas
 
 .JobHome-class{
-  width: 70%;
- 
+width: 100%;
   margin: 0 auto;
+}
+.ant-layout-content{
+  width:100% !important;
 }
 .Menu-header-home-item.ant-menu-submenu {
   background-color: rgb(6, 44, 49) !important;
@@ -124,8 +129,6 @@ font-size: 20px;
 .SubMenu-Menu-ItemGroup-Item{
   /* background-color: blue ;
   */ color: black;
-  margin: 0 !important;
-
 }
 .SubMenu-Menu-ItemGroup-Item::after{
   background-color: black !important;
@@ -168,12 +171,12 @@ justify-content: center;
 
 }
 .logo-welab{
-  width: 30%;
+
   float: left;
-  padding: 15px;
+  /* padding-top: 15px; */
   font-size: 30px;
   font-weight: 800;
-  text-align: center;
+  text-align: right;
   background-color: rgb(6, 44, 49) !important;
   color: white;;
 
@@ -185,41 +188,55 @@ justify-content: center;
 
 }
 .Menu-header-home{
-  padding: 10px;
-  float: right;
+  /* padding-top: 10px; */
+  float: left;
   width: 70%;
   background-color: rgb(6, 44, 49) !important;
-
+  z-index: 999;
+  margin: 0 auto;
   /* background-color: rgb(23, 149, 158); */
 }
 .ant-layout .ant-layout-header{
   /* border: ; */
   /* background-color: rgb(23, 149, 158) !important;
    */
-   background-color: rgb(6, 44, 49) !important;
+  z-index: 999;
+  background-color: rgb(6, 44, 49) !important;
 
 } 
 .Menu-header-home-outer-inite { 
   /* border-bottom:  1px rgba(105, 105, 105, 0.884); */
   /* box-shadow: 1px 1px 1px black !important; */
-  height: 90px;
-  background-color: rgb(23, 149, 158) !important;
+  /*height: 90px;*/
+  /* background-color: rgb(23, 149, 158) !important; */
+   background-color: rgb(6, 44, 49) !important;
+   z-index: 999;
+
+  position:fixed;
+  width: 100%;
+  /* top: 60px; */
   /* border: rgb(206, 206, 206) 1px solid;  */
   /* box-shadow: 1px 1px 10px 1px gray; */
   
 }
 .Menu-header-home-item{
-  height: 80px;
+  height: 50px;
   /* text-shadow: 0px 0px 1px 1px gray; */
   
   border: none;
   /* background-color: rgba(255, 255, 255, 0); */
+  z-index: 999;
   float: right;
 }
 .Menu-header-home-outer-in-item{
-  height: 90px;
-  box-shadow: 1px 1px 10px gray;
-  background-color: rgb(23, 149, 158) !important;
+  /*height: 80px;*/
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  padding:0 50px;
+  background-color: rgb(6, 44, 49) !important;
+  z-index: 999;
   
 }
 
@@ -228,14 +245,21 @@ justify-content: center;
 }
 .ant-layout .ant-layout-header{
   padding: 0;
-  height: 100px;
+  height: 55px;
   /* box-shadow: 1px 1px 10px gray; */
 
 }
-.logo-welab-img{
-  width: 60px;
-  margin: 0 30px ;
-}
+
 .SubMenu-title-text{
-  fontSize: "20px"
+  /* margin-top: 10px; */
+  font-size: "20px"
+}
+.headCon-tab-text{
+  margin-top: 10px;
+}
+
+.submit-depart-pages{
+  width: 70% !important;
+  margin:  100px auto;
+  
 }

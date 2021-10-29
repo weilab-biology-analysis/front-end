@@ -67,7 +67,7 @@ function Home(store) {
     switch (page) {
       case 1:
         return (
-          <div>
+          <div className="submit-depart-pages">  
             <div className="Result-Result-body-Breadcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
@@ -84,7 +84,7 @@ function Home(store) {
 
       case 3:
         return (
-          <div className="JobHome-class">
+          <div className="submit-depart-pages">
             <div className="Result-Result-body-Breadcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
@@ -100,7 +100,7 @@ function Home(store) {
         );
       case 4:
         return (
-          <div>
+          <div className="submit-depart-pages">
             <div className="Result-Result-body-Breadcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
@@ -139,7 +139,7 @@ function Home(store) {
 
       case 5:
         return (
-          <div>
+          <div className="submit-depart-pages">
             <div className="Result-Result-body-Breadcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
@@ -177,7 +177,7 @@ function Home(store) {
         );
       case 6:
         return (
-          <div>
+          <div className="submit-depart-pages">
             <div className="Result-Result-body-Breadcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
@@ -214,15 +214,15 @@ function Home(store) {
           </div>
         );
       case 7:
-        return <Result />;
+        return <div className="submit-depart-pages"><Result /></div>;
 
       case 2:
-        return <ServerHome />;
+        return <div className="submit-depart-pages"><ServerHome /></div>
       case 8:
-        return <ServerPredictHome />;
+        return <div className="submit-depart-pages"><ServerPredictHome /></div>
       case 9:
         return (
-          <div>
+          <div className="submit-depart-pages">
             <div className="Result-Result-body-Breadcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
@@ -260,7 +260,7 @@ function Home(store) {
         );
       case 10:
         return (
-          <div>
+          <div className="submit-depart-pages">
             <div className="Result-Result-body-Breadcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
@@ -298,7 +298,7 @@ function Home(store) {
         );
       case 11:
         return (
-          <div>
+          <div className="submit-depart-pages">
             <div className="Result-Result-body-Breadcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
@@ -352,13 +352,13 @@ function Home(store) {
     <Layout>
       <Header className="Menu-header-home-outer-inite">
         <div className="Menu-header-home-outer-in-item">
-          <div className="logo-welab">
-            Wei Lab
-            <img src={logo} className="logo-welab-img" />
-          </div>
-          <div></div>
-
+         
           <div className="Menu-header-home">
+          <div className="logo-welab">
+            Deep Bio
+            {/* <img src={logo} className="logo-welab-img" /> */}
+          </div>
+
             <Menu
               theme="light"
               mode="horizontal"
