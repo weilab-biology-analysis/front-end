@@ -2,7 +2,6 @@ import { inject, observer } from "mobx-react";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import "./serverForm.css";
-import testSet from "./test.txt";
 import {
   Descriptions,
   Input,
@@ -23,6 +22,7 @@ import {
   Tooltip,
   Breadcrumb,
   Switch,
+  Checkbox,
 } from "antd";
 
 import {
@@ -43,11 +43,22 @@ const { Step } = Steps;
 function ServerForm(store) {
   const [aValue, setAValue] = useState(0);
   const [bValue, setBValue] = useState(0);
-  const [cValue, setCValue] = useState(0.8);
+  const [cValue_1, setCValue_1] = useState(true);
+  const [cValue_2, setCValue_2] = useState(false);
+  const [cValue_3, setCValue_3] = useState(false);
+  const [cValue_4, setCValue_4] = useState(false);
+
   const [dValue, setDValue] = useState(0);
   const [eValue, setEValue] = useState(0);
+  const [a_Value, setA_Value] = useState(false);
+  const [b_Value, setB_Value] = useState(false);
+  const [c_Value, setC_Value] = useState(false);
+  const [d_Value, setD_Value] = useState(false);
+  const [e_Value, setE_Value] = useState(false);
+
   const [testAddValue, setTestAddValue] = useState(0);
   const [switchCol, setSwitchCol] = useState(false);
+  
   useEffect(() => {
     console.log(store);
   }, []);
@@ -58,6 +69,8 @@ function ServerForm(store) {
       setUploading(false);
     }
   }, [store.store.servers.status]);
+
+  const [modeSelectModel,setModeSelectModel]=useState("multiple")
 
   const [current, setCurrent] = useState(0);
   const [DAN_text, setDAN_text] = useState("");
@@ -172,14 +185,132 @@ function ServerForm(store) {
     return formData;
   };
   const submit = async () => {
+    let type = "DNA";
+    // if
+
     let formData = getFile();
     //dataStr, dataFile, param, mail
     if (fileList[0]) {
       formData.append("dataFile", fileList[0], fileList[0].name);
     }
     formData.append("dataStr", DAN_text);
-    formData.append("param", "{}");
+    formData.append("type", 0);
+    let miniMode="modelCompare"
+    if (eValue){
+      miniMode="paramCompare"
+    }
+    let balancedData="0"
+    if(bValue){
+      balancedData="1"
+    }
+    let dataArgumentation="0"
+    if (aValue){
+      dataArgumentation="1"
+    }
+    let dataEnhancement="0"
+    if(dValue){
+      dataEnhancement="1"
+    }
+    let CDHit=""
+    if(cValue_1){
+      CDHit += "8"
+    }
+    if(cValue_2){
+      CDHit += "6"
+    }
+    if(cValue_3){
+      CDHit += "4"
+    }
+    if(cValue_4){
+      CDHit += "2"
+    }
+    let paramCompare="CDHit"
+    if (eValue){
+      if(aValue){
+        paramCompare="adversialtraining"
+      }
+      if(dValue){
+        paramCompare="adversialtraining"
+      }
+      if(bValue){
+        paramCompare="Focalloss"
 
+      }
+
+
+
+    }
+    let paramCompareModel=""
+    let modelCompare=""
+    console.log(selectMulMethodData_1,selectMulMethodData_2,selectMulMethodData_3)
+    if(eValue){
+      if(selectMulMethodData_1.length===1){
+        paramCompareModel+=selectMulMethodData_1[0]
+      }
+      if(selectMulMethodData_2.length===1){
+        paramCompareModel+=selectMulMethodData_2[0]
+      }
+      if(selectMulMethodData_3.length===1){
+        paramCompareModel+=selectMulMethodData_3[0]
+      }
+      
+    }else{
+    for(let index in selectMulMethodData_1){
+      if(modelCompare===""){
+        modelCompare+=selectMulMethodData_1[index]
+      }else{
+        modelCompare+=" "+selectMulMethodData_1[index]
+      }
+      console.log(selectMulMethodData_1[index],"modelSelectCoding")
+    }
+    for(let index in selectMulMethodData_2){
+      if(modelCompare===""){
+        modelCompare+=selectMulMethodData_2[index]
+      }else{
+        modelCompare+=" "+selectMulMethodData_2[index]
+      }
+      console.log(selectMulMethodData_2[index],"modelSelectCoding")
+    }
+    for(let index in selectMulMethodData_3){
+      if(modelCompare===""){
+        modelCompare+=selectMulMethodData_3[index]
+      }else{
+        modelCompare+=" "+selectMulMethodData_3[index]
+      }
+      console.log(selectMulMethodData_3[index],"modelSelectCoding")
+    }
+    }
+
+
+    
+    formData.append(
+      "param",
+      "{" +
+        "'type':'DNA',"+
+        "'mode':'train-test',"+
+        "'minimode':'"+miniMode+"',"+
+        "'dataArgumentation':'"+dataArgumentation+"',"+
+        "'dataEnhancement':'"+dataEnhancement+"',"+
+        "'balancedData':'"+balancedData+"',"+
+        "'paramCompare':'"+paramCompare+"',"+
+        "'CDHit':'"+CDHit+"',"+
+        "'paramCompareModel':'"+paramCompareModel+"',"+
+        "'modelCompare':'"+modelCompare+"'" +
+        "}"
+    );
+
+    console.log("{" +
+    "'type':'DNA',"+
+    "'mode':'train-test',"+
+    "'minimode':'"+miniMode+"',"+
+    "'dataArgumentation':'"+dataArgumentation+"',"+
+    "'dataEnhancement':'"+dataEnhancement+"',"+
+    "'balancedData':'"+balancedData+"',"+
+    "'paramCompare':'"+paramCompare+"',"+
+    "'CDHit':'"+CDHit+"',"+
+    "'paramCompareModel':'"+paramCompareModel+"',"+
+    "'modelCompare':'"+modelCompare+"'" +
+    "}")
     formData.append("mail", eMail);
 
     console.log(formData);
@@ -195,10 +326,14 @@ function ServerForm(store) {
     }
 
     if (
-      DAN_text != "" &&
-      fileList[0] &&
+      (DAN_text != "" || fileList[0]) &&
       eMail &&
-      selectMulMethodData_1 + selectMulMethodData_2 + selectMulMethodData_3 > 0
+      selectMulMethodData_1.length +
+        selectMulMethodData_2.length +
+        selectMulMethodData_3.length >
+        0
+      
+      
     ) {
       store.store.servers.request();
       let result = await submitForm(formData);
@@ -211,6 +346,11 @@ function ServerForm(store) {
         message.error("failed");
       }
     } else {
+      console.log(
+        selectMulMethodData_1.length +
+          selectMulMethodData_2.length +
+          selectMulMethodData_3.length
+      );
       if (DAN_text == "" && fileList.length == 0) {
         setStepStatus_step_1("red");
       }
@@ -218,7 +358,9 @@ function ServerForm(store) {
         setStepStatus_step_4("red");
       }
       if (
-        selectMulMethodData_1 + selectMulMethodData_2 + selectMulMethodData_3 ==
+        selectMulMethodData_1.length +
+          selectMulMethodData_2.length +
+          selectMulMethodData_3.length ==
         0
       ) {
         setStepStatus_step_3("red");
@@ -231,11 +373,7 @@ function ServerForm(store) {
     setEMail("");
     setDAN_text("");
   };
-  const qwe = {
-    model: ["CNN", "GCN", "wdwe"],
-    balance: true,
-    cdHit: false,
-  };
+
   // var xmlhttp;
 
   // function loadData(url, cfunc) {
@@ -312,7 +450,7 @@ function ServerForm(store) {
     }
     for (let index in arr) {
       let arr_current = arr[index].split("|");
-      console.log(arr_current);
+      // console.log(arr_current);
       if (index % 2 === 0) {
         if (
           !(
@@ -408,16 +546,40 @@ function ServerForm(store) {
   const [selectMulMethodData_3, setSelectMulMethodData_3] = useState([]);
 
   const selectMulMethod_1 = (value) => {
-    setSelectMulMethodData_1(value);
+    if (eValue&&(selectMulMethodData_1.length+selectMulMethodData_2.length+selectMulMethodData_3.length>=1)){
+      setSelectMulMethodData_2([]);
+      setSelectMulMethodData_1([value]);
+      setSelectMulMethodData_3([]);
+      message.info("paramter compare only run one model")
+    }else{
+      setSelectMulMethodData_1(value);
+    }
+    
     console.log(`selected ${value}`);
   };
   const selectMulMethod_2 = (value) => {
-    setSelectMulMethodData_2(value);
+    if (eValue&&(selectMulMethodData_1.length+selectMulMethodData_2.length+selectMulMethodData_3.length>=1)){
+      setSelectMulMethodData_1([]);
+      setSelectMulMethodData_2([value]);
+      setSelectMulMethodData_3([]);
+      message.info("paramter compare only run one model")
+    }else{
+      setSelectMulMethodData_2(value);
+        }
+    
 
     console.log(`selected ${value}`);
   };
   const selectMulMethod_3 = (value) => {
-    setSelectMulMethodData_3(value);
+    if (eValue&&(selectMulMethodData_1.length+selectMulMethodData_2.length+selectMulMethodData_3.length>=1)){
+      setSelectMulMethodData_1([]);
+      setSelectMulMethodData_3([value]);
+      setSelectMulMethodData_2([]);
+      message.info("paramter compare only run one model")
+    }else{
+      setSelectMulMethodData_3(value);
+        }
+    
 
     console.log(`selected ${value}`);
   };
@@ -477,10 +639,11 @@ function ServerForm(store) {
       className="card-selectMethod"
     >
       <Select
-        mode="multiple"
+        mode={modeSelectModel}
         style={{ width: "100%" }}
         placeholder="select method"
         defaultValue={[]}
+        value={selectMulMethodData_1}
         onChange={selectMulMethod_1}
         optionLabelProp="label"
         maxTagCount="responsive"
@@ -489,34 +652,34 @@ function ServerForm(store) {
         showArrow
         showSearch={false}
       >
-        <Option value="CNN" label="CNN">
-          <div className="demo-option-label-item">CNN</div>
+        <Option value="1" label="RNN">
+          <div className="demo-option-label-item">RNN</div>
         </Option>
-        <Option value="DNN" label="DNN">
+        <Option value="0" label="DNN">
           <div className="demo-option-label-item">DNN</div>
         </Option>
-        <Option value="LSTM" label="LSTM">
+        <Option value="2" label="LSTM">
           <div className="demo-option-label-item">LSTM</div>
         </Option>
-        <Option value="GRU" label="GRU">
+        <Option value="5" label="GRU">
           <div className="demo-option-label-item">GRU</div>
         </Option>
-        <Option value="TextCNN" label="TextCNN">
+        <Option value="6" label="TextCNN">
           <div className="demo-option-label-item">TextCNN</div>
         </Option>
-        <Option value="TextRCNN" label="TextRCNN">
+        <Option value="7" label="TextRCNN">
           <div className="demo-option-label-item">TextRCNN</div>
         </Option>
-        <Option value="VDCNN" label="VDCNN">
+        <Option value="8" label="VDCNN">
           <div className="demo-option-label-item">VDCNN</div>
         </Option>
-        <Option value="RNN_CNN" label="RNN_CNN">
+        <Option value="9" label="RNN_CNN">
           <div className="demo-option-label-item">RNN_CNN</div>
         </Option>
-        <Option value="BiLSTM" label="BiLSTM">
+        <Option value="3" label="BiLSTM">
           <div className="demo-option-label-item">BiLSTM</div>
         </Option>
-        <Option value="LSTMAttention" label="LSTMAttention">
+        <Option value="4" label="LSTMAttention">
           <div className="demo-option-label-item">LSTMAttention</div>
         </Option>
       </Select>
@@ -526,10 +689,12 @@ function ServerForm(store) {
       className="card-selectMethod"
     >
       <Select
-        mode="multiple"
+        mode={modeSelectModel}
         style={{ width: "100%" }}
         placeholder="select method"
         defaultValue={[]}
+        value={selectMulMethodData_2}
+
         onChange={selectMulMethod_2}
         optionLabelProp="label"
         showArrow
@@ -538,24 +703,27 @@ function ServerForm(store) {
         as
         const
       >
-        <Option value="DNA bert" label="DNA bert">
+        <Option value="15" label="DNA bert">
           <div className="demo-option-label-item">DNA bert</div>
         </Option>
-        <Option value="Prot bert" label="Prot bert">
+        <Option value="16" label="Prot bert">
           <div className="demo-option-label-item">Prot bert</div>
         </Option>
-        <Option value="ReformerEncoder" label="ReformerEncoder">
+        <Option value="11" label="ReformerEncoder">
           <div className="demo-option-label-item">ReformerEncoder</div>
         </Option>
-        <Option value="LinformerEncoder" label="LinformerEncoder">
+        <Option value="12" label="PerformerEncoder">
+          <div className="demo-option-label-item">PerformerEncoder</div>
+        </Option>
+        <Option value="13" label="LinformerEncoder">
           <div className="demo-option-label-item">LinformerEncoder</div>
         </Option>
-        <Option value="TransformerEncoder" label="TransformerEncoder">
+        <Option value="10" label="TransformerEncoder">
           <div className="demo-option-label-item">TransformerEncoder</div>
         </Option>
 
         <Option
-          value="RoutingTransformerEncoder"
+          value="14"
           label="RoutingTransformerEncoder"
         >
           <div className="demo-option-label-item">
@@ -569,10 +737,12 @@ function ServerForm(store) {
       className="card-selectMethod"
     >
       <Select
-        mode="multiple"
+        mode={modeSelectModel}
         style={{ width: "100%" }}
         placeholder="select method"
         defaultValue={[]}
+        value={selectMulMethodData_3}
+
         onChange={selectMulMethod_3}
         optionLabelProp="label"
         maxTagCount="responsive"
@@ -581,15 +751,15 @@ function ServerForm(store) {
         showArrow
         showSearch={false}
       >
-        <Option value="TextGNN" label="TextGNN">
+        <Option value="17" label="TextGNN">
           <div className="demo-option-label-item">TextGNN</div>
         </Option>
-        <Option value="GCN" label="GCN">
+        {/* <Option value="GCN" label="GCN">
           <div className="demo-option-label-item">GCN</div>
         </Option>
         <Option value="GAN" label="GAN">
           <div className="demo-option-label-item">GAN</div>
-        </Option>
+        </Option> */}
       </Select>
     </Card>,
   ];
@@ -696,6 +866,19 @@ function ServerForm(store) {
     eMail,
     current,
   ]);
+  const [openOptions, setOpenOptions] = useState("header");
+  useEffect(() => {
+    if (
+      selectMulMethodData_1.length +
+        selectMulMethodData_2.length +
+        selectMulMethodData_3.length ===
+      1
+    ) {
+      setOpenOptions("header");
+    } else {
+      setOpenOptions("disabled");
+    }
+  }, [selectMulMethodData_1, selectMulMethodData_2, selectMulMethodData_3]);
   return (
     <div className="serverForm-body-outer">
       <div className="serverForm-body-con">
@@ -738,44 +921,63 @@ function ServerForm(store) {
               <Timeline.Item color={stepStatus_step_2}>
                 <div className="serverform-Collapse">
                   <Collapse
-                    onChange={() => {
-                      setStepStatus_step_2("blue");
-                      setSwitchCol(!switchCol);
-                    }}
-                    checked={switchCol}
+                  // onChange={() => {
+                  //   setStepStatus_step_2("blue");
+                  //   setSwitchCol(!switchCol)
+                  // }}
                   >
                     <Panel
+                      // disabled={switchCol}
+
+                      // collapsible={openOptions}
                       header={
                         <div className="serverform-Collapse-ADVANCED">
                           <strong>Advanced Options</strong>
-                          <Switch
+                          {/* <Switch
                             checkedChildren="Yes"
                             unCheckedChildren="No"
                             className="switch-collapse"
                             checked={switchCol}
                             onClick={() => {
-                              setSwitchCol(!switchCol);
+                              if (
+                                selectMulMethodData_1.length +
+                                  selectMulMethodData_2.length +
+                                  selectMulMethodData_3.length ===
+                                1
+                              ) {
+                                setSwitchCol(!switchCol);
+                              } else {
+                                message.info("Options only use with one model");
+                              }
                             }}
-                          />
+                          /> */}
                         </div>
                       }
                       key="1"
                     >
                       <p>
-                      <div className="select-advance-options-item">
+                        <div className="select-advance-options-item">
                           <div className="select-advance-options-item-left">
-                        Balanced Data:  </div>
+                            Balanced Data:{" "}
+                          </div>
                           <div className="select-advance-options-item-right">
-                        <Select
-                          defaultValue={"no"}
-                          style={{ width: 120 }}
-                          onChange={(value) => {
-                            setBValue(value);
-                          }}
-                        >
-                          <Option value={1}>yes</Option>
-                          <Option value={0}>no</Option>
-                        </Select> </div>
+                          <Checkbox
+                              checked={bValue}
+                              disabled={b_Value}
+                              onChange={(e) => {
+                      
+                                if(eValue){
+                                  setC_Value(true);
+                                  setA_Value(true);
+                                  setD_Value(true);
+                                  setAValue(false);
+                                  setDValue(false);
+                                }
+                                setBValue(e.target.checked);
+                              }}
+                              >use</Checkbox>
+
+                          </div>
                         </div>
                       </p>
 
@@ -783,18 +985,26 @@ function ServerForm(store) {
                         <div className="select-advance-options-item">
                           <div className="select-advance-options-item-left">
                             Data enhancement:
+                            
                           </div>
                           <div className="select-advance-options-item-right">
-                            <Select
-                              defaultValue={"no"}
-                              style={{ width: 120 }}
-                              onChange={(value) => {
-                                setDValue(value);
+                          <Checkbox
+                              checked={dValue}
+                              disabled={d_Value}
+                              onChange={(e) => {
+                                if(eValue){
+                                  setC_Value(true);
+                                  setB_Value(true);
+                                  setA_Value(true);
+                                  setBValue(false);
+                                  setAValue(false);
+                                }
+                                
+                                setDValue(e.target.checked);
                               }}
-                            >
-                              <Option value={1}>yes</Option>
-                              <Option value={0}>no</Option>
-                            </Select>
+                            >use</Checkbox>
+
+
                           </div>
                         </div>
                       </p>
@@ -804,16 +1014,22 @@ function ServerForm(store) {
                             Data argumentation:{" "}
                           </div>
                           <div className="select-advance-options-item-right">
-                            <Select
-                              defaultValue={"no"}
-                              style={{ width: 120 }}
-                              onChange={(value) => {
-                                setAValue(value);
+                          <Checkbox
+                              checked={aValue}
+                              disabled={a_Value}
+                              onChange={(e) => {
+                                if(eValue){
+                                  setC_Value(true);
+                                  setB_Value(true);
+                                  setD_Value(true);
+                                  setBValue(false);
+                                  setDValue(false);
+                                }
+                                setAValue(e.target.checked);
+                                  
                               }}
-                            >
-                              <Option value={1}>yes</Option>
-                              <Option value={0}>no</Option>
-                            </Select>
+                              >use</Checkbox>
+                          
                           </div>
                         </div>
                       </p>
@@ -824,18 +1040,117 @@ function ServerForm(store) {
                             CD-Hit:
                           </div>
                           <div className="select-advance-options-item-right">
-                            <Select
-                              defaultValue={0.8}
-                              style={{ width: 120 }}
-                              onChange={(value) => {
-                                setCValue(value);
+                          <Checkbox
+                              checked={cValue_1}
+                              disabled={c_Value}
+                              onChange={(e) => {
+                                if(!eValue){
+                                  setCValue_2(false);
+                                  setCValue_3(false);
+                                  setCValue_4(false);
+                                }else{
+                                  setA_Value(true);
+                                  setB_Value(true);
+                                  setD_Value(true);
+                                }
+                                  setCValue_1(e.target.checked);
+                                  if (!e.target.checked&&!cValue_2&&!cValue_3&&!cValue_4){
+                                    setCValue_1(true);
+                                  }
+                                
                               }}
-                            >
-                               <Option value={0.8}>0.8</Option>
-                              <Option value={0.6}>0.6</Option>
-                              <Option value={0.9}>0.4</Option>
-                             
-                            </Select>
+                            >80%</Checkbox>  
+                             <Checkbox
+                              checked={cValue_2}
+                              disabled={c_Value}
+                              onChange={(e) => {
+                                if(!eValue){
+                                  setCValue_1(false);
+                                  setCValue_3(false);
+                                  setCValue_4(false);
+                                }else{
+                                  setA_Value(true);
+                                  setB_Value(true);
+                                  setD_Value(true);
+                                }
+                                setCValue_2(e.target.checked);
+                                if (!e.target.checked&&!cValue_1&&!cValue_3&&!cValue_4){
+                                  setCValue_1(true);
+                                }
+                              }}
+                            >60%</Checkbox>  
+                             <Checkbox
+                              checked={cValue_3}
+                              disabled={c_Value}
+                              onChange={(e) => {
+                                if(!eValue){
+                                  setCValue_2(false);
+                                  setCValue_1(false);
+                                  setCValue_4(false);
+                                }else{
+                                  setA_Value(true);
+                                  setB_Value(true);
+                                  setD_Value(true);
+                                }
+                                setCValue_3(e.target.checked);
+                                if (!e.target.checked&&!cValue_2&&!cValue_1&&!cValue_4){
+                                  setCValue_1(true);
+                                }
+                              }}
+                            >40%</Checkbox>  
+                            <Checkbox
+                              checked={cValue_4}
+                              disabled={c_Value}
+                              onChange={(e) => {
+                                if(!eValue){
+                                  setCValue_2(false);
+                                  setCValue_3(false);
+                                  setCValue_1(false);
+                                }else{
+                                  setA_Value(true);
+                                  setB_Value(true);
+                                  setD_Value(true);
+                                }
+                                setCValue_4(e.target.checked);
+                                if (!e.target.checked&&!cValue_1&&!cValue_3&&!cValue_2){
+                                  setCValue_1(true);
+                                }
+                              }}
+                            >20%</Checkbox>  
+                            
+                          </div>
+                        </div>
+                      </p>
+                      <p>
+                        <div className="select-advance-options-item">
+                          <div className="select-advance-options-item-left">
+                              Parameter Compare
+                          </div>
+                          <div className="select-advance-options-item-right">
+                          <Checkbox
+                              checked={eValue}
+                              onChange={(e) => {
+                                setEValue(e.target.checked);
+                                if(e.target.checked){
+                                  setModeSelectModel("single")
+                                }
+                                setCValue_2(false);
+                                setCValue_3(false);
+                                setCValue_4(false);
+                                setCValue_1(true);
+                                setAValue(false)
+                                setBValue(false)
+                                setDValue(false)
+                                setC_Value(false);
+                                setA_Value(false)
+                                setB_Value(false)
+                                setD_Value(false)
+                                setSelectMulMethodData_1([])
+                                setSelectMulMethodData_2([])
+                                setSelectMulMethodData_3([])
+                              }}
+                            >use</Checkbox>
+                            
                           </div>
                         </div>
                       </p>

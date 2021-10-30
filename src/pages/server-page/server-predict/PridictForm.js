@@ -818,38 +818,43 @@ function ServerForm(store) {
                       </Collapse>
                     </div>,
                     <div>
-                      <div>
+                      <div className="predict-depart">
                         Species:
                         <Select
                           onChange={(value) => {
                             console.log(value);
                           }}
+                          className="predict-depart-select"
                         >
                           <Option value="Human">Human</Option>
                           <Option value="Mouse">Mouse</Option>
                         </Select>
                       </div>
-                      <div>
+                      <div className="predict-depart">
                         Chrome:
                         <Select
                           onChange={(value) => {
                             console.log(value);
                           }}
+                          className="predict-depart-select"
                         >
                           <Option value="Human">Human</Option>
                           <Option value="Mouse">Mouse</Option>
                         </Select>
                       </div>
-                      <div>
-                        Position:
-                        <Slider
-                          step={1}
-                          range
-                          defaultValue={[20, 50]}
-                          onChange={(value) => {
-                            console.log(value);
-                          }}
-                        />
+                      <div className="predict-depart">
+                        <div className="predict-depart-text">Position:</div>
+
+                        <div className="predict-depart-slider">
+                          <Slider
+                            step={1}
+                            range
+                            defaultValue={[20, 50]}
+                            onChange={(value) => {
+                              console.log(value);
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>,
                   ]}
@@ -1037,7 +1042,7 @@ function ServerForm(store) {
                 /> */}
               </Timeline.Item>
               <Timeline.Item color={stepStatus_step_5}>
-                 <List
+                <List
                   header={
                     <div className="Data-load">
                       <strong>Submit</strong>
@@ -1073,7 +1078,7 @@ function ServerForm(store) {
                     </div>,
                   ]}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
-                /> 
+                />
               </Timeline.Item>
             </Timeline>
           </div>

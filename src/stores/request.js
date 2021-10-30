@@ -67,8 +67,11 @@ export const submitForm = async (dataForm) => {
         result.resultType = true;
         result.data = res.data;
       }
+      console.log(res)
+
     })
     .catch((err) => {
+      console.log(err)
       result.resultType = false;
     });
   return new Promise((res, rej) => {

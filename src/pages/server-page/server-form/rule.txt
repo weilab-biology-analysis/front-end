@@ -3,7 +3,7 @@ DNN:0
 RNN:1
 LSTM:2
 BiLSTM:3
-LSRMAttention:4
+LSTMAttention:4
 GRU:5
 TestCNN:6
 TestRCNN:7
@@ -27,7 +27,7 @@ param={
     "paramCompare":"CDHit"/"Focalloss"/"adversialtraining";
     "CDHit":,
     "Focalloss":,
-    "adversialtraining",
-    
-    "modelCompare":[1,2,3,4]
+    "adversialtraining":,
+    “paramCompareModel”：1；
+    "modelCompare":"1234"
 }

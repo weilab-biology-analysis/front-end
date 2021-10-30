@@ -105,7 +105,7 @@
   margin: 8px;
   font-weight: 600 !important;
   padding-right: 30px !;
-} 
+}
 .ServerPage-tabs .ant-tabs-nav-wrap {
   background-color: rgb(241, 241, 241);
   border-right: 1px rgb(236, 236, 236) solid;
@@ -193,4 +193,24 @@
 }
 .ant-list-bordered{
   border-radius: 10px;
+}
+.switch-collapse{
+  float: right;
+}
+.select-advance-options-item{
+  width:100%;
+  height: 60px;
+  
+}
+.select-advance-options-item-right{
+  width: 30%;
+  float: left;
+  margin-left: 10px;
+}
+.select-advance-options-item-left{
+  width: 30%;
+  float: left;
+  margin-left: 10px;
+  padding: 5px;
+text-align: center;
 }
