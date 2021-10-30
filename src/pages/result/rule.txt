@@ -1,0 +1,32 @@
+
+Sequence compositional analysis
+                atistics.jpg  *2
+"http://server.wei-group.net/result/76/plot/dna_train_statistics.jpg"
+"http://server.wei-group.net/result/76/plot/dna_test_statistics.jpg"
+
+
+
+Sequence motif statistics:
+    motif_[].png
+
+
+
+ROC and PR curves of deep learning models:
+    /ROC_PRC.jpg
+
+
+
+ROC and PR curves of traditional models:
+    _ROC_PRC.jpg
+
+
+
+
+Feature visualization results by UMAP:
+    lot/UMAP.png
+
+
+result:
+"http://server.wei-group.net/result/76/plot/positive_density.jpg"
+
+"http://server.wei-group.net/result/76/plot/negative_density.jpg"

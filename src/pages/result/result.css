@@ -93,13 +93,14 @@ margin: 20px;
   padding: 10px;
   border-top-right-radius: 5px !important;
   border-top-left-radius: 5px !important;
+
 }
 .Result-Result-row .ServerPage-tabs .ant-tabs-nav-wrap{
-width: max-content;  
+/* width: max-content;   */
 box-shadow: none;
 border: none;
-float: left !important;
-flex: none;
+/* float: left !important; */
+/* flex: none; */
 }
 .Result-Result-row .ServerPage-tabs .ant-tabs-nav{
   background-color: rgb(241, 241, 241);

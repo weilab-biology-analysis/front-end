@@ -107,7 +107,7 @@ status: "等待运行"
               //这里是因为无服务才注释掉的，后端好了，以后直接弄回来就可以了
               store.store.results.request();
               let result = await jobInfo(record.jobId);
-              console.log(result);
+              console.log(result)
               if (result.resultType) {
                 store.store.results.request_success(result.data);
                 // history.push('/result');
@@ -130,6 +130,7 @@ status: "等待运行"
     setSearchLoading(true);
     store.store.results.request();
     let result = await jobInfo(value);
+    console.log(result)
     if (result.resultType) {
       setSearchLoading(false);
       store.store.results.request_success(result.data);
