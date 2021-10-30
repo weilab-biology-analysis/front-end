@@ -1,8 +1,33 @@
-设计一个对应的参数对应模式：
-我们对应的某一个parameters
-用一个数组来表示信息：
-index 0: (0 DNA)(1 RNA)(2 Protein)
-index 1: Balanced Data-> no:0, yes:1
-index 2: Data enhancement-> no:0, yes:1
-index 3: Data argumentations-> no:0, yes:1
-index 4: CD-Hit-> 0.8等
+model coding：
+DNN:0
+RNN:1
+LSTM:2
+BiLSTM:3
+LSRMAttention:4
+GRU:5
+TestCNN:6
+TestRCNN:7
+VDCNN:8
+RNN_CNN:9
+TransformerEncoder:10
+ReformerEncoder:11
+PerformerEncoder:12
+LinformerEncoder:13
+RoutingTransformerEncoder:14
+DNA bert:15
+Prot bert:16
+TestGCN:17
+
+
+
+
+param={
+    "mode":"train-test","mine",
+    "miniMode":"paramCompare","modelCompare",
+    "paramCompare":"CDHit"/"Focalloss"/"adversialtraining";
+    "CDHit":,
+    "Focalloss":,
+    "adversialtraining",
+    
+    "modelCompare":[1,2,3,4]
+}

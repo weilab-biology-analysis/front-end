@@ -78,22 +78,22 @@
 }
 .ant-menu-item-selected{
   font-size: 20px;
-  color: #6c61ff;
+  /* color: #6c61ff; */
   /* color: #08f3d4 !important; */
 }
 .ant-menu-overflow-item  .ant-menu-item-selected ::after{
-background-color: #6c61ff !important;
+/* background-color: #6c61ff !important; */
 }
 .ant-menu-item-active::after{
-  background-color: #6c61ff !important;
+  /* background-color: #6c61ff !important; */
 }
 .ant-menu-overflow-item::after{
 
-  color: #6c61ff;
+  /* color: #6c61ff; */
   
 }
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after {
-  border-bottom: 2px solid white;
+  /* border-bottom: 2px solid white; */
 }
 .ant-menu-item-active .ant-menu-title-content{
   /* color: white; */
