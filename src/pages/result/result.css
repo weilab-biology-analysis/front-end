@@ -85,20 +85,22 @@ margin: 20px;
 .Result-Result-row .ServerPage-tabs .ant-tabs-tab{
   width: 250px !important;
   text-align: center ;
-   display: flex;
+   /* display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;  */
   font-size: 17px;
   font-weight: 500 !important;
   padding: 10px;
   border-top-right-radius: 5px !important;
   border-top-left-radius: 5px !important;
+  margin-left: 10px;
 
 }
 .Result-Result-row .ServerPage-tabs .ant-tabs-nav-wrap{
 /* width: max-content;   */
 box-shadow: none;
 border: none;
+justify-content: left;
 /* float: left !important; */
 /* flex: none; */
 }

@@ -1,5 +1,5 @@
 import { inject, observer } from "mobx-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./result.css";
 import {
   Descriptions,
@@ -14,14 +14,74 @@ import {
   Collapse,
 } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
-import tSne from '../../constants/img/t-sne.png'
+import tSne from "../../constants/img/t-sne.png";
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
 
 const { Meta } = Card;
 function Result(store) {
+  const [motifStatistics, setMotifStatistics] = useState([]);
+  const [compositionalAnalysis, setcCompositionalAnalysis] = useState([]);
+  const [ROC_PR_Deep_all, setROC_PR_Deep_all] = useState([]);
+  const [ROC_PR_Tra_all, setROC_PR_Tra_all] = useState([]);
+  const [UMAP_picture, setUMAP_picture] = useState([]);
+  const [density_picture, setDensity_picture] = useState([]);
   useEffect(() => {
-    console.log(store);
+    if (store.store.results.data.result) {
+      if (store.store.results.data.result.pictures) {
+        let compositionalAnalysis_current = [];
+        let motifStatistics_current = [];
+        let ROC_PR_Deep = [];
+        let ROC_PR_Tra = [];
+        let UMAP_pic = [];
+        let density_pic = [];
+        for (let index in store.store.results.data.result.pictures) {
+          let str = store.store.results.data.result.pictures[index];
+          if (str.substring(str.length - 12, str.length) === "atistics.jpg") {
+            compositionalAnalysis_current.push(str);
+          } else if (
+            str.substring(str.length - 12, str.length) === "motif_0.png"
+          ) {
+            motifStatistics_current.push(str);
+          } else if (
+            str.substring(str.length - 12, str.length) === "motif_1.png"
+          ) {
+            motifStatistics_current.push(str);
+          } else if (
+            str.substring(str.length - 12, str.length) === "motif_2.png"
+          ) {
+            motifStatistics_current.push(str);
+          } else if (
+            str.substring(str.length - 12, str.length) === "motif_3.png"
+          ) {
+            motifStatistics_current.push(str);
+          } else if (
+            str.substring(str.length - 12, str.length) === "/ROC_PRC.jpg"
+          ) {
+            ROC_PR_Deep.push(str);
+          } else if (
+            str.substring(str.length - 12, str.length) === "_ROC_PRC.jpg"
+          ) {
+            ROC_PR_Tra.push(str);
+          } else if (
+            str.substring(str.length - 12, str.length) === "lot/UMAP.png"
+          ) {
+            UMAP_pic.push(str);
+          } else if (
+            str.substring(str.length - 12, str.length) === "_density.jpg"
+          ) {
+            density_pic.push(str);
+          }
+          console.log(str)
+        }
+        setDensity_picture(density_pic);
+        setMotifStatistics(motifStatistics_current);
+        setROC_PR_Deep_all(ROC_PR_Deep);
+        setROC_PR_Tra_all(ROC_PR_Tra);
+        setUMAP_picture(UMAP_pic);
+        setcCompositionalAnalysis(compositionalAnalysis_current);
+      }
+    }
   }, []);
   const result_title = [
     "statistics",
@@ -62,7 +122,7 @@ function Result(store) {
               className="picture-body-con"
             >
               <div className="picture-body-con-tabpane-serverform-Collapse-out">
-                <div className="picture-body-con-tabpane-serverform-Collapse">
+                {/* <div className="picture-body-con-tabpane-serverform-Collapse">
                   <Collapse defaultActiveKey={["1"]}>
                     <Panel
                       header={
@@ -73,7 +133,6 @@ function Result(store) {
                       key="1"
                     >
                       <div className="Result-Result-row-pictures-card">
-                        
                         <Card
                           hoverable
                           style={{ width: "70%" }}
@@ -85,13 +144,13 @@ function Result(store) {
                             />
                           }
                         ></Card>{" "}
-                        {/* </Popover> */}
+                        
                       </div>
                     </Panel>
                   </Collapse>
-                </div>
+                </div> */}
                 <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse >
+                  <Collapse>
                     <Panel
                       header={
                         <div className="serverform-Collapse-ADVANCED">
@@ -100,7 +159,7 @@ function Result(store) {
                       }
                       key="1"
                     >
-                         <div className="Result-Result-row-pictures-card">
+                      <div className="Result-Result-row-pictures-card">
                         {/* <Popover
                   className="resultPictures-Popover-contant-card"
                   content={
@@ -117,7 +176,18 @@ function Result(store) {
                           cover={
                             <img
                               alt="example"
-                              src={store.store.results.data.result.pictures[i]}
+                              src={compositionalAnalysis[0]}
+                              className="Result-Result-row-pictures-item"
+                            />
+                          }
+                        ></Card>{" "}
+                         <Card
+                          hoverable
+                          style={{ width: "70%" }}
+                          cover={
+                            <img
+                              alt="example"
+                              src={compositionalAnalysis[0]}
                               className="Result-Result-row-pictures-item"
                             />
                           }
@@ -128,7 +198,7 @@ function Result(store) {
                   </Collapse>
                 </div>
                 <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse >
+                  <Collapse>
                     <Panel
                       header={
                         <div className="serverform-Collapse-ADVANCED">
@@ -154,37 +224,64 @@ function Result(store) {
                           cover={
                             <img
                               alt="example"
-                              src={store.store.results.data.result.pictures[i]}
+                              src={motifStatistics[0]}
                               className="Result-Result-row-pictures-item"
                             />
                           }
                         ></Card>{" "}
+                        <Card
+                          hoverable
+                          style={{ width: "70%" }}
+                          cover={
+                            <img
+                              alt="example"
+                              src={motifStatistics[1]}
+                              className="Result-Result-row-pictures-item"
+                            />
+                          }
+                        ></Card>{" "}
+                        <Card
+                          hoverable
+                          style={{ width: "70%" }}
+                          cover={
+                            <img
+                              alt="example"
+                              src={motifStatistics[2]}
+                              className="Result-Result-row-pictures-item"
+                            />
+                          }
+                        ></Card>{" "}
+                        <Card
+                          hoverable
+                          style={{ width: "70%" }}
+                          cover={
+                            <img
+                              alt="example"
+                              src={motifStatistics[3]}
+                              className="Result-Result-row-pictures-item"
+                            />
+                          }
+                        ></Card>{" "}
+                        
                         {/* </Popover> */}
                       </div>
                     </Panel>
                   </Collapse>
                 </div>
-                <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse >
+                {/* <div className="picture-body-con-tabpane-serverform-Collapse">
+                  <Collapse>
                     <Panel
                       header={
                         <div className="serverform-Collapse-ADVANCED">
-                          <strong>Distribution of different sequence length</strong>
+                          <strong>
+                            Distribution of different sequence length
+                          </strong>
                         </div>
                       }
                       key="1"
                     >
-                           <div className="Result-Result-row-pictures-card">
-                        {/* <Popover
-                  className="resultPictures-Popover-contant-card"
-                  content={
-                    <img
-                      src={store.store.results.data.result.pictures[i]}
-                      className="resultPictures-Popover-contant"
-                    />
-                  }
-                  title={result_title[i]}
-                > */}
+                      <div className="Result-Result-row-pictures-card">
+                       
                         <Card
                           hoverable
                           style={{ width: "70%" }}
@@ -196,11 +293,11 @@ function Result(store) {
                             />
                           }
                         ></Card>{" "}
-                        {/* </Popover> */}
+                       
                       </div>
                     </Panel>
                   </Collapse>
-                </div>
+                </div> */}
               </div>
             </TabPane>
           );
@@ -212,7 +309,7 @@ function Result(store) {
               className="picture-body-con"
             >
               <div className="picture-body-con-tabpane-serverform-Collapse-out">
-                <div className="picture-body-con-tabpane-serverform-Collapse">
+                {/* <div className="picture-body-con-tabpane-serverform-Collapse">
                   <Collapse defaultActiveKey={["1"]}>
                     <Panel
                       header={
@@ -223,7 +320,6 @@ function Result(store) {
                       key="1"
                     >
                       <div className="Result-Result-row-pictures-card">
-                        
                         <Card
                           hoverable
                           style={{ width: "70%" }}
@@ -235,54 +331,19 @@ function Result(store) {
                             />
                           }
                         ></Card>{" "}
-                        {/* </Popover> */}
+                       
                       </div>
                     </Panel>
                   </Collapse>
-                </div>
+                </div> */}
                 <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse >
+                  <Collapse>
                     <Panel
                       header={
                         <div className="serverform-Collapse-ADVANCED">
-                          <strong>ROC and PR curves of deep learning models</strong>
-                        </div>
-                      }
-                      key="1"
-                    >
-                         <div className="Result-Result-row-pictures-card">
-                        {/* <Popover
-                  className="resultPictures-Popover-contant-card"
-                  content={
-                    <img
-                      src={store.store.results.data.result.pictures[i]}
-                      className="resultPictures-Popover-contant"
-                    />
-                  }
-                  title={result_title[i]}
-                > */}
-                        <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={store.store.results.data.result.pictures[i]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
-                        {/* </Popover> */}
-                      </div>
-                    </Panel>
-                  </Collapse>
-                </div>
-                <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse >
-                    <Panel
-                      header={
-                        <div className="serverform-Collapse-ADVANCED">
-                          <strong>Density distribution of the prediction confidence by different deep learning models</strong>
+                          <strong>
+                            ROC and PR curves of deep learning models
+                          </strong>
                         </div>
                       }
                       key="1"
@@ -304,7 +365,7 @@ function Result(store) {
                           cover={
                             <img
                               alt="example"
-                              src={store.store.results.data.result.pictures[i]}
+                              src={ROC_PR_Deep_all[0]}
                               className="Result-Result-row-pictures-item"
                             />
                           }
@@ -314,11 +375,80 @@ function Result(store) {
                     </Panel>
                   </Collapse>
                 </div>
-                
+                <div className="picture-body-con-tabpane-serverform-Collapse">
+                  <Collapse>
+                    <Panel
+                      header={
+                        <div className="serverform-Collapse-ADVANCED">
+                          <strong>
+                            ROC and PR curves of Traditional models
+                          </strong>
+                        </div>
+                      }
+                      key="1"
+                    >
+                      <div className="Result-Result-row-pictures-card">
+                        {/* <Popover
+                  className="resultPictures-Popover-contant-card"
+                  content={
+                    <img
+                      src={store.store.results.data.result.pictures[i]}
+                      className="resultPictures-Popover-contant"
+                    />
+                  }
+                  title={result_title[i]}
+                > */}
+                        <Card
+                          hoverable
+                          style={{ width: "70%" }}
+                          cover={
+                            <img
+                              alt="example"
+                              src={ROC_PR_Tra_all[0]}
+                              className="Result-Result-row-pictures-item"
+                            />
+                          }
+                        ></Card>{" "}
+                        {/* </Popover> */}
+                      </div>
+                    </Panel>
+                  </Collapse>
+                </div>
+                {/* <div className="picture-body-con-tabpane-serverform-Collapse">
+                  <Collapse>
+                    <Panel
+                      header={
+                        <div className="serverform-Collapse-ADVANCED">
+                          <strong>
+                            Density distribution of the prediction confidence by
+                            different deep learning models
+                          </strong>
+                        </div>
+                      }
+                      key="1"
+                    >
+                      <div className="Result-Result-row-pictures-card">
+                        
+                        <Card
+                          hoverable
+                          style={{ width: "70%" }}
+                          cover={
+                            <img
+                              alt="example"
+                              src={store.store.results.data.result.pictures[i]}
+                              className="Result-Result-row-pictures-item"
+                            />
+                          }
+                        ></Card>{" "}
+                       
+                      </div>
+                    </Panel>
+                  </Collapse>
+                </div> */}
               </div>
             </TabPane>
           );
-        }else if(result_title[i] == "3kmer"){
+        } else if (result_title[i] == "3kmer") {
           list.push(
             <TabPane
               tab={"Model Prediction Results"}
@@ -326,18 +456,21 @@ function Result(store) {
               className="picture-body-con"
             >
               <div className="picture-body-con-tabpane-serverform-Collapse-out">
-                <div className="picture-body-con-tabpane-serverform-Collapse">
+                {/* <div className="picture-body-con-tabpane-serverform-Collapse">
                   <Collapse defaultActiveKey={["1"]}>
                     <Panel
                       header={
                         <div className="serverform-Collapse-ADVANCED">
-                          <strong>Feature performance comparison between hand-crafted features and the features learnt by deep learning models</strong>
+                          <strong>
+                            Feature performance comparison between hand-crafted
+                            features and the features learnt by deep learning
+                            models
+                          </strong>
                         </div>
                       }
                       key="1"
                     >
                       <div className="Result-Result-row-pictures-card">
-                        
                         <Card
                           hoverable
                           style={{ width: "70%" }}
@@ -349,13 +482,13 @@ function Result(store) {
                             />
                           }
                         ></Card>{" "}
-                        {/* </Popover> */}
+                       
                       </div>
                     </Panel>
                   </Collapse>
-                </div>
+                </div> */}
                 <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse >
+                  <Collapse>
                     <Panel
                       header={
                         <div className="serverform-Collapse-ADVANCED">
@@ -364,7 +497,7 @@ function Result(store) {
                       }
                       key="1"
                     >
-                         <div className="Result-Result-row-pictures-card">
+                      <div className="Result-Result-row-pictures-card">
                         {/* <Popover
                   className="resultPictures-Popover-contant-card"
                   content={
@@ -381,7 +514,7 @@ function Result(store) {
                           cover={
                             <img
                               alt="example"
-                              src={store.store.results.data.result.pictures[i]}
+                              src={UMAP_picture[0]}
                               className="Result-Result-row-pictures-item"
                             />
                           }
@@ -392,7 +525,7 @@ function Result(store) {
                   </Collapse>
                 </div>
                 <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse >
+                  <Collapse>
                     <Panel
                       header={
                         <div className="serverform-Collapse-ADVANCED">
@@ -428,7 +561,6 @@ function Result(store) {
                     </Panel>
                   </Collapse>
                 </div>
-                
               </div>
             </TabPane>
           );
@@ -466,54 +598,57 @@ function Result(store) {
       });
     }
     list.push(
-
       <TabPane
         tab={"Model Parameter Optimization"}
         key={20}
         className="picture-body-con"
       >
-
-              <div className="picture-body-con-tabpane-serverform-Collapse-out">
-                <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse defaultActiveKey={["1"]}>
-                    <Panel
-                      header={
-                        <div className="serverform-Collapse-ADVANCED">
-                          <strong>The effect of different sequence similarities in datasets on predictive performance </strong>
-                        </div>
-                      }
-                      key="1"
-                    >
-                      <div className="Result-Result-row-pictures-card">
-                        
-                        <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={tSne}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
-                        {/* </Popover> */}
-                      </div>
-                    </Panel>
-                  </Collapse>
+        <div className="picture-body-con-tabpane-serverform-Collapse-out">
+          <div className="picture-body-con-tabpane-serverform-Collapse">
+            <Collapse defaultActiveKey={["1"]}>
+              <Panel
+                header={
+                  <div className="serverform-Collapse-ADVANCED">
+                    <strong>
+                      The effect of different sequence similarities in datasets
+                      on predictive performance{" "}
+                    </strong>
+                  </div>
+                }
+                key="1"
+              >
+                <div className="Result-Result-row-pictures-card">
+                  <Card
+                    hoverable
+                    style={{ width: "70%" }}
+                    cover={
+                      <img
+                        alt="example"
+                        src={tSne}
+                        className="Result-Result-row-pictures-item"
+                      />
+                    }
+                  ></Card>{" "}
+                  {/* </Popover> */}
                 </div>
-                <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse >
-                    <Panel
-                      header={
-                        <div className="serverform-Collapse-ADVANCED">
-                          <strong>The effect of different data augmentation strategies on predictive performance</strong>
-                        </div>
-                      }
-                      key="1"
-                    >
-                         <div className="Result-Result-row-pictures-card">
-                        {/* <Popover
+              </Panel>
+            </Collapse>
+          </div>
+          <div className="picture-body-con-tabpane-serverform-Collapse">
+            <Collapse>
+              <Panel
+                header={
+                  <div className="serverform-Collapse-ADVANCED">
+                    <strong>
+                      The effect of different data augmentation strategies on
+                      predictive performance
+                    </strong>
+                  </div>
+                }
+                key="1"
+              >
+                <div className="Result-Result-row-pictures-card">
+                  {/* <Popover
                   className="resultPictures-Popover-contant-card"
                   content={
                     <img
@@ -523,34 +658,37 @@ function Result(store) {
                   }
                   title={result_title[i]}
                 > */}
-                        <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={tSne}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
-                        {/* </Popover> */}
-                      </div>
-                    </Panel>
-                  </Collapse>
+                  <Card
+                    hoverable
+                    style={{ width: "70%" }}
+                    cover={
+                      <img
+                        alt="example"
+                        src={tSne}
+                        className="Result-Result-row-pictures-item"
+                      />
+                    }
+                  ></Card>{" "}
+                  {/* </Popover> */}
                 </div>
-                <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse >
-                    <Panel
-                      header={
-                        <div className="serverform-Collapse-ADVANCED">
-                          <strong>The effect of different k-mer selection on predictive performance</strong>
-                        </div>
-                      }
-                      key="1"
-                    >
-                      <div className="Result-Result-row-pictures-card">
-                        {/* <Popover
+              </Panel>
+            </Collapse>
+          </div>
+          <div className="picture-body-con-tabpane-serverform-Collapse">
+            <Collapse>
+              <Panel
+                header={
+                  <div className="serverform-Collapse-ADVANCED">
+                    <strong>
+                      The effect of different k-mer selection on predictive
+                      performance
+                    </strong>
+                  </div>
+                }
+                key="1"
+              >
+                <div className="Result-Result-row-pictures-card">
+                  {/* <Popover
                   className="resultPictures-Popover-contant-card"
                   content={
                     <img
@@ -560,27 +698,23 @@ function Result(store) {
                   }
                   title={result_title[i]}
                 > */}
-                        <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={tSne}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
-                        {/* </Popover> */}
-                      </div>
-                    </Panel>
-                  </Collapse>
+                  <Card
+                    hoverable
+                    style={{ width: "70%" }}
+                    cover={
+                      <img
+                        alt="example"
+                        src={tSne}
+                        className="Result-Result-row-pictures-item"
+                      />
+                    }
+                  ></Card>{" "}
+                  {/* </Popover> */}
                 </div>
-                
-              </div>
-          
-
-
+              </Panel>
+            </Collapse>
+          </div>
+        </div>
       </TabPane>
     );
     list.push(
@@ -711,7 +845,6 @@ function Result(store) {
         }
         dataSource={[
           <div className="Result-Result-body-outline">
-            
             <div className="Result-Result-row">
               <div>
                 {store.store.results.data.result ? (
@@ -721,7 +854,6 @@ function Result(store) {
                       defaultActiveKey="1"
                       onChange={() => {}}
                       className="ServerPage-tabs"
-                      
                     >
                       {resultPictures()}
                     </Tabs>
