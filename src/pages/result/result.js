@@ -40,19 +40,19 @@ function Result(store) {
           if (str.substring(str.length - 12, str.length) === "atistics.jpg") {
             compositionalAnalysis_current.push(str);
           } else if (
-            str.substring(str.length - 12, str.length) === "motif_0.png"
+            str.substring(str.length - 12, str.length) === "/motif_0.png"
           ) {
             motifStatistics_current.push(str);
           } else if (
-            str.substring(str.length - 12, str.length) === "motif_1.png"
+            str.substring(str.length - 12, str.length) === "/motif_1.png"
           ) {
             motifStatistics_current.push(str);
           } else if (
-            str.substring(str.length - 12, str.length) === "motif_2.png"
+            str.substring(str.length - 12, str.length) === "/motif_2.png"
           ) {
             motifStatistics_current.push(str);
           } else if (
-            str.substring(str.length - 12, str.length) === "motif_3.png"
+            str.substring(str.length - 12, str.length) === "/motif_3.png"
           ) {
             motifStatistics_current.push(str);
           } else if (
@@ -72,7 +72,7 @@ function Result(store) {
           ) {
             density_pic.push(str);
           }
-          console.log(str)
+          console.log(str);
         }
         setDensity_picture(density_pic);
         setMotifStatistics(motifStatistics_current);
@@ -170,28 +170,37 @@ function Result(store) {
                   }
                   title={result_title[i]}
                 > */}
-                        <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={compositionalAnalysis[0]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
-                         <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={compositionalAnalysis[0]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
+                        {compositionalAnalysis[0] ? (
+                          <Card
+                            hoverable
+                            style={{ width: "70%" }}
+                            cover={
+                              <img
+                                alt="example"
+                                src={compositionalAnalysis[0]}
+                                className="Result-Result-row-pictures-item"
+                              />
+                            }
+                            ><a href={compositionalAnalysis[0]} className="download-button" download><Button> Download</Button></a></Card>
+                        ) : (
+                          ""
+                        )}{" "}
+                        {compositionalAnalysis[0] ? (
+                          <Card
+                            hoverable
+                            style={{ width: "70%" }}
+                            cover={
+                              <img
+                                alt="example"
+                                src={compositionalAnalysis[0]}
+                                className="Result-Result-row-pictures-item"
+                              />
+                            }
+                            ><a href={compositionalAnalysis[0]} className="download-button" download><Button> Download</Button></a></Card>
+
+                        ) : (
+                          ""
+                        )}{" "}
                         {/* </Popover> */}
                       </div>
                     </Panel>
@@ -218,51 +227,68 @@ function Result(store) {
                   }
                   title={result_title[i]}
                 > */}
-                        <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={motifStatistics[0]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
-                        <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={motifStatistics[1]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
-                        <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={motifStatistics[2]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
-                        <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={motifStatistics[3]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
-                        
+                        {motifStatistics[0] ? (
+                          <Card
+                            hoverable
+                            style={{ width: "70%" }}
+                            cover={
+                              <img
+                                alt="example"
+                                src={motifStatistics[0]}
+                                className="Result-Result-row-pictures-item"
+                              />
+                            }
+                            ><a href={motifStatistics[0]} className="download-button" download><Button> Download</Button></a></Card>
+
+                        ) : (
+                          ""
+                        )}{" "}
+                        {motifStatistics[1] ? (
+                          <Card
+                            hoverable
+                            style={{ width: "70%" }}
+                            cover={
+                              <img
+                                alt="example"
+                                src={motifStatistics[1]}
+                                className="Result-Result-row-pictures-item"
+                              />
+                            }
+                            ><a href={motifStatistics[1]} className="download-button" download><Button> Download</Button></a></Card>
+
+                        ) : (
+                          ""
+                        )}{" "}
+                        {motifStatistics[2] ? (
+                          <Card
+                            hoverable
+                            style={{ width: "70%" }}
+                            cover={
+                              <img
+                                alt="example"
+                                src={motifStatistics[2]}
+                                className="Result-Result-row-pictures-item"
+                              />
+                            }
+                          ><a href={motifStatistics[2]} className="download-button" download><Button> Download</Button></a></Card>
+                        ) : (
+                          ""
+                        )}{" "}
+                        {motifStatistics[3] ? (
+                          <Card
+                            hoverable
+                            style={{ width: "70%" }}
+                            cover={
+                              <img
+                                alt="example"
+                                src={motifStatistics[3]}
+                                className="Result-Result-row-pictures-item"
+                              />
+                            }
+                          ><a href={motifStatistics[3]} className="download-button" download><Button> Download</Button></a></Card>
+                        ) : (
+                          ""
+                        )}{" "}
                         {/* </Popover> */}
                       </div>
                     </Panel>
@@ -359,17 +385,21 @@ function Result(store) {
                   }
                   title={result_title[i]}
                 > */}
-                        <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={ROC_PR_Deep_all[0]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
+                        {ROC_PR_Deep_all[0] ? (
+                          <Card
+                            hoverable
+                            style={{ width: "70%" }}
+                            cover={
+                              <img
+                                alt="example"
+                                src={ROC_PR_Deep_all[0]}
+                                className="Result-Result-row-pictures-item"
+                              />
+                            }
+                          ><a href={ROC_PR_Deep_all[0]} className="download-button" download><Button> Download</Button></a></Card>
+                        ) : (
+                          ""
+                        )}{" "}
                         {/* </Popover> */}
                       </div>
                     </Panel>
@@ -398,17 +428,21 @@ function Result(store) {
                   }
                   title={result_title[i]}
                 > */}
-                        <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={ROC_PR_Tra_all[0]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
+                        {ROC_PR_Tra_all[0] ? (
+                          <Card
+                            hoverable
+                            style={{ width: "70%" }}
+                            cover={
+                              <img
+                                alt="example"
+                                src={ROC_PR_Tra_all[0]}
+                                className="Result-Result-row-pictures-item"
+                              />
+                            }
+                          ><a href={ROC_PR_Tra_all[0]} className="download-button" download><Button> Download</Button></a></Card>
+                        ) : (
+                          ""
+                        )}{" "}
                         {/* </Popover> */}
                       </div>
                     </Panel>
@@ -508,23 +542,28 @@ function Result(store) {
                   }
                   title={result_title[i]}
                 > */}
-                        <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={UMAP_picture[0]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
+                        {UMAP_picture[0] ? (
+                          <Card
+                            hoverable
+                            style={{ width: "70%" }}
+                            cover={
+                              <img
+                                alt="example"
+                                src={UMAP_picture[0]}
+                                className="Result-Result-row-pictures-item"
+                              />
+                              
+                            }
+                          ><a href={UMAP_picture[0]} className="download-button" download><Button> Download</Button></a></Card>
+                        ) : (
+                          ""
+                        )}{" "}
                         {/* </Popover> */}
                       </div>
                     </Panel>
                   </Collapse>
                 </div>
-                <div className="picture-body-con-tabpane-serverform-Collapse">
+                {/* <div className="picture-body-con-tabpane-serverform-Collapse">
                   <Collapse>
                     <Panel
                       header={
@@ -535,16 +574,7 @@ function Result(store) {
                       key="1"
                     >
                       <div className="Result-Result-row-pictures-card">
-                        {/* <Popover
-                  className="resultPictures-Popover-contant-card"
-                  content={
-                    <img
-                      src={store.store.results.data.result.pictures[i]}
-                      className="resultPictures-Popover-contant"
-                    />
-                  }
-                  title={result_title[i]}
-                > */}
+                        
                         <Card
                           hoverable
                           style={{ width: "70%" }}
@@ -556,11 +586,11 @@ function Result(store) {
                             />
                           }
                         ></Card>{" "}
-                        {/* </Popover> */}
+                     
                       </div>
                     </Panel>
                   </Collapse>
-                </div>
+                </div> */}
               </div>
             </TabPane>
           );
@@ -597,126 +627,126 @@ function Result(store) {
         // );
       });
     }
-    list.push(
-      <TabPane
-        tab={"Model Parameter Optimization"}
-        key={20}
-        className="picture-body-con"
-      >
-        <div className="picture-body-con-tabpane-serverform-Collapse-out">
-          <div className="picture-body-con-tabpane-serverform-Collapse">
-            <Collapse defaultActiveKey={["1"]}>
-              <Panel
-                header={
-                  <div className="serverform-Collapse-ADVANCED">
-                    <strong>
-                      The effect of different sequence similarities in datasets
-                      on predictive performance{" "}
-                    </strong>
-                  </div>
-                }
-                key="1"
-              >
-                <div className="Result-Result-row-pictures-card">
-                  <Card
-                    hoverable
-                    style={{ width: "70%" }}
-                    cover={
-                      <img
-                        alt="example"
-                        src={tSne}
-                        className="Result-Result-row-pictures-item"
-                      />
-                    }
-                  ></Card>{" "}
-                  {/* </Popover> */}
-                </div>
-              </Panel>
-            </Collapse>
-          </div>
-          <div className="picture-body-con-tabpane-serverform-Collapse">
-            <Collapse>
-              <Panel
-                header={
-                  <div className="serverform-Collapse-ADVANCED">
-                    <strong>
-                      The effect of different data augmentation strategies on
-                      predictive performance
-                    </strong>
-                  </div>
-                }
-                key="1"
-              >
-                <div className="Result-Result-row-pictures-card">
-                  {/* <Popover
-                  className="resultPictures-Popover-contant-card"
-                  content={
-                    <img
-                      src={store.store.results.data.result.pictures[i]}
-                      className="resultPictures-Popover-contant"
-                    />
-                  }
-                  title={result_title[i]}
-                > */}
-                  <Card
-                    hoverable
-                    style={{ width: "70%" }}
-                    cover={
-                      <img
-                        alt="example"
-                        src={tSne}
-                        className="Result-Result-row-pictures-item"
-                      />
-                    }
-                  ></Card>{" "}
-                  {/* </Popover> */}
-                </div>
-              </Panel>
-            </Collapse>
-          </div>
-          <div className="picture-body-con-tabpane-serverform-Collapse">
-            <Collapse>
-              <Panel
-                header={
-                  <div className="serverform-Collapse-ADVANCED">
-                    <strong>
-                      The effect of different k-mer selection on predictive
-                      performance
-                    </strong>
-                  </div>
-                }
-                key="1"
-              >
-                <div className="Result-Result-row-pictures-card">
-                  {/* <Popover
-                  className="resultPictures-Popover-contant-card"
-                  content={
-                    <img
-                      src={store.store.results.data.result.pictures[i]}
-                      className="resultPictures-Popover-contant"
-                    />
-                  }
-                  title={result_title[i]}
-                > */}
-                  <Card
-                    hoverable
-                    style={{ width: "70%" }}
-                    cover={
-                      <img
-                        alt="example"
-                        src={tSne}
-                        className="Result-Result-row-pictures-item"
-                      />
-                    }
-                  ></Card>{" "}
-                  {/* </Popover> */}
-                </div>
-              </Panel>
-            </Collapse>
-          </div>
-        </div>
-      </TabPane>
-    );
+    // list.push(
+    //   <TabPane
+    //     tab={"Model Parameter Optimization"}
+    //     key={20}
+    //     className="picture-body-con"
+    //   >
+    //     <div className="picture-body-con-tabpane-serverform-Collapse-out">
+    //       <div className="picture-body-con-tabpane-serverform-Collapse">
+    //         <Collapse defaultActiveKey={["1"]}>
+    //           <Panel
+    //             header={
+    //               <div className="serverform-Collapse-ADVANCED">
+    //                 <strong>
+    //                   The effect of different sequence similarities in datasets
+    //                   on predictive performance{" "}
+    //                 </strong>
+    //               </div>
+    //             }
+    //             key="1"
+    //           >
+    //             <div className="Result-Result-row-pictures-card">
+    //               <Card
+    //                 hoverable
+    //                 style={{ width: "70%" }}
+    //                 cover={
+    //                   <img
+    //                     alt="example"
+    //                     src={tSne}
+    //                     className="Result-Result-row-pictures-item"
+    //                   />
+    //                 }
+    //               ></Card>{" "}
+    //               {/* </Popover> */}
+    //             </div>
+    //           </Panel>
+    //         </Collapse>
+    //       </div>
+    //       <div className="picture-body-con-tabpane-serverform-Collapse">
+    //         <Collapse>
+    //           <Panel
+    //             header={
+    //               <div className="serverform-Collapse-ADVANCED">
+    //                 <strong>
+    //                   The effect of different data augmentation strategies on
+    //                   predictive performance
+    //                 </strong>
+    //               </div>
+    //             }
+    //             key="1"
+    //           >
+    //             <div className="Result-Result-row-pictures-card">
+    //               {/* <Popover
+    //               className="resultPictures-Popover-contant-card"
+    //               content={
+    //                 <img
+    //                   src={store.store.results.data.result.pictures[i]}
+    //                   className="resultPictures-Popover-contant"
+    //                 />
+    //               }
+    //               title={result_title[i]}
+    //             > */}
+    //               <Card
+    //                 hoverable
+    //                 style={{ width: "70%" }}
+    //                 cover={
+    //                   <img
+    //                     alt="example"
+    //                     src={tSne}
+    //                     className="Result-Result-row-pictures-item"
+    //                   />
+    //                 }
+    //               ></Card>{" "}
+    //               {/* </Popover> */}
+    //             </div>
+    //           </Panel>
+    //         </Collapse>
+    //       </div>
+    //       <div className="picture-body-con-tabpane-serverform-Collapse">
+    //         <Collapse>
+    //           <Panel
+    //             header={
+    //               <div className="serverform-Collapse-ADVANCED">
+    //                 <strong>
+    //                   The effect of different k-mer selection on predictive
+    //                   performance
+    //                 </strong>
+    //               </div>
+    //             }
+    //             key="1"
+    //           >
+    //             <div className="Result-Result-row-pictures-card">
+    //               {/* <Popover
+    //               className="resultPictures-Popover-contant-card"
+    //               content={
+    //                 <img
+    //                   src={store.store.results.data.result.pictures[i]}
+    //                   className="resultPictures-Popover-contant"
+    //                 />
+    //               }
+    //               title={result_title[i]}
+    //             > */}
+    //               <Card
+    //                 hoverable
+    //                 style={{ width: "70%" }}
+    //                 cover={
+    //                   <img
+    //                     alt="example"
+    //                     src={tSne}
+    //                     className="Result-Result-row-pictures-item"
+    //                   />
+    //                 }
+    //               ></Card>{" "}
+    //               {/* </Popover> */}
+    //             </div>
+    //           </Panel>
+    //         </Collapse>
+    //       </div>
+    //     </div>
+    //   </TabPane>
+    // );
     list.push(
       <TabPane
         tab={"Job Information"}

@@ -191,3 +191,6 @@ padding-right: 30px !;
   width: 95%;
   margin: 20px auto;
 }
+.download-button{
+  float: right;
+}

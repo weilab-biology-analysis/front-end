@@ -221,16 +221,48 @@
 }
 .predict-depart-select{
   margin: 20px;
-  width: 100px;
+  width: 20%;
+  
 }
 .predict-depart-slider{
 float: left;
-width: 100px;
+width: 20%;
  margin-left:  20px;
+ margin-top:  15px;
 }
 .predict-depart-text{
   float: left;
+  margin-top:  20px;
 }
 .predict-depart{
   margin-top: 20px;
+  width: 100% !important;
+  height: 60px;
+}
+.predict-depart-outer{
+  width: 100% !important;
+  margin: 20px;
+}
+.select-Model-2Panel{
+  width: 100%;
+}
+.select-Model-2Panel-jobid-depart{
+  width: 100%;
+  height: 60px;
+
+
+}
+.select-Model-2Panel-jobid-depart-text{
+  width: max-content;
+  float: left;
+  margin: 10px;
+}
+.select-Model-2Panel-jobid-depart-input{
+  width: 30%;
+  margin: 10px;
+  float: left;
+}
+.select-Model-2Panel-jobid-depart-button{
+  margin: 10px;
+  float: left;
 }

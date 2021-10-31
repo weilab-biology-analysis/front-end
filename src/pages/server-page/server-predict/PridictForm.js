@@ -740,12 +740,23 @@ function ServerForm(store) {
                   renderItem={(item) => <List.Item>{item}</List.Item>}
                 /> */}
                 <div>
-                  Tasks：
-                  <Radio.Group onChange={onCangeType} value={type}>
-                    <Radio value={1}>4mc</Radio>
-                    <Radio value={2}>5mc</Radio>
-                    <Radio value={3}>6mc</Radio>
-                  </Radio.Group>
+                  <List
+                    header={
+                      <div className="Data-load">
+                        <strong>Tasks</strong>
+                      </div>
+                    }
+                    footer={<div></div>}
+                    bordered
+                    dataSource={[
+                      <Radio.Group onChange={onCangeType} value={type}>
+                        <Radio value={1}>4mc</Radio>
+                        <Radio value={2}>5mc</Radio>
+                        <Radio value={3}>6mc</Radio>
+                      </Radio.Group>,
+                    ]}
+                    renderItem={(item) => <List.Item>{item}</List.Item>}
+                  />
                 </div>
               </Timeline.Item>
               <Timeline.Item color={stepStatus_step_2}>
@@ -762,8 +773,9 @@ function ServerForm(store) {
                       <Collapse
                         onChange={() => {}}
                         className="targetSeqInput-body"
+                        accordion
                       >
-                        <Panel header="Target Seqence input">
+                        <Panel header="Target Seqence input" key="1">
                           <div className="serverForm-descriptions-con-outer">
                             <div className="serverForm-form-text-con">
                               <div className="serverForm-form-text-con-test">
@@ -815,47 +827,51 @@ function ServerForm(store) {
                             </Dragger>
                           </div>
                         </Panel>
-                      </Collapse>
-                    </div>,
-                    <div>
-                      <div className="predict-depart">
-                        Species:
-                        <Select
-                          onChange={(value) => {
-                            console.log(value);
-                          }}
-                          className="predict-depart-select"
-                        >
-                          <Option value="Human">Human</Option>
-                          <Option value="Mouse">Mouse</Option>
-                        </Select>
-                      </div>
-                      <div className="predict-depart">
-                        Chrome:
-                        <Select
-                          onChange={(value) => {
-                            console.log(value);
-                          }}
-                          className="predict-depart-select"
-                        >
-                          <Option value="Human">Human</Option>
-                          <Option value="Mouse">Mouse</Option>
-                        </Select>
-                      </div>
-                      <div className="predict-depart">
-                        <div className="predict-depart-text">Position:</div>
+                        <Panel header="Species Chrome Position Select" key="2">
+                          <div className="predict-depart-outer">
+                            <div className="predict-depart">
+                              Species:
+                              <Select
+                                onChange={(value) => {
+                                  console.log(value);
+                                }}
+                                className="predict-depart-select"
+                              >
+                                <Option value="Human">Human</Option>
+                                <Option value="Mouse">Mouse</Option>
+                              </Select>
+                            </div>
+                            <div className="predict-depart">
+                              Chrome:
+                              <Select
+                                onChange={(value) => {
+                                  console.log(value);
+                                }}
+                                className="predict-depart-select"
+                              >
+                                <Option value="Human">Human</Option>
+                                <Option value="Mouse">Mouse</Option>
+                              </Select>
+                            </div>
+                            <div className="predict-depart">
+                              <div className="predict-depart-text">
+                                Position:
+                              </div>
 
-                        <div className="predict-depart-slider">
-                          <Slider
-                            step={1}
-                            range
-                            defaultValue={[20, 50]}
-                            onChange={(value) => {
-                              console.log(value);
-                            }}
-                          />
-                        </div>
-                      </div>
+                              <div className="predict-depart-slider">
+                                <Slider
+                                  step={1}
+                                  range
+                                  defaultValue={[20, 50]}
+                                  onChange={(value) => {
+                                    console.log(value);
+                                  }}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </Panel>
+                      </Collapse>
                     </div>,
                   ]}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
@@ -967,34 +983,57 @@ function ServerForm(store) {
                 </div> */}
               </Timeline.Item>
               <Timeline.Item color={stepStatus_step_3}>
-                <div>
-                  <Collapse>
-                    <Panel header="Target Seqence input">
-                      <div>
-                        Job Id: <Input />
-                      </div>
-                    </Panel>
-                    <Panel>
-                      <List
-                        grid={{ gutter: 0, column: 3 }}
-                        header={
-                          <div className="Data-load">
-                            Select Deep Learning Models
-                            <Tooltip
-                              title="support multiple models"
-                              className="Models-Timeline-Item-question"
-                            >
-                              <QuestionCircleOutlined />
-                            </Tooltip>
+                <List
+                  header={
+                    <div className="Data-load">
+                      <strong>Model Select</strong>
+                    </div>
+                  }
+                  className=""
+                  footer={<div></div>}
+                  bordered
+                  dataSource={[
+                    <Collapse accordion className="select-Model-2Panel">
+                      <Panel header="Select in tarined model by Job Id" key="1">
+                        <div className="select-Model-2Panel-jobid-depart">
+                          <div className="select-Model-2Panel-jobid-depart-text">
+                            Job Id:
                           </div>
-                        }
-                        bordered
-                        dataSource={selectMethod}
-                        renderItem={(item) => <List.Item>{item}</List.Item>}
-                      />
-                    </Panel>
-                  </Collapse>
-                </div>{" "}
+                          <div className="select-Model-2Panel-jobid-depart-input">
+                            <Input />
+                          </div>
+                          <div className="select-Model-2Panel-jobid-depart-button">
+                            <Button>Get</Button>
+                          </div>
+                        </div>
+                        <div>
+                          {"这里还要做一恶搞响应界面"}
+                        </div>
+                      </Panel>
+                      <Panel header="Select in pretrained model" key="2">
+                        <List
+                          grid={{ gutter: 0, column: 3 }}
+                          header={
+                            <div className="Data-load">
+                              Select Deep Learning Models
+                              <Tooltip
+                                title="support multiple models"
+                                className="Models-Timeline-Item-question"
+                              >
+                                <QuestionCircleOutlined />
+                              </Tooltip>
+                            </div>
+                          }
+                          bordered
+                          dataSource={selectMethod}
+                          renderItem={(item) => <List.Item>{item}</List.Item>}
+                        />
+                      </Panel>
+                    </Collapse>,
+                  ]}
+                  renderItem={(item) => <List.Item>{item}</List.Item>}
+                />
+
                 {/* <List
                   grid={{ gutter: 0, column: 3 }}
                   header={
