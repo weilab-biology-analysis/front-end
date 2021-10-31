@@ -706,9 +706,6 @@ function ServerForm(store) {
         <Option value="15" label="DNA bert">
           <div className="demo-option-label-item">DNA bert</div>
         </Option>
-        <Option value="16" label="Prot bert">
-          <div className="demo-option-label-item">Prot bert</div>
-        </Option>
         <Option value="11" label="ReformerEncoder">
           <div className="demo-option-label-item">ReformerEncoder</div>
         </Option>

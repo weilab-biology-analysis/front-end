@@ -1,6 +1,5 @@
 import { message } from 'antd';
 import Axios from 'axios';
-import qs from 'qs';
 import { JOBINFO, JOBLIST, JOBSUB } from '../constants/url';
 export const jobInfo = async (jobId) => {
   let result = {

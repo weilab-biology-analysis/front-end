@@ -256,6 +256,7 @@ width: 20%;
   width: max-content;
   float: left;
   margin: 10px;
+  padding: 5px;
 }
 .select-Model-2Panel-jobid-depart-input{
   width: 30%;
@@ -265,4 +266,10 @@ width: 20%;
 .select-Model-2Panel-jobid-depart-button{
   margin: 10px;
   float: left;
+}
+.panel-header-with-radio{
+  width: 100%;
+}
+.panel-header-with-radio-con{
+  float: right;
 }
