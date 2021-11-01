@@ -131,7 +131,7 @@ function ServerForm(store) {
             } else message.info("Please input format data as same as exemple.");
           }
 
-          // console.log(reader.result);
+
         };
         reader.readAsText(file);
       } else {

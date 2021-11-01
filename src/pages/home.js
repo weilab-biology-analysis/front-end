@@ -22,8 +22,11 @@ import {
   MailOutlined,
   AppstoreOutlined,
   SettingOutlined,
+  FileSearchOutlined,
+  ContactsOutlined,
 } from "@ant-design/icons";
 import logo from "../constants/img/2.svg";
+import Tutorial from "./tutorial/tutorial";
 const { Header, Content, Footer } = Layout;
 const { TabPane } = Tabs;
 const { SubMenu } = Menu;
@@ -57,7 +60,24 @@ function Home(store) {
         Job list
       </div>
     ),
-    //4: "Contact",
+    4: (
+      <div>
+        <ContactsOutlined
+          className="headerCon-tab"
+          style={{ fontSize: "20px" }}
+        />
+        Contact
+      </div>
+    ),
+    5: (
+      <div>
+        <FileSearchOutlined
+          className="headerCon-tab"
+          style={{ fontSize: "20px" }}
+        />
+        Tutorial
+      </div>
+    ),
   };
   const [page, setPage] = useState(1);
   function callback(key) {
@@ -67,7 +87,7 @@ function Home(store) {
     switch (page) {
       case 1:
         return (
-          <div className="submit-depart-pages">  
+          <div className="submit-depart-pages">
             <div className="Result-Result-body-Breadcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
@@ -214,12 +234,24 @@ function Home(store) {
           </div>
         );
       case 7:
-        return <div className="submit-depart-pages"><Result /></div>;
+        return (
+          <div className="submit-depart-pages">
+            <Result />
+          </div>
+        );
 
       case 2:
-        return <div className="submit-depart-pages"><ServerHome /></div>
+        return (
+          <div className="submit-depart-pages">
+            <ServerHome />
+          </div>
+        );
       case 8:
-        return <div className="submit-depart-pages"><ServerPredictHome /></div>
+        return (
+          <div className="submit-depart-pages">
+            <ServerPredictHome />
+          </div>
+        );
       case 9:
         return (
           <div className="submit-depart-pages">
@@ -334,6 +366,38 @@ function Home(store) {
             </Tabs>
           </div>
         );
+      case 12:
+        return (
+          <div className="submit-depart-pages">
+            <div className="Result-Result-body-Breadcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Home
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Contact
+                </Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
+            <About />
+          </div>
+        );
+      case 13:
+        return (
+          <div className="submit-depart-pages">
+            <div className="Result-Result-body-Breadcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Home
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Tutorial
+                </Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
+            <Tutorial />
+          </div>
+        );
       default:
         window.location.href = "http://wei-group.net/contact";
 
@@ -352,12 +416,11 @@ function Home(store) {
     <Layout>
       <Header className="Menu-header-home-outer-inite">
         <div className="Menu-header-home-outer-in-item">
-         
           <div className="Menu-header-home">
-          <div className="logo-welab">
-            Deep Bio
-            {/* <img src={logo} className="logo-welab-img" /> */}
-          </div>
+            <div className="logo-welab">
+              Deep Bio
+              {/* <img src={logo} className="logo-welab-img" /> */}
+            </div>
 
             <Menu
               theme="light"
@@ -365,7 +428,7 @@ function Home(store) {
               defaultSelectedKeys={["1"]}
               className="Menu-header-home-item"
             >
-              {new Array(4).fill(null).map((_, index) => {
+              {new Array(5).fill(null).map((_, index) => {
                 const keyValue = index + 1;
                 if (keyValue === 2) {
                   return (
@@ -376,7 +439,6 @@ function Home(store) {
                         </div>
                       }
                       key={keyValue}
-                      
                       className="Menu-header-home-item-SubMenu"
                     >
                       <Menu.ItemGroup>
@@ -400,6 +462,30 @@ function Home(store) {
                         </Menu.Item>
                       </Menu.ItemGroup>
                     </SubMenu>
+                  );
+                } else if (keyValue === 4) {
+                  return (
+                    <Menu.Item
+                      key={keyValue}
+                      onClick={() => {
+                        store.store.servers.changeHomeStatue(12);
+                      }}
+                      className="commen-Menu-Item"
+                    >
+                      {headerCon[keyValue]}
+                    </Menu.Item>
+                  );
+                } else if (keyValue === 5) {
+                  return (
+                    <Menu.Item
+                      key={keyValue}
+                      onClick={() => {
+                        store.store.servers.changeHomeStatue(13);
+                      }}
+                      className="commen-Menu-Item"
+                    >
+                      {headerCon[keyValue]}
+                    </Menu.Item>
                   );
                 } else {
                   return (
