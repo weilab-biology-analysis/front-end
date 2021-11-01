@@ -418,7 +418,7 @@ function Home(store) {
         <div className="Menu-header-home-outer-in-item">
           <div className="Menu-header-home">
             <div className="logo-welab">
-              Deep Bio
+              DeepBIO
               {/* <img src={logo} className="logo-welab-img" /> */}
             </div>
 
