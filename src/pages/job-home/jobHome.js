@@ -46,6 +46,11 @@ status: "等待运行"
       title: "jobId",
       dataIndex: "jobId",
       key: "jobId",
+      render: (text, record) => (
+        <>
+          {record.requestTime.slice(0, 4)}{record.requestTime.slice(5, 7)}{record.requestTime.slice(8, 10)}{text}
+        </>
+      ),
     },
     {
       title: "completeTime",
@@ -119,6 +124,7 @@ status: "等待运行"
               //下面内容属于无服务测试内容
             }}
             className="jobhome-Button-click"
+            type="primary"
           >
             Details
           </Button>
@@ -127,9 +133,16 @@ status: "等待运行"
     },
   ];
   const onSearch = async (value) => {
+  if (value.lenth<8){
+    message.info("please search right jobId")
+  }else{
+
+    let v_current=value.substring(8,value.lenth)
+   
+    console.log(v_current)
     setSearchLoading(true);
     store.store.results.request();
-    let result = await jobInfo(value);
+    let result = await jobInfo(v_current);
     console.log(result)
     if (result.resultType) {
       setSearchLoading(false);
@@ -141,6 +154,8 @@ status: "等待运行"
       setSearchLoading(false);
       store.store.results.request_fail();
     }
+  }
+  
 
     console.log(value);
   };

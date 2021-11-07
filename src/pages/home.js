@@ -1,6 +1,6 @@
 import { inject, observer } from "mobx-react";
 import { useEffect, useState } from "react";
-import { Layout, Menu, Tabs, Breadcrumb, Button } from "antd";
+import { Layout, Menu, Tabs, Breadcrumb, Button, BackTop } from "antd";
 import "./home.css";
 import HomePage from "./home/homePage";
 import ServerHome from "./server-home/serverHome";
@@ -541,6 +541,7 @@ function Home(store) {
         </div>
       </Header>
       <Content style={{ padding: "0 50px", backgroundColor: "white" }}>
+      <BackTop/>
         <PageCon />
       </Content>
       <Footer style={{ textAlign: "center" }}>

@@ -23,6 +23,7 @@ import {
   Breadcrumb,
   Switch,
   Checkbox,
+  BackTop
 } from "antd";
 
 import {
@@ -878,6 +879,11 @@ function ServerForm(store) {
   }, [selectMulMethodData_1, selectMulMethodData_2, selectMulMethodData_3]);
   return (
     <div className="serverForm-body-outer">
+  <Spin spinning={uploading}>
+
+  
+
+      
       <div className="serverForm-body-con">
         <Modal
           title="Success"
@@ -1217,23 +1223,25 @@ function ServerForm(store) {
                         className="button-serverForm-button-timeline"
                         onClick={() => submit()}
                         disabled={uploading}
-                        type="primary"
+                        
                       >
                         {uploading ? <Spin indicator={antIcon} /> : ""} Submit
                       </Button>{" "}
                       <Button
-                        className="button-serverForm-button-timeline"
+                        className="button-serverForm-button-timeline-other"
                         onClick={() => {
                           resetData();
                         }}
+                        type="primary"
                       >
                         Reset
                       </Button>
                       <Button
-                        className="button-serverForm-button-timeline"
+                        className="button-serverForm-button-timeline-other"
                         onClick={() => {
                           store.store.servers.changeHomeStatue(2);
                         }}
+                        type="primary"
                       >
                         Return
                       </Button>
@@ -1245,7 +1253,7 @@ function ServerForm(store) {
             </Timeline>
           </div>
         </div>
-      </div>
+      </div></Spin>
     </div>
   );
 }

@@ -759,7 +759,12 @@ function ServerForm(store) {
                               className="button-serverForm-button-timeline"
                               onClick={async () => {
                                 setGetJobResultLoading(true);
-                                let result = await jobInfo(jobIdGetResult);
+                                if(jobIdGetResult.length<8){
+                                  message.info("please search right jobId")
+                                }else{
+                                  let v_current=jobIdGetResult.substring(8,jobIdGetResult.lenth)
+
+                                  let result = await jobInfo(v_current);
                                 if (result.resultType) {
                                   setJobResult(result);
                                   setGetJobResultLoading(false);
@@ -772,6 +777,8 @@ function ServerForm(store) {
                                     data: [],
                                   });
                                 }
+                                }
+                                
                               }}
                             >
                               Get

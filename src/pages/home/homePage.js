@@ -9,7 +9,7 @@ function HomePage(store) {
     console.log(store);
   }, []);
   const [searchLoading, setSearchLoading] = useState(false);
-  const onSearch = async (value) => {
+  const onSearch = async (value) => {                                                                     
     setSearchLoading(true);
     store.store.results.request();
     let result = await jobInfo(value);

@@ -898,7 +898,7 @@ function Result(store) {
         header={
           <div className="Data-load">
             <strong className="Data-load-List-title">
-              Job ID: {store.store.results.data.jobId}
+              Job ID: {store.store.results.data.requestTime.slice(0, 4)}{store.store.results.data.requestTime.slice(5, 7)}{store.store.results.data.requestTime.slice(8, 10)}{store.store.results.data.jobId}
             </strong>
             <Button
               type="default"
