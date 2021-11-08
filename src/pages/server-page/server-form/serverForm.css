@@ -215,14 +215,18 @@
   
 }
 .select-advance-options-item-right{
-  width: 30%;
+  width: 70%;
   float: left;
   margin-left: 10px;
 }
 .select-advance-options-item-left{
-  width: 30%;
+  width: 20%;
   float: left;
-  margin-left: 10px;
+  margin-left: 40px;
   padding: 5px;
-text-align: center;
+text-align: left;
+
+}
+.select-serverform-advanced{
+  width: 100px;
 }

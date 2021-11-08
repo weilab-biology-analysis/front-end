@@ -61,7 +61,8 @@ function ServerForm(store) {
   const [dValue, setDValue] = useState(0);
   const [eValue, setEValue] = useState(0);
   const [testAddValue, setTestAddValue] = useState(0);
-  const [switchCol, setSwitchCol] = useState(false);
+  const [switchCol, setSwitchCol] = useState(true);
+  const [switchCol_pritrainModel, setSwitchCol_pritrainModel] = useState(false);
 
   useEffect(() => {
     if (store.store.servers.status === REQUEST) {
@@ -69,6 +70,10 @@ function ServerForm(store) {
     } else {
       setUploading(false);
     }
+    // let a=1;
+    // for(let a=1;a<10;a++){
+    //   let b=1
+    // }
   }, [store.store.servers.status]);
 
   const [current, setCurrent] = useState(0);
@@ -130,8 +135,6 @@ function ServerForm(store) {
               ilegalString = false;
             } else message.info("Please input format data as same as exemple.");
           }
-
-
         };
         reader.readAsText(file);
       } else {
@@ -736,12 +739,36 @@ function ServerForm(store) {
                   footer={<div></div>}
                   bordered
                   dataSource={[
+                    <div style={{width:"100%"}}>
                     <Collapse
                       accordion
                       className="select-Model-2Panel"
                       defaultActiveKey="1"
+                      
                     >
-                      <Panel header="Select in tarined model by Job Id" key="1">
+                      <Panel
+                      
+                        header={
+                          <div>
+                            <div className="select-model-collapse-head-text">Select in tarined model by Job Id</div>
+                            
+                         
+                              <Switch
+                                checkedChildren="Yes"
+                                unCheckedChildren="No"
+                                className="switch-collapse"
+                                checked={switchCol}
+                                onClick={() => {
+                                    
+                                    setSwitchCol(!switchCol);
+                              
+                                }}
+                              />
+                            
+                          </div>
+                        }
+                        key="1"
+                      >
                         <div className="select-Model-2Panel-jobid-depart">
                           <div className="select-Model-2Panel-jobid-depart-text">
                             Job Id:
@@ -756,29 +783,32 @@ function ServerForm(store) {
                           </div>
                           <div className="select-Model-2Panel-jobid-depart-button">
                             <Button
-                              className="button-serverForm-button-timeline"
+                            type="primary"
+                              className="button-serverForm-button-timeline-other"
                               onClick={async () => {
                                 setGetJobResultLoading(true);
-                                if(jobIdGetResult.length<8){
-                                  message.info("please search right jobId")
-                                }else{
-                                  let v_current=jobIdGetResult.substring(8,jobIdGetResult.lenth)
+                                if (jobIdGetResult.length < 8) {
+                                  message.info("please search right jobId");
+                                } else {
+                                  let v_current = jobIdGetResult.substring(
+                                    8,
+                                    jobIdGetResult.lenth
+                                  );
 
                                   let result = await jobInfo(v_current);
-                                if (result.resultType) {
-                                  setJobResult(result);
-                                  setGetJobResultLoading(false);
-                                  console.log(result);
-                                } else {
-                                  setGetJobResultLoading(false);
-                                  message.info("fail");
-                                  setJobResult({
-                                    resultType: false,
-                                    data: [],
-                                  });
+                                  if (result.resultType) {
+                                    setJobResult(result);
+                                    setGetJobResultLoading(false);
+                                    console.log(result);
+                                  } else {
+                                    setGetJobResultLoading(false);
+                                    message.info("fail");
+                                    setJobResult({
+                                      resultType: false,
+                                      data: [],
+                                    });
+                                  }
                                 }
-                                }
-                                
                               }}
                             >
                               Get
@@ -787,12 +817,24 @@ function ServerForm(store) {
                         </div>
                         <div>
                           {jobResult.resultType ? (
-                            <div>
+                            <div className="jobResult-pridict">
                               <div>
                                 <div>type: {jobResult.data.param.type}</div>
                                 <div>
                                   modelCompare:
-                                  {jobResult.data.param.modelCompare}
+                                  <Select className="jobResult-pridict-select">
+                                    {" "}
+                                    {jobResult.data.param.modelCompare
+                                      .split(" ")
+                                      .map((v, i, a) => {
+                                        console.log(v, i, a);
+                                        return (
+                                          <Option value={v}>
+                                            {CodingMap[v]}
+                                          </Option>
+                                        );
+                                      })}
+                                  </Select>
                                 </div>
                               </div>
                             </div>
@@ -801,6 +843,8 @@ function ServerForm(store) {
                           )}
                         </div>
                       </Panel>
+                      </Collapse>
+                      <Collapse>
                       <Panel header="Select in pretrained model" key="2">
                         <List
                           grid={{ gutter: 0, column: 3 }}
@@ -820,7 +864,7 @@ function ServerForm(store) {
                           renderItem={(item) => <List.Item>{item}</List.Item>}
                         />
                       </Panel>
-                    </Collapse>,
+                    </Collapse></div>,
                   ]}
                   renderItem={(item) => <List.Item>{item}</List.Item>}
                 />
@@ -840,23 +884,24 @@ function ServerForm(store) {
                         className="button-serverForm-button-timeline"
                         onClick={() => submit()}
                         disabled={uploading}
-                        type="primary"
                       >
                         {uploading ? <Spin indicator={antIcon} /> : ""} Submit
                       </Button>{" "}
                       <Button
-                        className="button-serverForm-button-timeline"
+                        className="button-serverForm-button-timeline-other"
                         onClick={() => {
                           resetData();
                         }}
+                        type="primary"
                       >
                         Reset
                       </Button>
                       <Button
-                        className="button-serverForm-button-timeline"
+                        className="button-serverForm-button-timeline-other"
                         onClick={() => {
                           store.store.servers.changeHomeStatue(2);
                         }}
+                        type="primary"
                       >
                         Return
                       </Button>

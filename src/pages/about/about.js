@@ -2,6 +2,7 @@ import { inject, observer } from "mobx-react";
 import { useEffect } from "react";
 import "./about.css";
 import { EnvironmentOutlined, MailOutlined,MailFilled } from "@ant-design/icons";
+import emailImg from '../../constants/img/emai2.png'
 function About(store) {
   useEffect(() => {}, []);
   return (
@@ -34,7 +35,9 @@ function About(store) {
             <div className="about-connect-text-position-title">
               <MailFilled/> E-MAIL
             </div>
-            <div className="about-connect-text-position-con"></div>
+            <div className="about-connect-text-position-con">
+              <img src={emailImg}/>
+            </div>
           </div>
         </div>
 

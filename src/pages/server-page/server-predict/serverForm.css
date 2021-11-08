@@ -33,6 +33,18 @@
   margin-right: 10px;
   border-radius: 5px;
   height: max-content;
+  background-color: rgb(43, 185, 43);
+  color: white;
+  border: none;
+}
+.button-serverForm-button-timeline-other{
+  font-size: 16px;
+  line-height: 1.6em;
+  font-weight: 600;
+  width: 150px;
+  margin-right: 10px;
+  border-radius: 5px;
+  height: max-content;
 }
 .ant-timeline-item-label {
   text-align: right;
@@ -272,4 +284,16 @@ width: 20%;
 }
 .panel-header-with-radio-con{
   float: right;
+}
+.jobResult-pridict{
+  margin: 20px;
+}
+.jobResult-pridict-select{
+  width: 100px;
+  margin-left: 10px;
+}
+.select-model-collapse-head-text{
+  width: fit-content;
+  float: left;
+  padding: 4px;
 }

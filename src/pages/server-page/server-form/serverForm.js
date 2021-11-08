@@ -42,15 +42,15 @@ const { Option } = Select;
 const { Step } = Steps;
 
 function ServerForm(store) {
-  const [aValue, setAValue] = useState(0);
-  const [bValue, setBValue] = useState(0);
+  const [aValue, setAValue] = useState(false);
+  const [bValue, setBValue] = useState(false);
   const [cValue_1, setCValue_1] = useState(true);
   const [cValue_2, setCValue_2] = useState(false);
   const [cValue_3, setCValue_3] = useState(false);
   const [cValue_4, setCValue_4] = useState(false);
 
-  const [dValue, setDValue] = useState(0);
-  const [eValue, setEValue] = useState(0);
+  const [dValue, setDValue] = useState(false);
+  const [eValue, setEValue] = useState(false);
   const [a_Value, setA_Value] = useState(false);
   const [b_Value, setB_Value] = useState(false);
   const [c_Value, setC_Value] = useState(false);
@@ -964,7 +964,30 @@ function ServerForm(store) {
                             Balanced Data:{" "}
                           </div>
                           <div className="select-advance-options-item-right">
-                          <Checkbox
+                            <Select
+                            allowClear
+                            defaultValue={""}
+                            disabled={b_Value}
+                            onChange={(value)=>{
+                              if(eValue){
+                                setC_Value(true);
+                                setA_Value(true);
+                                setD_Value(true);
+                                setAValue(false);
+                                setDValue(false);
+                              }
+                              console.log(value)
+                              if(value){
+                                setBValue(value)
+                              }else{
+                                setBValue(false)
+                              }
+                            }}
+                            className="select-serverform-advanced"
+                            >
+                              <Option value={true}>Yes</Option>
+                            </Select>
+                          {/* <Checkbox
                               checked={bValue}
                               disabled={b_Value}
                               onChange={(e) => {
@@ -978,7 +1001,7 @@ function ServerForm(store) {
                                 }
                                 setBValue(e.target.checked);
                               }}
-                              >use</Checkbox>
+                              >use</Checkbox> */}
 
                           </div>
                         </div>
@@ -991,7 +1014,31 @@ function ServerForm(store) {
                             
                           </div>
                           <div className="select-advance-options-item-right">
-                          <Checkbox
+                            <Select
+                             allowClear
+                             defaultValue={""}
+                             disabled={d_Value}
+                             onChange={(value)=>{
+                               if(eValue){
+                                setC_Value(true);
+                                setB_Value(true);
+                                setA_Value(true);
+                                setBValue(false);
+                                setAValue(false);
+                               }
+                               console.log(value)
+                               if(value){
+                                setDValue(value)
+                               }else{
+                                setDValue(false)
+                               }
+                             }}
+                             className="select-serverform-advanced"
+                            >
+                              <Option value={true}>Yes</Option>
+                              
+                            </Select>
+                          {/* <Checkbox
                               checked={dValue}
                               disabled={d_Value}
                               onChange={(e) => {
@@ -1005,7 +1052,7 @@ function ServerForm(store) {
                                 
                                 setDValue(e.target.checked);
                               }}
-                            >use</Checkbox>
+                            >use</Checkbox> */}
 
 
                           </div>
@@ -1017,7 +1064,32 @@ function ServerForm(store) {
                             Data argumentation:{" "}
                           </div>
                           <div className="select-advance-options-item-right">
-                          <Checkbox
+                          <Select
+                             allowClear
+                             defaultValue={""}
+                             value={aValue}
+                             disabled={a_Value}
+                             onChange={(value)=>{
+                               if(eValue){
+                                setC_Value(true);
+                                  setB_Value(true);
+                                  setD_Value(true);
+                                  setBValue(false);
+                                  setDValue(false);
+                               }
+                               console.log(value)
+                               if(value){
+                                setAValue(value)
+                               }else{
+                                setAValue(false)
+                               }
+                             }}
+                             className="select-serverform-advanced"
+                            >
+                              <Option value={true}>Yes</Option>
+                              
+                            </Select>
+                          {/* <Checkbox
                               checked={aValue}
                               disabled={a_Value}
                               onChange={(e) => {
@@ -1031,7 +1103,7 @@ function ServerForm(store) {
                                 setAValue(e.target.checked);
                                   
                               }}
-                              >use</Checkbox>
+                              >use</Checkbox> */}
                           
                           </div>
                         </div>
