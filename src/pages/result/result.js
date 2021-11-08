@@ -19,6 +19,26 @@ const { TabPane } = Tabs;
 const { Panel } = Collapse;
 
 const { Meta } = Card;
+const CodingMap = {
+  0: "DNN",
+  1: "RNN",
+  2: "LSTM",
+  3: "BiLSTM",
+  4: "LSTMAttention",
+  5: "GRU",
+  6: "TestCNN",
+  7: "TestRCNN",
+  8: "VDCNN",
+  9: "RNN_CNN",
+  10: "Transformer",
+  11: "Reformer",
+  12: "Performer",
+  13: "Linformer",
+  14: "RoutingTransformer",
+  15: "DNA bert",
+  16: "Prot bert",
+  17: "TestGCN",
+};
 function Result(store) {
   const [motifStatistics, setMotifStatistics] = useState([]);
   const [compositionalAnalysis, setcCompositionalAnalysis] = useState([]);
@@ -121,7 +141,7 @@ function Result(store) {
             className="picture-body-con"
           >
             <div className="picture-body-con-tabpane-serverform-Collapse-out">
-              {/* <div className="picture-body-con-tabpane-serverform-Collapse">
+             <div className="picture-body-con-tabpane-serverform-Collapse">
                   <Collapse defaultActiveKey={["1"]}>
                     <Panel
                       header={
@@ -132,7 +152,7 @@ function Result(store) {
                       key="1"
                     >
                       <div className="Result-Result-row-pictures-card">
-                        <Card
+                        {/* <Card
                           hoverable
                           style={{ width: "70%" }}
                           cover={
@@ -142,12 +162,12 @@ function Result(store) {
                               className="Result-Result-row-pictures-item"
                             />
                           }
-                        ></Card>{" "}
+                        ></Card>{" "} */}
                         
                       </div>
                     </Panel>
                   </Collapse>
-                </div> */}
+                </div> 
               <div className="picture-body-con-tabpane-serverform-Collapse">
                 <Collapse>
                   <Panel
@@ -338,7 +358,7 @@ function Result(store) {
                   </Panel>
                 </Collapse>
               </div>
-              {/* <div className="picture-body-con-tabpane-serverform-Collapse">
+              <div className="picture-body-con-tabpane-serverform-Collapse">
                   <Collapse>
                     <Panel
                       header={
@@ -352,7 +372,7 @@ function Result(store) {
                     >
                       <div className="Result-Result-row-pictures-card">
                        
-                        <Card
+                        {/* <Card
                           hoverable
                           style={{ width: "70%" }}
                           cover={
@@ -362,12 +382,12 @@ function Result(store) {
                               className="Result-Result-row-pictures-item"
                             />
                           }
-                        ></Card>{" "}
+                        ></Card>{" "} */}
                        
                       </div>
                     </Panel>
                   </Collapse>
-                </div> */}
+                </div> 
             </div>
           </TabPane>
         );
@@ -378,7 +398,7 @@ function Result(store) {
             className="picture-body-con"
           >
             <div className="picture-body-con-tabpane-serverform-Collapse-out">
-              {/* <div className="picture-body-con-tabpane-serverform-Collapse">
+             <div className="picture-body-con-tabpane-serverform-Collapse">
                   <Collapse defaultActiveKey={["1"]}>
                     <Panel
                       header={
@@ -389,7 +409,7 @@ function Result(store) {
                       key="1"
                     >
                       <div className="Result-Result-row-pictures-card">
-                        <Card
+                        {/* <Card
                           hoverable
                           style={{ width: "70%" }}
                           cover={
@@ -399,12 +419,12 @@ function Result(store) {
                               className="Result-Result-row-pictures-item"
                             />
                           }
-                        ></Card>{" "}
+                        ></Card>{" "} */}
                        
                       </div>
                     </Panel>
                   </Collapse>
-                </div> */}
+                </div> 
               <div className="picture-body-con-tabpane-serverform-Collapse">
                 <Collapse>
                   <Panel
@@ -551,12 +571,12 @@ function Result(store) {
 
         list.push(
           <TabPane
-            tab={"Model Prediction Results"}
+            tab={"Feature Analysis"}
             key={3}
             className="picture-body-con"
           >
             <div className="picture-body-con-tabpane-serverform-Collapse-out">
-              {/* <div className="picture-body-con-tabpane-serverform-Collapse">
+               <div className="picture-body-con-tabpane-serverform-Collapse">
                   <Collapse defaultActiveKey={["1"]}>
                     <Panel
                       header={
@@ -571,7 +591,7 @@ function Result(store) {
                       key="1"
                     >
                       <div className="Result-Result-row-pictures-card">
-                        <Card
+                        {/* <Card
                           hoverable
                           style={{ width: "70%" }}
                           cover={
@@ -581,12 +601,12 @@ function Result(store) {
                               className="Result-Result-row-pictures-item"
                             />
                           }
-                        ></Card>{" "}
+                        ></Card>{" "} */}
                        
                       </div>
                     </Panel>
                   </Collapse>
-                </div> */}
+                </div> 
               <div className="picture-body-con-tabpane-serverform-Collapse">
                 <Collapse>
                   <Panel
@@ -636,7 +656,7 @@ function Result(store) {
                   </Panel>
                 </Collapse>
               </div>
-              {/* <div className="picture-body-con-tabpane-serverform-Collapse">
+           <div className="picture-body-con-tabpane-serverform-Collapse">
                   <Collapse>
                     <Panel
                       header={
@@ -648,7 +668,7 @@ function Result(store) {
                     >
                       <div className="Result-Result-row-pictures-card">
                         
-                        <Card
+                        {/* <Card
                           hoverable
                           style={{ width: "70%" }}
                           cover={
@@ -658,12 +678,12 @@ function Result(store) {
                               className="Result-Result-row-pictures-item"
                             />
                           }
-                        ></Card>{" "}
+                        ></Card>{" "} */}
                      
                       </div>
                     </Panel>
                   </Collapse>
-                </div> */}
+                </div> 
             </div>
           </TabPane>
         );
@@ -697,126 +717,126 @@ function Result(store) {
         // );
       
     }
-    // list.push(
-    //   <TabPane
-    //     tab={"Model Parameter Optimization"}
-    //     key={20}
-    //     className="picture-body-con"
-    //   >
-    //     <div className="picture-body-con-tabpane-serverform-Collapse-out">
-    //       <div className="picture-body-con-tabpane-serverform-Collapse">
-    //         <Collapse defaultActiveKey={["1"]}>
-    //           <Panel
-    //             header={
-    //               <div className="serverform-Collapse-ADVANCED">
-    //                 <strong>
-    //                   The effect of different sequence similarities in datasets
-    //                   on predictive performance{" "}
-    //                 </strong>
-    //               </div>
-    //             }
-    //             key="1"
-    //           >
-    //             <div className="Result-Result-row-pictures-card">
-    //               <Card
-    //                 hoverable
-    //                 style={{ width: "70%" }}
-    //                 cover={
-    //                   <img
-    //                     alt="example"
-    //                     src={tSne}
-    //                     className="Result-Result-row-pictures-item"
-    //                   />
-    //                 }
-    //               ></Card>{" "}
-    //               {/* </Popover> */}
-    //             </div>
-    //           </Panel>
-    //         </Collapse>
-    //       </div>
-    //       <div className="picture-body-con-tabpane-serverform-Collapse">
-    //         <Collapse>
-    //           <Panel
-    //             header={
-    //               <div className="serverform-Collapse-ADVANCED">
-    //                 <strong>
-    //                   The effect of different data augmentation strategies on
-    //                   predictive performance
-    //                 </strong>
-    //               </div>
-    //             }
-    //             key="1"
-    //           >
-    //             <div className="Result-Result-row-pictures-card">
-    //               {/* <Popover
-    //               className="resultPictures-Popover-contant-card"
-    //               content={
-    //                 <img
-    //                   src={store.store.results.data.result.pictures[i]}
-    //                   className="resultPictures-Popover-contant"
-    //                 />
-    //               }
-    //               title={result_title[i]}
-    //             > */}
-    //               <Card
-    //                 hoverable
-    //                 style={{ width: "70%" }}
-    //                 cover={
-    //                   <img
-    //                     alt="example"
-    //                     src={tSne}
-    //                     className="Result-Result-row-pictures-item"
-    //                   />
-    //                 }
-    //               ></Card>{" "}
-    //               {/* </Popover> */}
-    //             </div>
-    //           </Panel>
-    //         </Collapse>
-    //       </div>
-    //       <div className="picture-body-con-tabpane-serverform-Collapse">
-    //         <Collapse>
-    //           <Panel
-    //             header={
-    //               <div className="serverform-Collapse-ADVANCED">
-    //                 <strong>
-    //                   The effect of different k-mer selection on predictive
-    //                   performance
-    //                 </strong>
-    //               </div>
-    //             }
-    //             key="1"
-    //           >
-    //             <div className="Result-Result-row-pictures-card">
-    //               {/* <Popover
-    //               className="resultPictures-Popover-contant-card"
-    //               content={
-    //                 <img
-    //                   src={store.store.results.data.result.pictures[i]}
-    //                   className="resultPictures-Popover-contant"
-    //                 />
-    //               }
-    //               title={result_title[i]}
-    //             > */}
-    //               <Card
-    //                 hoverable
-    //                 style={{ width: "70%" }}
-    //                 cover={
-    //                   <img
-    //                     alt="example"
-    //                     src={tSne}
-    //                     className="Result-Result-row-pictures-item"
-    //                   />
-    //                 }
-    //               ></Card>{" "}
-    //               {/* </Popover> */}
-    //             </div>
-    //           </Panel>
-    //         </Collapse>
-    //       </div>
-    //     </div>
-    //   </TabPane>
-    // );
+    list.push(
+      <TabPane
+        tab={"Model Parameter Optimization"}
+        key={20}
+        className="picture-body-con"
+      >
+        <div className="picture-body-con-tabpane-serverform-Collapse-out">
+          <div className="picture-body-con-tabpane-serverform-Collapse">
+            <Collapse defaultActiveKey={["1"]}>
+              <Panel
+                header={
+                  <div className="serverform-Collapse-ADVANCED">
+                    <strong>
+                      The effect of different sequence similarities in datasets
+                      on predictive performance{" "}
+                    </strong>
+                  </div>
+                }
+                key="1"
+              >
+                <div className="Result-Result-row-pictures-card">
+                  {/* <Card
+                    hoverable
+                    style={{ width: "70%" }}
+                    cover={
+                      <img
+                        alt="example"
+                        src={tSne}
+                        className="Result-Result-row-pictures-item"
+                      />
+                    }
+                  ></Card>{" "} */}
+                  {/* </Popover> */}
+                </div>
+              </Panel>
+            </Collapse>
+          </div>
+          <div className="picture-body-con-tabpane-serverform-Collapse">
+            <Collapse>
+              <Panel
+                header={
+                  <div className="serverform-Collapse-ADVANCED">
+                    <strong>
+                      The effect of different data augmentation strategies on
+                      predictive performance
+                    </strong>
+                  </div>
+                }
+                key="1"
+              >
+                <div className="Result-Result-row-pictures-card">
+                  {/* <Popover
+                  className="resultPictures-Popover-contant-card"
+                  content={
+                    <img
+                      src={store.store.results.data.result.pictures[i]}
+                      className="resultPictures-Popover-contant"
+                    />
+                  }
+                  title={result_title[i]}
+                > */}
+                  {/* <Card
+                    hoverable
+                    style={{ width: "70%" }}
+                    cover={
+                      <img
+                        alt="example"
+                        src={tSne}
+                        className="Result-Result-row-pictures-item"
+                      />
+                    }
+                  ></Card>{" "} */}
+                  {/* </Popover> */}
+                </div>
+              </Panel>
+            </Collapse>
+          </div>
+          <div className="picture-body-con-tabpane-serverform-Collapse">
+            <Collapse>
+              <Panel
+                header={
+                  <div className="serverform-Collapse-ADVANCED">
+                    <strong>
+                      The effect of different k-mer selection on predictive
+                      performance
+                    </strong>
+                  </div>
+                }
+                key="1"
+              >
+                <div className="Result-Result-row-pictures-card">
+                  {/* <Popover
+                  className="resultPictures-Popover-contant-card"
+                  content={
+                    <img
+                      src={store.store.results.data.result.pictures[i]}
+                      className="resultPictures-Popover-contant"
+                    />
+                  }
+                  title={result_title[i]}
+                > */}
+                  {/* <Card
+                    hoverable
+                    style={{ width: "70%" }}
+                    cover={
+                      <img
+                        alt="example"
+                        src={tSne}
+                        className="Result-Result-row-pictures-item"
+                      />
+                    }
+                  ></Card>{" "} */}
+                  {/* </Popover> */}
+                </div>
+              </Panel>
+            </Collapse>
+          </div>
+        </div>
+      </TabPane>
+    );
     list.push(
       <TabPane
         tab={"Job Information"}
@@ -826,6 +846,13 @@ function Result(store) {
         <div>
           <Descriptions>
             {/* <Descriptions column={2}></Descriptions> */}
+            <Descriptions.Item
+              label={
+                <div className="result-Descriptions-item">Type</div>
+              }
+            >
+              {store.store.results.data.param.type}
+            </Descriptions.Item>
             <Descriptions.Item
               label={
                 <div className="result-Descriptions-item">Created Time</div>
@@ -852,19 +879,35 @@ function Result(store) {
                 <div className="result-Descriptions-item">Model Select</div>
               }
             >
-              {"-"}
+              {store.store.results.data.param.modelCompare.split(" ").map((v,i,a)=>{
+                return CodingMap[v]+" "
+              })}
             </Descriptions.Item>
             <Descriptions.Item
               label={<div className="result-Descriptions-item">CD-Hit</div>}
             >
-              {"-"}
+              {store.store.results.data.param.CDHit/10}
             </Descriptions.Item>
             <Descriptions.Item
               label={
                 <div className="result-Descriptions-item">Balanced data</div>
               }
             >
-              {"-"}
+              {store.store.results.data.param.balancedData!=="0"?"use":"-"}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label={
+                <div className="result-Descriptions-item">Data Argumentation</div>
+              }
+            >
+              {store.store.results.data.param.dataArgumentation!=="0"?"use":"-"}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label={
+                <div className="result-Descriptions-item">Data Enhancement</div>
+              }
+            >
+              {store.store.results.data.param.dataEnhancement!=="0"?"use":"-"}
             </Descriptions.Item>
           </Descriptions>
         </div>
