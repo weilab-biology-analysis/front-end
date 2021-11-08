@@ -196,3 +196,13 @@ padding-right: 30px !;
 .download-button{
   float: right;
 }
+.oddRow {
+  background: rgb(238, 238, 238);
+}
+
+.evenRow {
+  background: white;
+}
+th.result-table-title{
+  background-color: rgb(231, 246, 255) !important;
+}

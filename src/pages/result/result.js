@@ -12,6 +12,7 @@ import {
   message,
   Breadcrumb,
   Collapse,
+  Table,
 } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 import tSne from "../../constants/img/t-sne.png";
@@ -129,30 +130,34 @@ function Result(store) {
       data: store.store.results.data.requestTime,
     },
   ];
+ const getRowClassName = (record, index) => {
+    let className = '';
+    className = index % 2 === 0 ? "oddRow" : "evenRow";
+    return className
+  }
 
   const resultPictures = () => {
     let list = [];
     if (store.store.results.data.result.pictures) {
-      
-        list.push(
-          <TabPane
-            tab={"Dataset Statistics"}
-            key={1}
-            className="picture-body-con"
-          >
-            <div className="picture-body-con-tabpane-serverform-Collapse-out">
-             <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse defaultActiveKey={["1"]}>
-                    <Panel
-                      header={
-                        <div className="serverform-Collapse-ADVANCED">
-                          <strong>Summary of the input datasets</strong>
-                        </div>
-                      }
-                      key="1"
-                    >
-                      <div className="Result-Result-row-pictures-card">
-                        {/* <Card
+      list.push(
+        <TabPane
+          tab={"Dataset Statistics"}
+          key={1}
+          className="picture-body-con"
+        >
+          <div className="picture-body-con-tabpane-serverform-Collapse-out">
+            <div className="picture-body-con-tabpane-serverform-Collapse">
+              <Collapse defaultActiveKey={["1"]}>
+                <Panel
+                  header={
+                    <div className="serverform-Collapse-ADVANCED">
+                      <strong>Summary of the input datasets</strong>
+                    </div>
+                  }
+                  key="1"
+                >
+                  <div className="Result-Result-row-pictures-card">
+                    {/* <Card
                           hoverable
                           style={{ width: "70%" }}
                           cover={
@@ -163,253 +168,249 @@ function Result(store) {
                             />
                           }
                         ></Card>{" "} */}
-                        
-                      </div>
-                    </Panel>
-                  </Collapse>
-                </div> 
-              <div className="picture-body-con-tabpane-serverform-Collapse">
-                <Collapse>
-                  <Panel
-                    header={
-                      <div className="serverform-Collapse-ADVANCED">
-                        <strong>Sequence compositional analysis</strong>
-                      </div>
-                    }
-                    key="1"
-                  >
-                    <div className="Result-Result-row-pictures-card">
-                      {/* <Popover
-                  className="resultPictures-Popover-contant-card"
-                  content={
-                    <img
-                      src={store.store.results.data.result.pictures[i]}
-                      className="resultPictures-Popover-contant"
+                    <Table
+                    rowClassName={(record, index)=>getRowClassName(record, index)}
+                      dataSource={[
+                        {
+                          key: "1",
+                          name: "胡彦斌",
+                          age: 32,
+                          address: "西湖区湖底公园1号",
+                        },
+                        {
+                          key: "2",
+                          name: "胡彦祖",
+                          age: 42,
+                          address: "西湖区湖底公园1号",
+                        },
+                      ]}
+                      columns={[
+                        {
+                          title: "姓名",
+                          dataIndex: "name",
+                          key: "name",
+                          className:"result-table-title"
+                        },
+                        {
+                          title: "年龄",
+                          dataIndex: "age",
+                          key: "age",
+                          className:"result-table-title"
+                        },
+                        {
+                          title: "住址",
+                          dataIndex: "address",
+                          key: "address",
+                          className:"result-table-title"
+                        },
+                      ]}
                     />
-                  }
-                  title={result_title[i]}
-                > */}
-                      {compositionalAnalysis[0] ? (
-                        <Card
-                          hoverable
-                          style={{ width: "100%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={compositionalAnalysis[0]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        >
-                          <a
-                            href={compositionalAnalysis[0]}
-                            className="download-button"
-                            download
-                          >
-                            <Button> Download</Button>
-                          </a>
-                        </Card>
-                      ) : (
-                        ""
-                      )}{" "}
-                      {compositionalAnalysis[0] ? (
-                        <Card
-                          hoverable
-                          style={{ width: "100%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={compositionalAnalysis[0]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        >
-                          <a
-                            href={compositionalAnalysis[0]}
-                            className="download-button"
-                            download
-                          >
-                            <Button> Download</Button>
-                          </a>
-                        </Card>
-                      ) : (
-                        ""
-                      )}{" "}
-                      {/* </Popover> */}
-                    </div>
-                  </Panel>
-                </Collapse>
-              </div>
-              <div className="picture-body-con-tabpane-serverform-Collapse">
-                <Collapse>
-                  <Panel
-                    header={
-                      <div className="serverform-Collapse-ADVANCED">
-                        <strong>Sequence motif statistics</strong>
-                      </div>
-                    }
-                    key="1"
-                  >
-                    <div className="Result-Result-row-pictures-card">
-                      {/* <Popover
-                  className="resultPictures-Popover-contant-card"
-                  content={
-                    <img
-                      src={store.store.results.data.result.pictures[i]}
-                      className="resultPictures-Popover-contant"
-                    />
-                  }
-                  title={result_title[i]}
-                > */}
-                      {motifStatistics[0] ? (
-                        <Card
-                          hoverable
-                          style={{ width: "100%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={motifStatistics[0]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        >
-                          <a
-                            href={motifStatistics[0]}
-                            className="download-button"
-                            download
-                          >
-                            <Button> Download</Button>
-                          </a>
-                        </Card>
-                      ) : (
-                        ""
-                      )}{" "}
-                      {motifStatistics[1] ? (
-                        <Card
-                          hoverable
-                          style={{ width: "100%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={motifStatistics[1]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        >
-                          <a
-                            href={motifStatistics[1]}
-                            className="download-button"
-                            download
-                          >
-                            <Button> Download</Button>
-                          </a>
-                        </Card>
-                      ) : (
-                        ""
-                      )}{" "}
-                      {motifStatistics[2] ? (
-                        <Card
-                          hoverable
-                          style={{ width: "100%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={motifStatistics[2]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        >
-                          <a
-                            href={motifStatistics[2]}
-                            className="download-button"
-                            download
-                          >
-                            <Button> Download</Button>
-                          </a>
-                        </Card>
-                      ) : (
-                        ""
-                      )}{" "}
-                      {motifStatistics[3] ? (
-                        <Card
-                          hoverable
-                          style={{ width: "100%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={motifStatistics[3]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        >
-                          <a
-                            href={motifStatistics[3]}
-                            className="download-button"
-                            download
-                          >
-                            <Button> Download</Button>
-                          </a>
-                        </Card>
-                      ) : (
-                        ""
-                      )}{" "}
-                      {/* </Popover> */}
-                    </div>
-                  </Panel>
-                </Collapse>
-              </div>
-              <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse>
-                    <Panel
-                      header={
-                        <div className="serverform-Collapse-ADVANCED">
-                          <strong>
-                            Distribution of different sequence length
-                          </strong>
-                        </div>
-                      }
-                      key="1"
-                    >
-                      <div className="Result-Result-row-pictures-card">
-                       
-                        {/* <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={store.store.results.data.result.pictures[i]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "} */}
-                       
-                      </div>
-                    </Panel>
-                  </Collapse>
-                </div> 
+                  </div>
+                </Panel>
+              </Collapse>
             </div>
-          </TabPane>
-        );
-        list.push(
-          <TabPane
-            tab={"Model Prediction Results"}
-            key={2}
-            className="picture-body-con"
-          >
-            <div className="picture-body-con-tabpane-serverform-Collapse-out">
-             <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse defaultActiveKey={["1"]}>
-                    <Panel
-                      header={
-                        <div className="serverform-Collapse-ADVANCED">
-                          <strong>Performance of deep learning models</strong>
-                        </div>
-                      }
-                      key="1"
-                    >
-                      <div className="Result-Result-row-pictures-card">
-                        {/* <Card
+            <div className="picture-body-con-tabpane-serverform-Collapse">
+              <Collapse>
+                <Panel
+                  header={
+                    <div className="serverform-Collapse-ADVANCED">
+                      <strong>Sequence compositional analysis</strong>
+                    </div>
+                  }
+                  key="1"
+                >
+                  <div className="Result-Result-row-pictures-card">
+                    {/* <Popover
+                  className="resultPictures-Popover-contant-card"
+                  content={
+                    <img
+                      src={store.store.results.data.result.pictures[i]}
+                      className="resultPictures-Popover-contant"
+                    />
+                  }
+                  title={result_title[i]}
+                > */}
+                    {compositionalAnalysis[0] ? (
+                      <Card
+                        hoverable
+                        style={{ width: "100%" }}
+                        cover={
+                          <img
+                            alt="example"
+                            src={compositionalAnalysis[0]}
+                            className="Result-Result-row-pictures-item"
+                          />
+                        }
+                      >
+                        <a
+                          href={compositionalAnalysis[0]}
+                          className="download-button"
+                          download
+                        >
+                          <Button> Download</Button>
+                        </a>
+                      </Card>
+                    ) : (
+                      ""
+                    )}{" "}
+                    {compositionalAnalysis[0] ? (
+                      <Card
+                        hoverable
+                        style={{ width: "100%" }}
+                        cover={
+                          <img
+                            alt="example"
+                            src={compositionalAnalysis[0]}
+                            className="Result-Result-row-pictures-item"
+                          />
+                        }
+                      >
+                        <a
+                          href={compositionalAnalysis[0]}
+                          className="download-button"
+                          download
+                        >
+                          <Button> Download</Button>
+                        </a>
+                      </Card>
+                    ) : (
+                      ""
+                    )}{" "}
+                    {/* </Popover> */}
+                  </div>
+                </Panel>
+              </Collapse>
+            </div>
+            <div className="picture-body-con-tabpane-serverform-Collapse">
+              <Collapse>
+                <Panel
+                  header={
+                    <div className="serverform-Collapse-ADVANCED">
+                      <strong>Sequence motif statistics</strong>
+                    </div>
+                  }
+                  key="1"
+                >
+                  <div className="Result-Result-row-pictures-card">
+                    {/* <Popover
+                  className="resultPictures-Popover-contant-card"
+                  content={
+                    <img
+                      src={store.store.results.data.result.pictures[i]}
+                      className="resultPictures-Popover-contant"
+                    />
+                  }
+                  title={result_title[i]}
+                > */}
+                    {motifStatistics[0] ? (
+                      <Card
+                        hoverable
+                        style={{ width: "100%" }}
+                        cover={
+                          <img
+                            alt="example"
+                            src={motifStatistics[0]}
+                            className="Result-Result-row-pictures-item"
+                          />
+                        }
+                      >
+                        <a
+                          href={motifStatistics[0]}
+                          className="download-button"
+                          download
+                        >
+                          <Button> Download</Button>
+                        </a>
+                      </Card>
+                    ) : (
+                      ""
+                    )}{" "}
+                    {motifStatistics[1] ? (
+                      <Card
+                        hoverable
+                        style={{ width: "100%" }}
+                        cover={
+                          <img
+                            alt="example"
+                            src={motifStatistics[1]}
+                            className="Result-Result-row-pictures-item"
+                          />
+                        }
+                      >
+                        <a
+                          href={motifStatistics[1]}
+                          className="download-button"
+                          download
+                        >
+                          <Button> Download</Button>
+                        </a>
+                      </Card>
+                    ) : (
+                      ""
+                    )}{" "}
+                    {motifStatistics[2] ? (
+                      <Card
+                        hoverable
+                        style={{ width: "100%" }}
+                        cover={
+                          <img
+                            alt="example"
+                            src={motifStatistics[2]}
+                            className="Result-Result-row-pictures-item"
+                          />
+                        }
+                      >
+                        <a
+                          href={motifStatistics[2]}
+                          className="download-button"
+                          download
+                        >
+                          <Button> Download</Button>
+                        </a>
+                      </Card>
+                    ) : (
+                      ""
+                    )}{" "}
+                    {motifStatistics[3] ? (
+                      <Card
+                        hoverable
+                        style={{ width: "100%" }}
+                        cover={
+                          <img
+                            alt="example"
+                            src={motifStatistics[3]}
+                            className="Result-Result-row-pictures-item"
+                          />
+                        }
+                      >
+                        <a
+                          href={motifStatistics[3]}
+                          className="download-button"
+                          download
+                        >
+                          <Button> Download</Button>
+                        </a>
+                      </Card>
+                    ) : (
+                      ""
+                    )}{" "}
+                    {/* </Popover> */}
+                  </div>
+                </Panel>
+              </Collapse>
+            </div>
+            <div className="picture-body-con-tabpane-serverform-Collapse">
+              <Collapse>
+                <Panel
+                  header={
+                    <div className="serverform-Collapse-ADVANCED">
+                      <strong>Distribution of different sequence length</strong>
+                    </div>
+                  }
+                  key="1"
+                >
+                  <div className="Result-Result-row-pictures-card">
+                    {/* <Card
                           hoverable
                           style={{ width: "70%" }}
                           cover={
@@ -420,178 +421,206 @@ function Result(store) {
                             />
                           }
                         ></Card>{" "} */}
-                       
-                      </div>
-                    </Panel>
-                  </Collapse>
-                </div> 
-              <div className="picture-body-con-tabpane-serverform-Collapse">
-                <Collapse>
-                  <Panel
-                    header={
-                      <div className="serverform-Collapse-ADVANCED">
-                        <strong>
-                          ROC and PR curves of deep learning models
-                        </strong>
-                      </div>
-                    }
-                    key="1"
-                  >
-                    <div className="Result-Result-row-pictures-card">
-                      {/* <Popover
-                  className="resultPictures-Popover-contant-card"
-                  content={
-                    <img
-                      src={store.store.results.data.result.pictures[i]}
-                      className="resultPictures-Popover-contant"
-                    />
-                  }
-                  title={result_title[i]}
-                > */}
-                      {ROC_PR_Deep_all[0] ? (
-                        <Card
-                          hoverable
-                          style={{ width: "100%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={ROC_PR_Deep_all[0]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        >
-                          <a
-                            href={ROC_PR_Deep_all[0]}
-                            className="download-button"
-                            download
-                          >
-                            <Button> Download</Button>
-                          </a>
-                        </Card>
-                      ) : (
-                        ""
-                      )}{" "}
-                      {/* </Popover> */}
-                    </div>
-                  </Panel>
-                </Collapse>
-              </div>
-              <div className="picture-body-con-tabpane-serverform-Collapse">
-                <Collapse>
-                  <Panel
-                    header={
-                      <div className="serverform-Collapse-ADVANCED">
-                        <strong>ROC and PR curves of Traditional models</strong>
-                      </div>
-                    }
-                    key="1"
-                  >
-                    <div className="Result-Result-row-pictures-card">
-                      {/* <Popover
-                  className="resultPictures-Popover-contant-card"
-                  content={
-                    <img
-                      src={store.store.results.data.result.pictures[i]}
-                      className="resultPictures-Popover-contant"
-                    />
-                  }
-                  title={result_title[i]}
-                > */}
-                      {ROC_PR_Tra_all[0] ? (
-                        <Card
-                          hoverable
-                          style={{ width: "100%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={ROC_PR_Tra_all[0]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        >
-                          <a
-                            href={ROC_PR_Tra_all[0]}
-                            className="download-button"
-                            download
-                          >
-                            <Button> Download</Button>
-                          </a>
-                        </Card>
-                      ) : (
-                        ""
-                      )}{" "}
-                      {/* </Popover> */}
-                    </div>
-                  </Panel>
-                </Collapse>
-              </div>
-              <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse>
-                    <Panel
-                      header={
-                        <div className="serverform-Collapse-ADVANCED">
-                          <strong>
-                            Density distribution of the prediction confidence by different deep learning models
-                          </strong>
-                        </div>
-                      }
-                      key="1"
-                    >
-                      <div className="Result-Result-row-pictures-card">
-                        
-                        <Card
-                          hoverable
-                          style={{ width: "100%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={density_picture[0]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "}
-                       <Card
-                          hoverable
-                          style={{ width: "100%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={density_picture[1]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>
-                      </div>
-                    </Panel>
-                  </Collapse>
-                </div> 
+                  </div>
+                </Panel>
+              </Collapse>
             </div>
-          </TabPane>
-        );
+          </div>
+        </TabPane>
+      );
+      list.push(
+        <TabPane
+          tab={"Model Prediction Results"}
+          key={2}
+          className="picture-body-con"
+        >
+          <div className="picture-body-con-tabpane-serverform-Collapse-out">
+            <div className="picture-body-con-tabpane-serverform-Collapse">
+              <Collapse defaultActiveKey={["1"]}>
+                <Panel
+                  header={
+                    <div className="serverform-Collapse-ADVANCED">
+                      <strong>Performance of deep learning models</strong>
+                    </div>
+                  }
+                  key="1"
+                >
+                  <div className="Result-Result-row-pictures-card">
+                    {/* <Card
+                          hoverable
+                          style={{ width: "70%" }}
+                          cover={
+                            <img
+                              alt="example"
+                              src={store.store.results.data.result.pictures[i]}
+                              className="Result-Result-row-pictures-item"
+                            />
+                          }
+                        ></Card>{" "} */}
+                  </div>
+                </Panel>
+              </Collapse>
+            </div>
+            <div className="picture-body-con-tabpane-serverform-Collapse">
+              <Collapse>
+                <Panel
+                  header={
+                    <div className="serverform-Collapse-ADVANCED">
+                      <strong>ROC and PR curves of deep learning models</strong>
+                    </div>
+                  }
+                  key="1"
+                >
+                  <div className="Result-Result-row-pictures-card">
+                    {/* <Popover
+                  className="resultPictures-Popover-contant-card"
+                  content={
+                    <img
+                      src={store.store.results.data.result.pictures[i]}
+                      className="resultPictures-Popover-contant"
+                    />
+                  }
+                  title={result_title[i]}
+                > */}
+                    {ROC_PR_Deep_all[0] ? (
+                      <Card
+                        hoverable
+                        style={{ width: "100%" }}
+                        cover={
+                          <img
+                            alt="example"
+                            src={ROC_PR_Deep_all[0]}
+                            className="Result-Result-row-pictures-item"
+                          />
+                        }
+                      >
+                        <a
+                          href={ROC_PR_Deep_all[0]}
+                          className="download-button"
+                          download
+                        >
+                          <Button> Download</Button>
+                        </a>
+                      </Card>
+                    ) : (
+                      ""
+                    )}{" "}
+                    {/* </Popover> */}
+                  </div>
+                </Panel>
+              </Collapse>
+            </div>
+            <div className="picture-body-con-tabpane-serverform-Collapse">
+              <Collapse>
+                <Panel
+                  header={
+                    <div className="serverform-Collapse-ADVANCED">
+                      <strong>ROC and PR curves of Traditional models</strong>
+                    </div>
+                  }
+                  key="1"
+                >
+                  <div className="Result-Result-row-pictures-card">
+                    {/* <Popover
+                  className="resultPictures-Popover-contant-card"
+                  content={
+                    <img
+                      src={store.store.results.data.result.pictures[i]}
+                      className="resultPictures-Popover-contant"
+                    />
+                  }
+                  title={result_title[i]}
+                > */}
+                    {ROC_PR_Tra_all[0] ? (
+                      <Card
+                        hoverable
+                        style={{ width: "100%" }}
+                        cover={
+                          <img
+                            alt="example"
+                            src={ROC_PR_Tra_all[0]}
+                            className="Result-Result-row-pictures-item"
+                          />
+                        }
+                      >
+                        <a
+                          href={ROC_PR_Tra_all[0]}
+                          className="download-button"
+                          download
+                        >
+                          <Button> Download</Button>
+                        </a>
+                      </Card>
+                    ) : (
+                      ""
+                    )}{" "}
+                    {/* </Popover> */}
+                  </div>
+                </Panel>
+              </Collapse>
+            </div>
+            <div className="picture-body-con-tabpane-serverform-Collapse">
+              <Collapse>
+                <Panel
+                  header={
+                    <div className="serverform-Collapse-ADVANCED">
+                      <strong>
+                        Density distribution of the prediction confidence by
+                        different deep learning models
+                      </strong>
+                    </div>
+                  }
+                  key="1"
+                >
+                  <div className="Result-Result-row-pictures-card">
+                    <Card
+                      hoverable
+                      style={{ width: "100%" }}
+                      cover={
+                        <img
+                          alt="example"
+                          src={density_picture[0]}
+                          className="Result-Result-row-pictures-item"
+                        />
+                      }
+                    ></Card>{" "}
+                    <Card
+                      hoverable
+                      style={{ width: "100%" }}
+                      cover={
+                        <img
+                          alt="example"
+                          src={density_picture[1]}
+                          className="Result-Result-row-pictures-item"
+                        />
+                      }
+                    ></Card>
+                  </div>
+                </Panel>
+              </Collapse>
+            </div>
+          </div>
+        </TabPane>
+      );
 
-        list.push(
-          <TabPane
-            tab={"Feature Analysis"}
-            key={3}
-            className="picture-body-con"
-          >
-            <div className="picture-body-con-tabpane-serverform-Collapse-out">
-               <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse defaultActiveKey={["1"]}>
-                    <Panel
-                      header={
-                        <div className="serverform-Collapse-ADVANCED">
-                          <strong>
-                            Feature performance comparison between hand-crafted
-                            features and the features learnt by deep learning
-                            models
-                          </strong>
-                        </div>
-                      }
-                      key="1"
-                    >
-                      <div className="Result-Result-row-pictures-card">
-                        {/* <Card
+      list.push(
+        <TabPane tab={"Feature Analysis"} key={3} className="picture-body-con">
+          <div className="picture-body-con-tabpane-serverform-Collapse-out">
+            <div className="picture-body-con-tabpane-serverform-Collapse">
+              <Collapse defaultActiveKey={["1"]}>
+                <Panel
+                  header={
+                    <div className="serverform-Collapse-ADVANCED">
+                      <strong>
+                        Feature performance comparison between hand-crafted
+                        features and the features learnt by deep learning models
+                      </strong>
+                    </div>
+                  }
+                  key="1"
+                >
+                  <div className="Result-Result-row-pictures-card">
+                    {/* <Card
                           hoverable
                           style={{ width: "70%" }}
                           cover={
@@ -602,23 +631,22 @@ function Result(store) {
                             />
                           }
                         ></Card>{" "} */}
-                       
-                      </div>
-                    </Panel>
-                  </Collapse>
-                </div> 
-              <div className="picture-body-con-tabpane-serverform-Collapse">
-                <Collapse>
-                  <Panel
-                    header={
-                      <div className="serverform-Collapse-ADVANCED">
-                        <strong>Feature visualization results by UMAP</strong>
-                      </div>
-                    }
-                    key="1"
-                  >
-                    <div className="Result-Result-row-pictures-card">
-                      {/* <Popover
+                  </div>
+                </Panel>
+              </Collapse>
+            </div>
+            <div className="picture-body-con-tabpane-serverform-Collapse">
+              <Collapse>
+                <Panel
+                  header={
+                    <div className="serverform-Collapse-ADVANCED">
+                      <strong>Feature visualization results by UMAP</strong>
+                    </div>
+                  }
+                  key="1"
+                >
+                  <div className="Result-Result-row-pictures-card">
+                    {/* <Popover
                   className="resultPictures-Popover-contant-card"
                   content={
                     <img
@@ -628,47 +656,46 @@ function Result(store) {
                   }
                   title={result_title[i]}
                 > */}
-                      {UMAP_picture[0] ? (
-                        <Card
-                          hoverable
-                          style={{ width: "100%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={UMAP_picture[0]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
+                    {UMAP_picture[0] ? (
+                      <Card
+                        hoverable
+                        style={{ width: "100%" }}
+                        cover={
+                          <img
+                            alt="example"
+                            src={UMAP_picture[0]}
+                            className="Result-Result-row-pictures-item"
+                          />
+                        }
+                      >
+                        <a
+                          href={UMAP_picture[0]}
+                          className="download-button"
+                          download
                         >
-                          <a
-                            href={UMAP_picture[0]}
-                            className="download-button"
-                            download
-                          >
-                            <Button> Download</Button>
-                          </a>
-                        </Card>
-                      ) : (
-                        ""
-                      )}{" "}
-                      {/* </Popover> */}
+                          <Button> Download</Button>
+                        </a>
+                      </Card>
+                    ) : (
+                      ""
+                    )}{" "}
+                    {/* </Popover> */}
+                  </div>
+                </Panel>
+              </Collapse>
+            </div>
+            <div className="picture-body-con-tabpane-serverform-Collapse">
+              <Collapse>
+                <Panel
+                  header={
+                    <div className="serverform-Collapse-ADVANCED">
+                      <strong>Feature importance analysis by SHAP</strong>
                     </div>
-                  </Panel>
-                </Collapse>
-              </div>
-           <div className="picture-body-con-tabpane-serverform-Collapse">
-                  <Collapse>
-                    <Panel
-                      header={
-                        <div className="serverform-Collapse-ADVANCED">
-                          <strong>Feature importance analysis by SHAP</strong>
-                        </div>
-                      }
-                      key="1"
-                    >
-                      <div className="Result-Result-row-pictures-card">
-                        
-                        {/* <Card
+                  }
+                  key="1"
+                >
+                  <div className="Result-Result-row-pictures-card">
+                    {/* <Card
                           hoverable
                           style={{ width: "70%" }}
                           cover={
@@ -679,43 +706,41 @@ function Result(store) {
                             />
                           }
                         ></Card>{" "} */}
-                     
-                      </div>
-                    </Panel>
-                  </Collapse>
-                </div> 
+                  </div>
+                </Panel>
+              </Collapse>
             </div>
-          </TabPane>
-        );
+          </div>
+        </TabPane>
+      );
 
-        // list.push(
-        //   <TabPane tab={result_title[i]} key={i} className="picture-body-con">
-        //     <div className="Result-Result-row-pictures">
-        //       <Popover
-        //         content={
-        //           <img
-        //             src={store.store.results.data.result.pictures[i]}
-        //             className="resultPictures-Popover-contant"
-        //           />
-        //         }
-        //         title={result_title[i]}
-        //       >
-        //         <Card
-        //           hoverable
-        //           style={{ width: 240 }}
-        //           cover={
-        //             <img
-        //               alt="example"
-        //               src={store.store.results.data.result.pictures[i]}
-        //               className="Result-Result-row-pictures-item"
-        //             />
-        //           }
-        //         ></Card>{" "}
-        //       </Popover>
-        //     </div>
-        //   </TabPane>
-        // );
-      
+      // list.push(
+      //   <TabPane tab={result_title[i]} key={i} className="picture-body-con">
+      //     <div className="Result-Result-row-pictures">
+      //       <Popover
+      //         content={
+      //           <img
+      //             src={store.store.results.data.result.pictures[i]}
+      //             className="resultPictures-Popover-contant"
+      //           />
+      //         }
+      //         title={result_title[i]}
+      //       >
+      //         <Card
+      //           hoverable
+      //           style={{ width: 240 }}
+      //           cover={
+      //             <img
+      //               alt="example"
+      //               src={store.store.results.data.result.pictures[i]}
+      //               className="Result-Result-row-pictures-item"
+      //             />
+      //           }
+      //         ></Card>{" "}
+      //       </Popover>
+      //     </div>
+      //   </TabPane>
+      // );
     }
     list.push(
       <TabPane
@@ -847,9 +872,7 @@ function Result(store) {
           <Descriptions>
             {/* <Descriptions column={2}></Descriptions> */}
             <Descriptions.Item
-              label={
-                <div className="result-Descriptions-item">Type</div>
-              }
+              label={<div className="result-Descriptions-item">Type</div>}
             >
               {store.store.results.data.param.type}
             </Descriptions.Item>
@@ -879,35 +902,45 @@ function Result(store) {
                 <div className="result-Descriptions-item">Model Select</div>
               }
             >
-              {store.store.results.data.param.modelCompare.split(" ").map((v,i,a)=>{
-                return CodingMap[v]+" "
-              })}
+              {store.store.results.data.param.modelCompare
+                .split(" ")
+                .map((v, i, a) => {
+                  return CodingMap[v] + " ";
+                })}
             </Descriptions.Item>
             <Descriptions.Item
               label={<div className="result-Descriptions-item">CD-Hit</div>}
             >
-              {store.store.results.data.param.CDHit/10}
+              {store.store.results.data.param.CDHit / 10}
             </Descriptions.Item>
             <Descriptions.Item
               label={
                 <div className="result-Descriptions-item">Balanced data</div>
               }
             >
-              {store.store.results.data.param.balancedData!=="0"?"use":"-"}
+              {store.store.results.data.param.balancedData !== "0"
+                ? "use"
+                : "-"}
             </Descriptions.Item>
             <Descriptions.Item
               label={
-                <div className="result-Descriptions-item">Data Argumentation</div>
+                <div className="result-Descriptions-item">
+                  Data Argumentation
+                </div>
               }
             >
-              {store.store.results.data.param.dataArgumentation!=="0"?"use":"-"}
+              {store.store.results.data.param.dataArgumentation !== "0"
+                ? "use"
+                : "-"}
             </Descriptions.Item>
             <Descriptions.Item
               label={
                 <div className="result-Descriptions-item">Data Enhancement</div>
               }
             >
-              {store.store.results.data.param.dataEnhancement!=="0"?"use":"-"}
+              {store.store.results.data.param.dataEnhancement !== "0"
+                ? "use"
+                : "-"}
             </Descriptions.Item>
           </Descriptions>
         </div>
@@ -941,7 +974,10 @@ function Result(store) {
         header={
           <div className="Data-load">
             <strong className="Data-load-List-title">
-              Job ID: {store.store.results.data.requestTime.slice(0, 4)}{store.store.results.data.requestTime.slice(5, 7)}{store.store.results.data.requestTime.slice(8, 10)}{store.store.results.data.jobId}
+              Job ID: {store.store.results.data.requestTime.slice(0, 4)}
+              {store.store.results.data.requestTime.slice(5, 7)}
+              {store.store.results.data.requestTime.slice(8, 10)}
+              {store.store.results.data.jobId}
             </strong>
             <Button
               type="default"
