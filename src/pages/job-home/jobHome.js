@@ -48,7 +48,10 @@ status: "等待运行"
       key: "jobId",
       render: (text, record) => (
         <>
-          {record.requestTime.slice(0, 4)}{record.requestTime.slice(5, 7)}{record.requestTime.slice(8, 10)}{text}
+          {record.requestTime.slice(0, 4)}
+          {record.requestTime.slice(5, 7)}
+          {record.requestTime.slice(8, 10)}
+          {text}
         </>
       ),
     },
@@ -112,8 +115,71 @@ status: "等待运行"
               //这里是因为无服务才注释掉的，后端好了，以后直接弄回来就可以了
               store.store.results.request();
               let result = await jobInfo(record.jobId);
-              console.log(result)
+              console.log(result);
               if (result.resultType) {
+                // ['ACC', 'Sensitivity', 'Specificity', 'AUC', 'MCC']
+
+                let table_data = [];
+                result.data.result.tabel_data.best_performance.map(
+                  (v, i, a) => {
+                    table_data.push({
+                      model_name: result.data.result.tabel_data.name[i],
+                      ACC: parseInt(v[0] * 100).toString() + "%",
+                      Sensitivity: parseInt(v[1] * 100).toString() + "%",
+                      Specificity: parseInt(v[2] * 100).toString() + "%",
+                      AUC: parseInt(v[3] * 100).toString() + "%",
+                      MCC: parseInt(v[4] * 100).toString() + "%",
+                    });
+                    console.log(table_data);
+                  }
+                );
+
+                result.data.result.table_data_performance = table_data;
+
+
+                let table_data_datasets = [];
+                
+             
+                table_data_datasets.push({
+                      train_positive: result.data.result.tabel_data.data_statistic[0],
+                      train_negative:result.data.result.tabel_data.data_statistic[1],
+                      test_positive: result.data.result.tabel_data.data_statistic[2],
+                      test_negative: result.data.result.tabel_data.data_statistic[3],
+                    });
+                   
+               
+
+                result.data.result.table_data_datasets = table_data_datasets;
+
+
+                // console.log(result.data.result.tabel_data);
+
+                let time_use = {rowName:"Time Cost:"};
+                
+                result.data.result.tabel_data.time_use.map((v, i, a) => {
+                  time_use[result.data.result.tabel_data.name[i]] = v;
+
+                });
+                result.data.result.table_time_use = time_use;
+
+                let time_use_title = [{
+                  title:"  ",
+                  dataIndex: "rowName",
+                  key: "rowName",
+                  className:"result-table-title"
+                }];
+                result.data.result.tabel_data.time_use.map((v, i, a) => {
+                  time_use_title.push(
+                    {
+                      title: result.data.result.tabel_data.name[i],
+                      dataIndex: result.data.result.tabel_data.name[i],
+                      key: result.data.result.tabel_data.name[i],
+                      className:"result-table-title"
+                    }
+                  )
+                });
+                result.data.result.table_time_use_title = time_use_title;
+
                 store.store.results.request_success(result.data);
                 // history.push('/result');
                 store.store.servers.changeHomeStatue(7);
@@ -133,29 +199,47 @@ status: "等待运行"
     },
   ];
   const onSearch = async (value) => {
-  if (value.lenth<8){
-    message.info("please search right jobId")
-  }else{
-
-    let v_current=value.substring(8,value.lenth)
-   
-    console.log(v_current)
-    setSearchLoading(true);
-    store.store.results.request();
-    let result = await jobInfo(v_current);
-    console.log(result)
-    if (result.resultType) {
-      setSearchLoading(false);
-      store.store.results.request_success(result.data);
-      store.store.servers.changeHomeStatue(7);
-
-      // history.push("/result");
+    if (value.lenth < 8) {
+      message.info("please search right jobId");
     } else {
-      setSearchLoading(false);
-      store.store.results.request_fail();
+      let v_current = value.substring(8, value.lenth);
+
+      console.log(v_current);
+      setSearchLoading(true);
+      store.store.results.request();
+      let result = await jobInfo(v_current);
+      console.log(result);
+      // {
+      //   train_positive: "1",
+      //   train_negative: "胡彦斌",
+      //   test_positive: 32,
+      //   test_negative: "西湖区湖底公园1号",
+      // }
+      if (result.resultType) {
+        setSearchLoading(false);
+        // console.log()
+        let table_data = [];
+        result.data.result.tabel_data.best_performance.map((v, i, a) => {
+          table_data.push({
+            model_name: result.data.result.tabel_data.name[i],
+            ACC: parseInt(v[0] * 100).toString() + "%",
+            Sensitivity: parseInt(v[1] * 100).toString() + "%",
+            Specificity: parseInt(v[2] * 100).toString() + "%",
+            AUC: parseInt(v[3] * 100).toString() + "%",
+            MCC: parseInt(v[4] * 100).toString() + "%",
+          });
+          console.log(table_data);
+        });
+        result.data.result.table_data_performance = table_data;
+        store.store.results.request_success(result.data);
+        store.store.servers.changeHomeStatue(7);
+
+        // history.push("/result");
+      } else {
+        setSearchLoading(false);
+        store.store.results.request_fail();
+      }
     }
-  }
-  
 
     console.log(value);
   };

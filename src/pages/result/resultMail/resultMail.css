@@ -1,4 +1,4 @@
-.Result-Result-body {
+/* .Result-Result-body {
   width: 100%;
 }
 .Result-Result-title{
@@ -9,8 +9,7 @@
 }
 .Result-Result-row{
 width: 100%;
-/* border: 1px rgba(185, 185, 185, 0.685) solid;  */
-/* padding: 20px; */
+
 border-radius: 20px;
 }
 .Result-Result-result{
@@ -118,4 +117,4 @@ margin: 20px;
 }
 .resultPictures-Popover-contant-card{
   margin: 30px;
-}
+} */

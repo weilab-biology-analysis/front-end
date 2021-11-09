@@ -47,6 +47,9 @@ function Result(store) {
   const [ROC_PR_Tra_all, setROC_PR_Tra_all] = useState([]);
   const [UMAP_picture, setUMAP_picture] = useState([]);
   const [density_picture, setDensity_picture] = useState([]);
+  const [result_historyGram, setResult_historyGram] = useState([]);
+  const [result_ShapPict, setResult_ShapPict] = useState([]);
+  const [result_epochplot, setResult_epochplot] = useState([]);
   useEffect(() => {
     if (store.store.results.data.result) {
       if (store.store.results.data.result.pictures) {
@@ -56,6 +59,9 @@ function Result(store) {
         let ROC_PR_Tra = [];
         let UMAP_pic = [];
         let density_pic = [];
+        let result_histogram=[]
+        let ShapPict=[]
+        let epochPlot=[]
         for (let index in store.store.results.data.result.pictures) {
           let str = store.store.results.data.result.pictures[index];
           if (str.substring(str.length - 12, str.length) === "atistics.jpg") {
@@ -92,7 +98,20 @@ function Result(store) {
             str.substring(str.length - 12, str.length) === "_density.jpg"
           ) {
             density_pic.push(str);
+          }else if (
+            str.substring(str.length - 12, str.length) === "istogram.jpg"
+          ){
+            result_histogram.push(str)
+          }else if(
+            str.substring(str.length-12,str.length)==="lot/SHAP.png"
+          ){
+            ShapPict.push(str)
+          }else if(
+            str.substring(str.length-12,str.length)==="och_plot.jpg"
+          ){
+            epochPlot.push(str)
           }
+
           console.log(str);
         }
         setDensity_picture(density_pic);
@@ -101,6 +120,9 @@ function Result(store) {
         setROC_PR_Tra_all(ROC_PR_Tra);
         setUMAP_picture(UMAP_pic);
         setcCompositionalAnalysis(compositionalAnalysis_current);
+        setResult_historyGram(result_histogram)
+        setResult_ShapPict(ShapPict)
+        setResult_epochplot(epochPlot)
       }
     }
   }, []);
@@ -170,37 +192,30 @@ function Result(store) {
                         ></Card>{" "} */}
                     <Table
                     rowClassName={(record, index)=>getRowClassName(record, index)}
-                      dataSource={[
-                        {
-                          key: "1",
-                          name: "胡彦斌",
-                          age: 32,
-                          address: "西湖区湖底公园1号",
-                        },
-                        {
-                          key: "2",
-                          name: "胡彦祖",
-                          age: 42,
-                          address: "西湖区湖底公园1号",
-                        },
-                      ]}
+                      dataSource={store.store.results.data.result.table_data_datasets}
                       columns={[
                         {
-                          title: "姓名",
-                          dataIndex: "name",
-                          key: "name",
+                          title: "train-positive",
+                          dataIndex: "train_positive",
+                          key: "train_positive",
                           className:"result-table-title"
                         },
                         {
-                          title: "年龄",
-                          dataIndex: "age",
-                          key: "age",
+                          title: "train-negative",
+                          dataIndex: "train_negative",
+                          key: "train_negative",
                           className:"result-table-title"
                         },
                         {
-                          title: "住址",
-                          dataIndex: "address",
-                          key: "address",
+                          title: "test-positive",
+                          dataIndex: "test_positive",
+                          key: "test_positive",
+                          className:"result-table-title"
+                        },
+                        {
+                          title: "test-negative",
+                          dataIndex: "test_negative",
+                          key: "test_negative",
                           className:"result-table-title"
                         },
                       ]}
@@ -232,8 +247,9 @@ function Result(store) {
                 > */}
                     {compositionalAnalysis[0] ? (
                       <Card
-                        hoverable
-                        style={{ width: "100%" }}
+                    className="Result-Result-row-pictures-card"
+                    hoverable
+                        style={{ width: "80%" }}
                         cover={
                           <img
                             alt="example"
@@ -255,8 +271,9 @@ function Result(store) {
                     )}{" "}
                     {compositionalAnalysis[0] ? (
                       <Card
-                        hoverable
-                        style={{ width: "100%" }}
+                    className="Result-Result-row-pictures-card"
+                    hoverable
+                        style={{ width: "80%" }}
                         cover={
                           <img
                             alt="example"
@@ -304,8 +321,9 @@ function Result(store) {
                 > */}
                     {motifStatistics[0] ? (
                       <Card
-                        hoverable
-                        style={{ width: "100%" }}
+                    className="Result-Result-row-pictures-card"
+                    hoverable
+                        style={{ width: "80%" }}
                         cover={
                           <img
                             alt="example"
@@ -327,8 +345,9 @@ function Result(store) {
                     )}{" "}
                     {motifStatistics[1] ? (
                       <Card
-                        hoverable
-                        style={{ width: "100%" }}
+                    className="Result-Result-row-pictures-card"
+                    hoverable
+                        style={{ width: "80%" }}
                         cover={
                           <img
                             alt="example"
@@ -350,8 +369,9 @@ function Result(store) {
                     )}{" "}
                     {motifStatistics[2] ? (
                       <Card
-                        hoverable
-                        style={{ width: "100%" }}
+                    className="Result-Result-row-pictures-card"
+                    hoverable
+                        style={{ width: "80%" }}
                         cover={
                           <img
                             alt="example"
@@ -373,8 +393,9 @@ function Result(store) {
                     )}{" "}
                     {motifStatistics[3] ? (
                       <Card
-                        hoverable
-                        style={{ width: "100%" }}
+                    className="Result-Result-row-pictures-card"
+                    hoverable
+                        style={{ width: "80%" }}
                         cover={
                           <img
                             alt="example"
@@ -446,17 +467,77 @@ function Result(store) {
                   key="1"
                 >
                   <div className="Result-Result-row-pictures-card">
-                    {/* <Card
+
+                  <Table
+                    rowClassName={(record, index)=>getRowClassName(record, index)}
+                      dataSource={[store.store.results.data.result.table_time_use]}
+                      columns={store.store.results.data.result.table_time_use_title}
+                    />
+
+
+                    <Card
+                    className="Result-Result-row-pictures-card"
                           hoverable
                           style={{ width: "70%" }}
                           cover={
                             <img
                               alt="example"
-                              src={store.store.results.data.result.pictures[i]}
+                              src={result_historyGram[0]}
                               className="Result-Result-row-pictures-item"
                             />
                           }
-                        ></Card>{" "} */}
+                        >
+                          <a
+                          href={result_historyGram[0]}
+                          className="download-button"
+                          download
+                        >
+                          <Button> Download</Button>
+                        </a>
+                          </Card>{" "}
+                        <Table
+                    rowClassName={(record, index)=>getRowClassName(record, index)}
+                      dataSource={store.store.results.data.result.table_data_performance}
+                      columns={[
+                        {
+                          // ['ACC', 'Sensitivity', 'Specificity', 'AUC', 'MCC']
+                          title: "model name",
+                          dataIndex: "model_name",
+                          key: "model_name",
+                          className:"result-table-title"
+                        },
+                        {
+                          title: "ACC",
+                          dataIndex: "ACC",
+                          key: "ACC",
+                          className:"result-table-title"
+                        },
+                        {
+                          title: "Sensitivity",
+                          dataIndex: "Sensitivity",
+                          key: "Sensitivity",
+                          className:"result-table-title"
+                        },
+                        {
+                          title: "Specificity",
+                          dataIndex: "Specificity",
+                          key: "Specificity",
+                          className:"result-table-title"
+                        },
+                        {
+                          title: "AUC",
+                          dataIndex: "AUC",
+                          key: "AUC",
+                          className:"result-table-title"
+                        },
+                        {
+                          title: "MCC",
+                          dataIndex: "MCC",
+                          key: "MCC",
+                          className:"result-table-title"
+                        },
+                      ]}
+                    />
                   </div>
                 </Panel>
               </Collapse>
@@ -484,8 +565,9 @@ function Result(store) {
                 > */}
                     {ROC_PR_Deep_all[0] ? (
                       <Card
-                        hoverable
-                        style={{ width: "100%" }}
+                    className="Result-Result-row-pictures-card"
+                    hoverable
+                        style={{ width: "80%" }}
                         cover={
                           <img
                             alt="example"
@@ -515,36 +597,28 @@ function Result(store) {
                 <Panel
                   header={
                     <div className="serverform-Collapse-ADVANCED">
-                      <strong>ROC and PR curves of Traditional models</strong>
+                      <strong>Epoch plot</strong>
                     </div>
                   }
                   key="1"
                 >
                   <div className="Result-Result-row-pictures-card">
-                    {/* <Popover
-                  className="resultPictures-Popover-contant-card"
-                  content={
-                    <img
-                      src={store.store.results.data.result.pictures[i]}
-                      className="resultPictures-Popover-contant"
-                    />
-                  }
-                  title={result_title[i]}
-                > */}
+                   
                     {ROC_PR_Tra_all[0] ? (
                       <Card
-                        hoverable
-                        style={{ width: "100%" }}
+                    className="Result-Result-row-pictures-card"
+                    hoverable
+                        style={{ width: "80%" }}
                         cover={
                           <img
                             alt="example"
-                            src={ROC_PR_Tra_all[0]}
+                            src={result_epochplot[0]}
                             className="Result-Result-row-pictures-item"
                           />
                         }
                       >
                         <a
-                          href={ROC_PR_Tra_all[0]}
+                          href={result_epochplot[0]}
                           className="download-button"
                           download
                         >
@@ -574,8 +648,9 @@ function Result(store) {
                 >
                   <div className="Result-Result-row-pictures-card">
                     <Card
-                      hoverable
-                      style={{ width: "100%" }}
+                    className="Result-Result-row-pictures-card"
+                    hoverable
+                      style={{ width: "80%" }}
                       cover={
                         <img
                           alt="example"
@@ -585,8 +660,9 @@ function Result(store) {
                       }
                     ></Card>{" "}
                     <Card
-                      hoverable
-                      style={{ width: "100%" }}
+                    className="Result-Result-row-pictures-card"
+                    hoverable
+                      style={{ width: "80%" }}
                       cover={
                         <img
                           alt="example"
@@ -620,17 +696,30 @@ function Result(store) {
                   key="1"
                 >
                   <div className="Result-Result-row-pictures-card">
-                    {/* <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={store.store.results.data.result.pictures[i]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "} */}
+                  {ROC_PR_Tra_all[0] ? (
+                      <Card
+                    className="Result-Result-row-pictures-card"
+                    hoverable
+                        style={{ width: "80%" }}
+                        cover={
+                          <img
+                            alt="example"
+                            src={ROC_PR_Tra_all[0]}
+                            className="Result-Result-row-pictures-item"
+                          />
+                        }
+                      >
+                        <a
+                          href={ROC_PR_Tra_all[0]}
+                          className="download-button"
+                          download
+                        >
+                          <Button> Download</Button>
+                        </a>
+                      </Card>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </Panel>
               </Collapse>
@@ -658,8 +747,9 @@ function Result(store) {
                 > */}
                     {UMAP_picture[0] ? (
                       <Card
-                        hoverable
-                        style={{ width: "100%" }}
+                    className="Result-Result-row-pictures-card"
+                    hoverable
+                        style={{ width: "80%" }}
                         cover={
                           <img
                             alt="example"
@@ -695,6 +785,31 @@ function Result(store) {
                   key="1"
                 >
                   <div className="Result-Result-row-pictures-card">
+                  
+                  {UMAP_picture[0] ? (
+                      <Card
+                    className="Result-Result-row-pictures-card"
+                    hoverable
+                        style={{ width: "80%" }}
+                        cover={
+                          <img
+                            alt="example"
+                            src={result_ShapPict[0]}
+                            className="Result-Result-row-pictures-item"
+                          />
+                        }
+                      >
+                        <a
+                          href={result_ShapPict[0]}
+                          className="download-button"
+                          download
+                        >
+                          <Button> Download</Button>
+                        </a>
+                      </Card>
+                    ) : (
+                      ""
+                    )}{" "}
                     {/* <Card
                           hoverable
                           style={{ width: "70%" }}
