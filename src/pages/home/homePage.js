@@ -35,7 +35,7 @@ function HomePage(store) {
             <div className="homepage-works-instro-text-title-line-up">
               <div></div>
             </div>
-            <div className="homepage-works-instro-text-title">Related Work</div>
+            <div className="homepage-works-instro-text-title">DeepBIO</div>
             <div className="homepage-works-instro-text-title-line-down">
               <div></div>
             </div>

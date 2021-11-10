@@ -43,7 +43,7 @@ function Home(store) {
       </div>
     ),
     2: (
-      <div style={{ fontSize: "16px" }}>
+      <div >
         <CloudServerOutlined
           className="headerCon-tab"
           style={{ fontSize: "20px" }}
@@ -88,7 +88,7 @@ function Home(store) {
       case 1:
         return (
           <div className="submit-depart-pages">
-            <div className="Result-Result-body-Breadcrumb">
+            {/* <div className="Result-Result-body-Breadcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
                   Home
@@ -97,7 +97,7 @@ function Home(store) {
                   Related Work
                 </Breadcrumb.Item>
               </Breadcrumb>
-            </div>
+            </div> */}
             <HomePage />
           </div>
         );
@@ -427,6 +427,7 @@ function Home(store) {
               mode="horizontal"
               defaultSelectedKeys={["1"]}
               className="Menu-header-home-item"
+              triggerSubMenuAction="click"
             >
               {new Array(5).fill(null).map((_, index) => {
                 const keyValue = index + 1;
@@ -440,11 +441,12 @@ function Home(store) {
                       }
                       key={keyValue}
                       className="Menu-header-home-item-SubMenu"
+
                     >
-                      <Menu.ItemGroup>
+                      <Menu.ItemGroup className="My-Menu-ItemGroup">
                         <Menu.Item
                           key={2}
-                          className="SubMenu-Menu-ItemGroup-Item"
+                          className="SubMenu-Menu-ItemGroup-Item-up"
                           onClick={() => {
                             store.store.servers.changeHomeStatue(2);
                           }}
@@ -453,7 +455,7 @@ function Home(store) {
                         </Menu.Item>
                         <Menu.Item
                           key={8}
-                          className="SubMenu-Menu-ItemGroup-Item"
+                          className="SubMenu-Menu-ItemGroup-Item-down"
                           onClick={() => {
                             store.store.servers.changeHomeStatue(8);
                           }}
@@ -476,6 +478,18 @@ function Home(store) {
                     </Menu.Item>
                   );
                 } else if (keyValue === 5) {
+                  return (
+                    <Menu.Item
+                      key={keyValue}
+                      onClick={() => {
+                        store.store.servers.changeHomeStatue(3);
+                      }}
+                      className="commen-Menu-Item"
+                    >
+                      {headerCon[keyValue]}
+                    </Menu.Item>
+                  );
+                } else if (keyValue === 3) {
                   return (
                     <Menu.Item
                       key={keyValue}

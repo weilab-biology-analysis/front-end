@@ -12,7 +12,6 @@
   box-shadow: 1px 1px 5px gray;
 }
 .serverForm-descriptions-con {
-  
 }
 .Descriptions-body {
   margin-top: 20px;
@@ -27,6 +26,18 @@
 .button-serverForm-button-timeline {
   /* margin-top: 40px;
   margin-bottom: 40px; */
+  font-size: 16px;
+  line-height: 1.6em;
+  font-weight: 600;
+  width: 150px;
+  margin-right: 10px;
+  border-radius: 5px;
+  height: max-content;
+  background-color: rgb(43, 185, 43);
+  color: white;
+  border: none;
+}
+.button-serverForm-button-timeline-other{
   font-size: 16px;
   line-height: 1.6em;
   font-weight: 600;
@@ -108,17 +119,17 @@
   padding-right: 30px !;
 }
 .ServerPage-tabs .ant-tabs-nav-wrap {
-  background-color: rgb(118, 175, 137) !important;
+  background-color: rgb(99, 173, 130);
   border-right: 1px rgb(236, 236, 236) solid;
   border-left: 1px rgb(236, 236, 236) solid;
   border-top: 1px rgb(236, 236, 236) solid;
-  box-shadow: 1px 0px 1px gray;
+  box-shadow: 1px 0px 1px rgb(92, 92, 92);
   padding-top: 15px;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
 }
 .ant-tabs-tab .ant-tabs-tab-btn {
-  color: gray;
+  color: black;
   border-radius: 5px;
 }
 .ant-tabs-tab-active .ant-tabs-tab-btn {
@@ -156,17 +167,17 @@
 .ServerPage-tabs .ant-tabs-nav-list .ant-tabs-tab{
   width: 200px !important;
   font-family: sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   font-size: 20px;
   line-height: 1.6em;
   font-weight: 600;
   color: #353535;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(99, 173, 130);
 
   border:none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .serverForm-form-text-con-test{
   font-size: 16px;
@@ -219,4 +230,7 @@
   padding: 5px;
 text-align: left;
 
+}
+.select-serverform-advanced{
+  width: 100px;
 }

@@ -29,6 +29,10 @@ function ServerPredictHome(store) {
         </Breadcrumb>
       </div>
 
+      <div className="title-serverHome-deeplearn">
+      Training Your Deep Learning Models!
+      </div>
+
       <div className="serverhome-body">
         <div className="function-select">
           <div

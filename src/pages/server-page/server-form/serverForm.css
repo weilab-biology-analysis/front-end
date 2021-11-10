@@ -119,7 +119,7 @@
   padding-right: 30px !;
 }
 .ServerPage-tabs .ant-tabs-nav-wrap {
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(206, 240, 230);
   border-right: 1px rgb(236, 236, 236) solid;
   border-left: 1px rgb(236, 236, 236) solid;
   border-top: 1px rgb(236, 236, 236) solid;
@@ -129,7 +129,7 @@
   border-top-left-radius: 15px;
 }
 .ant-tabs-tab .ant-tabs-tab-btn {
-  color: gray;
+  color: black;
   border-radius: 5px;
 }
 .ant-tabs-tab-active .ant-tabs-tab-btn {
@@ -171,7 +171,7 @@
   line-height: 1.6em;
   font-weight: 600;
   color: #353535;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(206, 240, 230);
 
   border:none;
   display: flex;
