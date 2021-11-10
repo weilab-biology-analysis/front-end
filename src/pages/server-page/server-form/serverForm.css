@@ -123,7 +123,7 @@
   border-right: 1px rgb(236, 236, 236) solid;
   border-left: 1px rgb(236, 236, 236) solid;
   border-top: 1px rgb(236, 236, 236) solid;
-  box-shadow: 1px 0px 1px gray;
+  box-shadow: 1px 0px 1px rgb(92, 92, 92);
   padding-top: 15px;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
@@ -174,6 +174,10 @@
   background-color: rgb(241, 241, 241);
 
   border:none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .serverForm-form-text-con-test{
   font-size: 16px;

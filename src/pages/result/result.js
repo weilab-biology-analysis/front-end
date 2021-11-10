@@ -729,7 +729,7 @@ function Result(store) {
                 <Panel
                   header={
                     <div className="serverform-Collapse-ADVANCED">
-                      <strong>Feature visualization results by UMAP</strong>
+                      <strong>Feature space visualization by UMAP</strong>
                     </div>
                   }
                   key="1"

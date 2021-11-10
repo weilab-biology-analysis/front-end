@@ -28,14 +28,14 @@ function JobHome(store) {
       });
       console.log(result.data);
       store.store.jobLists.request_success(dataCurrent);
-      message.success("Get infomation successfully");
+      // message.success("Get infomation successfully");
     } else {
       message.error("There is something in trouble");
     }
   };
 
   /**
-   * completeTime: null
+   * completeTime: nullFP
 createTime: null
 jobId: 33
 requestTime: "2021-09-23 16:14:13"

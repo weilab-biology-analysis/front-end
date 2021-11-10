@@ -10,7 +10,7 @@ function About(store) {
       <div className="about-connect-text">
         <div className="about-connect-text_title">
           <div className="about-connect-text_title-text-left"></div>
-          <div className="about-connect-text_title-text">Connect us!</div>
+          <div className="about-connect-text_title-text">Contact us</div>
           <div className="about-connect-text_title-text-right"></div>
         </div>
       </div>

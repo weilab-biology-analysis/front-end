@@ -30,7 +30,7 @@ box-shadow: 1px 1px 1px  ;
 }
 .function-select-img-outer{
   width: 100%;
-  margin: 20px auto;
+  /* margin: 20px auto; */
   display: table;
   align-items: center;
   justify-content: center;
@@ -69,7 +69,7 @@ margin-top: 20px;
 .function-select-context{
   margin: 10px auto;
   width: 90%;
-  padding: 20px;
+  /* padding: 20px; */
 }
 .function-select-title-inner-up{
   height: 20px;
@@ -101,4 +101,10 @@ margin-top: 20px;
 }
 .Breadcrumb-Item-text{
   font-size: 16px;
+}
+.title-serverHome-deeplearn{
+  margin: 20px auto;
+  font-size: x-large;
+  text-align: center;
+  font-weight: 800;
 }

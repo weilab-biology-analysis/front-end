@@ -582,7 +582,7 @@ function ServerForm(store) {
                   <List
                     header={
                       <div className="Data-load">
-                        <strong>Tasks</strong>
+                        <strong>Select annotation tasks</strong>
                       </div>
                     }
                     footer={<div></div>}
@@ -602,7 +602,7 @@ function ServerForm(store) {
                 <List
                   header={
                     <div className="Data-load">
-                      <strong>Target Seqence input</strong>
+                      <strong>Input target sequences</strong>
                     </div>
                   }
                   footer={<div></div>}
@@ -732,7 +732,7 @@ function ServerForm(store) {
                 <List
                   header={
                     <div className="Data-load">
-                      <strong>Model Select</strong>
+                      <strong>Model selection</strong>
                     </div>
                   }
                   className=""
@@ -750,7 +750,7 @@ function ServerForm(store) {
                       
                         header={
                           <div>
-                            <div className="select-model-collapse-head-text">Select in tarined model by Job Id</div>
+                            <div className="select-model-collapse-head-text">Load your trained models by Job ID</div>
                             
                          
                               <Switch
@@ -844,8 +844,9 @@ function ServerForm(store) {
                         </div>
                       </Panel>
                       </Collapse>
+                      <div style={{margin:"10px"}}> Or </div>
                       <Collapse>
-                      <Panel header="Select in pretrained model" key="2">
+                      <Panel header="Select our pre-trained models" key="2">
                         <List
                           grid={{ gutter: 0, column: 3 }}
                           header={
@@ -874,7 +875,7 @@ function ServerForm(store) {
                 <List
                   header={
                     <div className="Data-load">
-                      <strong>Submit</strong>
+                      <strong>Submission</strong>
                     </div>
                   }
                   bordered

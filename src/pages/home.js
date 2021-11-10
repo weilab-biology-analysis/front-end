@@ -43,7 +43,7 @@ function Home(store) {
       </div>
     ),
     2: (
-      <div>
+      <div style={{ fontSize: "16px" }}>
         <CloudServerOutlined
           className="headerCon-tab"
           style={{ fontSize: "20px" }}
@@ -51,7 +51,7 @@ function Home(store) {
         Server
       </div>
     ),
-    3: (
+    5: (
       <div>
         <UnorderedListOutlined
           className="headerCon-tab"
@@ -69,7 +69,7 @@ function Home(store) {
         Contact
       </div>
     ),
-    5: (
+    3: (
       <div>
         <FileSearchOutlined
           className="headerCon-tab"
@@ -449,7 +449,7 @@ function Home(store) {
                             store.store.servers.changeHomeStatue(2);
                           }}
                         >
-                          Train
+                          Deep learning based prediction
                         </Menu.Item>
                         <Menu.Item
                           key={8}
@@ -458,7 +458,7 @@ function Home(store) {
                             store.store.servers.changeHomeStatue(8);
                           }}
                         >
-                          Prediction
+                          Sequence functional annotation
                         </Menu.Item>
                       </Menu.ItemGroup>
                     </SubMenu>
