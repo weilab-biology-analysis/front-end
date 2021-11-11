@@ -141,7 +141,7 @@
 }
 .serverForm-form-text-con {
   font-family: sans-serif;
-  font-size: 16px;
+  font-size: 12px !important;
   line-height: 1.6em;
   font-weight: 600;
   color: #747b8c;

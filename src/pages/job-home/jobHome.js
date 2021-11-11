@@ -9,7 +9,7 @@ function JobHome(store) {
   useEffect(() => {
     getJobList();
   }, []);
-  const history = useHistory();
+
   const [searchLoading, setSearchLoading] = useState(false);
   const getJobList = async () => {
     let result = await jobListGet();
@@ -118,67 +118,86 @@ status: "等待运行"
               console.log(result);
               if (result.resultType) {
                 // ['ACC', 'Sensitivity', 'Specificity', 'AUC', 'MCC']
+                if(!result.data.result){
+                  return
+                }
 
-                let table_data = [];
-                result.data.result.tabel_data.best_performance.map(
-                  (v, i, a) => {
-                    table_data.push({
-                      model_name: result.data.result.tabel_data.name[i],
-                      ACC: parseInt(v[0] * 100).toString() + "%",
-                      Sensitivity: parseInt(v[1] * 100).toString() + "%",
-                      Specificity: parseInt(v[2] * 100).toString() + "%",
-                      AUC: parseInt(v[3] * 100).toString() + "%",
-                      MCC: parseInt(v[4] * 100).toString() + "%",
-                    });
-                    console.log(table_data);
+                if (result.data.result.tabel_data) {
+                  if (result.data.result.tabel_data.best_performance) {
+                    let table_data = [];
+                    result.data.result.tabel_data.best_performance.map(
+                      (v, i, a) => {
+                        table_data.push({
+                          model_name: result.data.result.tabel_data.name[i],
+                          ACC: parseInt(v[0] * 100).toString() + "%",
+                          Sensitivity: parseInt(v[1] * 100).toString() + "%",
+                          Specificity: parseInt(v[2] * 100).toString() + "%",
+                          AUC: parseInt(v[3] * 100).toString() + "%",
+                          MCC: parseInt(v[4] * 100).toString() + "%",
+                        });
+                        console.log(table_data);
+                      }
+                    );
+
+                    result.data.result.table_data_performance = table_data;
                   }
-                );
 
-                result.data.result.table_data_performance = table_data;
+                  if(result.data.result.tabel_data.data_statistic){
+                    let table_data_datasets = [];
 
-
-                let table_data_datasets = [];
-                
-             
-                table_data_datasets.push({
-                      train_positive: result.data.result.tabel_data.data_statistic[0],
-                      train_negative:result.data.result.tabel_data.data_statistic[1],
-                      test_positive: result.data.result.tabel_data.data_statistic[2],
-                      test_negative: result.data.result.tabel_data.data_statistic[3],
+                    table_data_datasets.push({
+                      train_positive:
+                        result.data.result.tabel_data.data_statistic[0],
+                      train_negative:
+                        result.data.result.tabel_data.data_statistic[1],
+                      test_positive:
+                        result.data.result.tabel_data.data_statistic[2],
+                      test_negative:
+                        result.data.result.tabel_data.data_statistic[3],
                     });
-                   
-               
+    
+                    result.data.result.table_data_datasets = table_data_datasets;
+                  }
 
-                result.data.result.table_data_datasets = table_data_datasets;
+                  if(result.data.result.tabel_data.time_use&&result.data.result.tabel_data.name){
+                    let time_use = { rowName: "Time Cost:" };
 
-
-                // console.log(result.data.result.tabel_data);
-
-                let time_use = {rowName:"Time Cost:"};
+                    result.data.result.tabel_data.time_use.map((v, i, a) => {
+                      time_use[result.data.result.tabel_data.name[i]] = v;
+                    });
+                    result.data.result.table_time_use = time_use;
                 
-                result.data.result.tabel_data.time_use.map((v, i, a) => {
-                  time_use[result.data.result.tabel_data.name[i]] = v;
 
-                });
-                result.data.result.table_time_use = time_use;
-
-                let time_use_title = [{
-                  title:"  ",
-                  dataIndex: "rowName",
-                  key: "rowName",
-                  className:"result-table-title"
-                }];
-                result.data.result.tabel_data.time_use.map((v, i, a) => {
-                  time_use_title.push(
+                  let time_use_title = [
                     {
+                      title: "  ",
+                      dataIndex: "rowName",
+                      key: "rowName",
+                      className: "result-table-title",
+                    },
+                  ];
+                  result.data.result.tabel_data.time_use.map((v, i, a) => {
+                    time_use_title.push({
                       title: result.data.result.tabel_data.name[i],
                       dataIndex: result.data.result.tabel_data.name[i],
                       key: result.data.result.tabel_data.name[i],
-                      className:"result-table-title"
-                    }
-                  )
-                });
-                result.data.result.table_time_use_title = time_use_title;
+                      className: "result-table-title",
+                    });
+                  });
+                  result.data.result.table_time_use_title = time_use_title;
+
+
+                  }
+
+                  
+
+                }
+
+                
+
+                // console.log(result.data.result.tabel_data);
+
+
 
                 store.store.results.request_success(result.data);
                 // history.push('/result');
@@ -218,19 +237,101 @@ status: "等待运行"
       if (result.resultType) {
         setSearchLoading(false);
         // console.log()
-        let table_data = [];
-        result.data.result.tabel_data.best_performance.map((v, i, a) => {
-          table_data.push({
-            model_name: result.data.result.tabel_data.name[i],
-            ACC: parseInt(v[0] * 100).toString() + "%",
-            Sensitivity: parseInt(v[1] * 100).toString() + "%",
-            Specificity: parseInt(v[2] * 100).toString() + "%",
-            AUC: parseInt(v[3] * 100).toString() + "%",
-            MCC: parseInt(v[4] * 100).toString() + "%",
+
+
+
+
+        if (result.data.result.tabel_data) {
+          if (result.data.result.tabel_data.best_performance) {
+            let table_data = [];
+            result.data.result.tabel_data.best_performance.map(
+              (v, i, a) => {
+                table_data.push({
+                  model_name: result.data.result.tabel_data.name[i],
+                  ACC: parseInt(v[0] * 100).toString() + "%",
+                  Sensitivity: parseInt(v[1] * 100).toString() + "%",
+                  Specificity: parseInt(v[2] * 100).toString() + "%",
+                  AUC: parseInt(v[3] * 100).toString() + "%",
+                  MCC: parseInt(v[4] * 100).toString() + "%",
+                });
+                console.log(table_data);
+              }
+            );
+
+            result.data.result.table_data_performance = table_data;
+          }
+
+          if(result.data.result.tabel_data.data_statistic){
+            let table_data_datasets = [];
+
+            table_data_datasets.push({
+              train_positive:
+                result.data.result.tabel_data.data_statistic[0],
+              train_negative:
+                result.data.result.tabel_data.data_statistic[1],
+              test_positive:
+                result.data.result.tabel_data.data_statistic[2],
+              test_negative:
+                result.data.result.tabel_data.data_statistic[3],
+            });
+
+            result.data.result.table_data_datasets = table_data_datasets;
+          }
+
+          if(result.data.result.tabel_data.time_use&&result.data.result.tabel_data.name){
+            let time_use = { rowName: "Time Cost:" };
+
+            result.data.result.tabel_data.time_use.map((v, i, a) => {
+              time_use[result.data.result.tabel_data.name[i]] = v;
+            });
+            result.data.result.table_time_use = time_use;
+        
+
+          let time_use_title = [
+            {
+              title: "  ",
+              dataIndex: "rowName",
+              key: "rowName",
+              className: "result-table-title",
+            },
+          ];
+          result.data.result.tabel_data.time_use.map((v, i, a) => {
+            time_use_title.push({
+              title: result.data.result.tabel_data.name[i],
+              dataIndex: result.data.result.tabel_data.name[i],
+              key: result.data.result.tabel_data.name[i],
+              className: "result-table-title",
+            });
           });
-          console.log(table_data);
-        });
-        result.data.result.table_data_performance = table_data;
+          result.data.result.table_time_use_title = time_use_title;
+
+
+          }
+
+          
+
+        }
+
+        
+
+
+
+
+
+
+        // let table_data = [];
+        // result.data.result.tabel_data.best_performance.map((v, i, a) => {
+        //   table_data.push({
+        //     model_name: result.data.result.tabel_data.name[i],
+        //     ACC: parseInt(v[0] * 100).toString() + "%",
+        //     Sensitivity: parseInt(v[1] * 100).toString() + "%",
+        //     Specificity: parseInt(v[2] * 100).toString() + "%",
+        //     AUC: parseInt(v[3] * 100).toString() + "%",
+        //     MCC: parseInt(v[4] * 100).toString() + "%",
+        //   });
+        //   console.log(table_data);
+        // });
+        // result.data.result.table_data_performance = table_data;
         store.store.results.request_success(result.data);
         store.store.servers.changeHomeStatue(7);
 

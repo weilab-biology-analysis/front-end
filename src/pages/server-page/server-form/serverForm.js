@@ -1285,7 +1285,7 @@ function ServerForm(store) {
                 <List
                   header={
                     <div className="Data-load">
-                      <strong>Submissio</strong>
+                      <strong>Submission</strong>
                     </div>
                   }
                   bordered
@@ -1315,7 +1315,7 @@ function ServerForm(store) {
                         }}
                         type="primary"
                       >
-                        Return
+                        Example
                       </Button>
                     </div>,
                   ]}
