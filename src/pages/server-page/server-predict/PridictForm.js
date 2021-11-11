@@ -54,6 +54,7 @@ const CodingMap = {
   16: "Prot bert",
   17: "TestGCN",
 };
+
 function ServerForm(store) {
   const [switchCol, setSwitchCol] = useState(true);
   const [switchColDefault, setSwitchColDefault] = useState(false);
@@ -85,6 +86,50 @@ function ServerForm(store) {
   });
   const [isModalVisible, setIsModalVisible] = useState(false);
   const history = useHistory();
+  const [type, setType] = useState(0);
+
+  const [stepStatus_step_1, setStepStatus_step_1] = useState("gray");
+  const [stepStatus_step_2, setStepStatus_step_2] = useState("gray");
+  const [stepStatus_step_3, setStepStatus_step_3] = useState("gray");
+  const [stepStatus_step_4, setStepStatus_step_4] = useState("gray");
+
+
+
+  useEffect(() => {
+    if(DAN_text!==""||fileList[0]){
+      setStepStatus_step_2("blue")
+    }else{
+      setStepStatus_step_2("gray")
+    }
+
+    if((switchCol&&jobIdModelCurrent!=="")||(switchColDefault&&type!==0)){
+      setStepStatus_step_1("blue")
+    }else{
+      setStepStatus_step_1("gray")
+    }
+    if (eMail!==""){
+      setStepStatus_step_3("blue")
+    }else{
+      setStepStatus_step_3("gray")
+    }
+
+  }, [
+    DAN_text,
+    jobIdModelCurrent,
+    switchCol,
+    switchColDefault,
+    type,
+    fileList,
+    eMail,
+  ]);
+
+  useEffect(()=>{
+    if(stepStatus_step_1=="blue"&&stepStatus_step_2=="blue"&&stepStatus_step_3=="blue"){
+      setStepStatus_step_4("blue")
+    }else{
+      setStepStatus_step_4("gray")
+    }
+  },[stepStatus_step_1,stepStatus_step_2,stepStatus_step_3])
 
   const showModal = async (data) => {
     await setResultData({
@@ -153,9 +198,9 @@ function ServerForm(store) {
       minimode = "default";
     }
 
-    let chooseID=""
-    if(jobResult.data.jobId){
-      chooseID=jobResult.data.jobId
+    let chooseID = "";
+    if (jobResult.data.jobId) {
+      chooseID = jobResult.data.jobId;
     }
     formData.append(
       "param",
@@ -164,6 +209,9 @@ function ServerForm(store) {
         "'mode':'annotation'," +
         "'minimode':'" +
         minimode +
+        "'," +
+        "'default':'" +
+        type +
         "'," +
         "'chooseID':'" +
         chooseID +
@@ -175,7 +223,9 @@ function ServerForm(store) {
         "'CDHit':''," +
         "'paramCompareModel':''," +
         "'modelCompare':''," +
-        "'model':'"+jobIdModelCurrent+"'," +
+        "'model':'" +
+        jobIdModelCurrent +
+        "'," +
         "'datatype':'userprovide'" +
         "}"
     );
@@ -248,27 +298,19 @@ function ServerForm(store) {
     setDAN_text(text);
   };
 
-  const [stepStatus_step_1, setStepStatus_step_1] = useState("gray");
-  const [stepStatus_step_2, setStepStatus_step_2] = useState("gray");
-  const [stepStatus_step_3, setStepStatus_step_3] = useState("gray");
-  const [stepStatus_step_4, setStepStatus_step_4] = useState("gray");
-  const [stepStatus_step_5, setStepStatus_step_5] = useState("gray");
 
-  const [type, setType] = useState(0);
+
   const onCangeType = (e) => {
     console.log(e.target.value);
     setType(e.target.value);
   };
-  const [getJobResultLoading, setGetJobResultLoading] = useState(false);
+  const [JobResultLoading, setGetJobResultLoading] = useState(false);
   const [jobIdGetResult, setJobIdGetResult] = useState("");
   const [jobResult, setJobResult] = useState({
     resultType: false,
     data: [],
   });
-  const [state_1_1, setState_1_1] = useState(false);
-  const [state_1_2, setState_1_2] = useState(false);
-  const [state_2_1, setState_2_1] = useState(false);
-  const [state_2_2, setState_2_2] = useState(false);
+
   return (
     <div className="serverForm-body-outer">
       <div className="serverForm-body-con">
@@ -294,7 +336,7 @@ function ServerForm(store) {
         <div className="serverForm-timeline-serverForm-body">
           <div className="serverForm-timeline-serverForm-timline-outer">
             <Timeline>
-              <Timeline.Item color={stepStatus_step_3}>
+              <Timeline.Item color={stepStatus_step_1}>
                 <List
                   header={
                     <div className="Data-load">
@@ -334,83 +376,95 @@ function ServerForm(store) {
                           }
                           key="1"
                         >
-                          <div className="select-Model-2Panel-jobid-depart">
-                            <div className="select-Model-2Panel-jobid-depart-text">
-                              Job Id:
-                            </div>
-                            <div className="select-Model-2Panel-jobid-depart-input">
-                              <Input
-                                value={jobIdGetResult}
-                                onChange={({ target: { value } }) => {
-                                  setJobIdGetResult(value);
-                                }}
-                              />
-                            </div>
-                            <div className="select-Model-2Panel-jobid-depart-button">
-                              <Button
-                                type="primary"
-                                className="button-serverForm-button-timeline-other"
-                                onClick={async () => {
-                                  setGetJobResultLoading(true);
-                                  if (jobIdGetResult.length < 8) {
-                                    message.info("please search right jobId");
-                                  } else {
-                                    let v_current = jobIdGetResult.substring(
-                                      8,
-                                      jobIdGetResult.lenth
-                                    );
-
-                                    let result = await jobInfo(v_current);
-                                    if (result.resultType) {
-                                      setJobResult(result);
-                                      setGetJobResultLoading(false);
-                                      console.log(result);
+                          <Spin spinning={JobResultLoading}>
+                            <div className="select-Model-2Panel-jobid-depart">
+                              <div className="select-Model-2Panel-jobid-depart-text">
+                                Job Id:
+                              </div>
+                              <div className="select-Model-2Panel-jobid-depart-input">
+                                <Input
+                                  value={jobIdGetResult}
+                                  onChange={({ target: { value } }) => {
+                                    setJobIdGetResult(value);
+                                  }}
+                                />
+                              </div>
+                              <div className="select-Model-2Panel-jobid-depart-button">
+                                <Button
+                                  type="primary"
+                                  className="button-serverForm-button-timeline-other"
+                                  onClick={async () => {
+                                    if (jobIdGetResult.length < 8) {
+                                      message.info("please search right jobId");
                                     } else {
-                                      setGetJobResultLoading(false);
-                                      message.info("fail");
-                                      setJobResult({
+                                      setGetJobResultLoading(true);
+                                      let v_current = jobIdGetResult.substring(
+                                        8,
+                                        jobIdGetResult.lenth
+                                      );
+                                      let result = {
                                         resultType: false,
-                                        data: [],
-                                      });
+                                      };
+                                      try {
+                                        result = await jobInfo(v_current);
+                                      } catch (error) {
+                                        result = {
+                                          resultType: false,
+                                        };
+                                      }
+
+                                      if (result.resultType) {
+                                        setJobResult(result);
+
+                                        console.log(result);
+                                      } else {
+                                        message.info("fail");
+                                        setJobResult({
+                                          resultType: false,
+                                          data: [],
+                                        });
+                                      }
+                                      setGetJobResultLoading(false);
                                     }
-                                  }
-                                }}
-                              >
-                                Get
-                              </Button>
+                                  }}
+                                >
+                                  Get
+                                </Button>
+                              </div>
                             </div>
-                          </div>
-                          <div>
-                            {jobResult.resultType ? (
-                              <div className="jobResult-pridict">
-                                <div>
-                                  <div>type: {jobResult.data.param.type}</div>
+
+                            <div>
+                              {jobResult.resultType ? (
+                                <div className="jobResult-pridict">
                                   <div>
-                                    model:
-                                    <Select
-                                      className="jobResult-pridict-select"
-                                      onChange={(value) => {
-                                        setJobIdModelCurrent(value);
-                                      }}
-                                    >
-                                      {jobResult.data.param.modelCompare
-                                        .split(" ")
-                                        .map((v, i, a) => {
-                                          console.log(v, i, a);
-                                          return (
-                                            <Option value={v}>
-                                              {CodingMap[v]}
-                                            </Option>
-                                          );
-                                        })}
-                                    </Select>
+                                    <div>type: {jobResult.data.param.type}</div>
+                                    <div>
+                                      model:
+                                      <Select
+                                        className="jobResult-pridict-select"
+                                        onChange={(value) => {
+                                          setJobIdModelCurrent(value);
+                                        }}
+                                      >
+                                        {jobResult.data.param.modelCompare
+                                          .split(" ")
+                                          .map((v, i, a) => {
+                                            console.log(v, i, a);
+                                            return (
+                                              <Option value={v}>
+                                                {CodingMap[v]}
+                                              </Option>
+                                            );
+                                          })}
+                                      </Select>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            ) : (
-                              ""
-                            )}
-                          </div>
+                              ) : (
+                                ""
+                              )}
+                            </div>
+                          </Spin>
                         </Panel>
                       </Collapse>
                       <div style={{ margin: "10px" }}> Or </div>
@@ -478,9 +532,6 @@ function ServerForm(store) {
                 />
               </Timeline.Item>
 
-              <Timeline.Item color={stepStatus_step_1}>
-                <div></div>
-              </Timeline.Item>
               <Timeline.Item color={stepStatus_step_2}>
                 <List
                   header={
@@ -607,7 +658,7 @@ function ServerForm(store) {
                   renderItem={(item) => <List.Item>{item}</List.Item>}
                 />
               </Timeline.Item>
-              <Timeline.Item color={stepStatus_step_4}>
+              <Timeline.Item color={stepStatus_step_3}>
                 <List
                   header={
                     <div className="Data-load">
@@ -635,7 +686,7 @@ function ServerForm(store) {
                   renderItem={(item) => <List.Item>{item}</List.Item>}
                 />
               </Timeline.Item>
-              <Timeline.Item color={stepStatus_step_5}>
+              <Timeline.Item color={stepStatus_step_4}>
                 <List
                   header={
                     <div className="Data-load">
