@@ -70,6 +70,7 @@ margin-top: 20px;
 .function-select-context{
   margin: 10px auto;
   width: 90%;
+  text-align: justify;
   /* padding: 20px; */
 }
 .function-select-title-inner-up{

@@ -125,10 +125,12 @@
   padding: 0px !important;
   width: 0px !important;
   height: 0px !important;
-  border-radius: 15px;
+  /* border-radius: 15px; */
 }
 .My-Menu-ItemGroup {
-  padding: 0px !important;
+  background-color: black;
+  border-radius: 15px;
+  /* padding: 0px !important; */
 }
 
 .My-Menu-ItemGroup .ant-menu-item-group-list {
@@ -141,8 +143,8 @@
   color: white;
   font-weight: 500;
   font-size: 16px;
-  border-top-right-radius: 5px !important;
-  border-top-left-radius: 5px !important ;
+  /* border-top-right-radius: 5px !important; */
+  /* border-top-left-radius: 5px !important ; */
   margin: 0px !important;
   border-left: black 8px solid;
   text-align: left;
@@ -156,8 +158,8 @@
   font-weight: 500;
   background-color: black;
   font-size: 16px;
-  border-bottom-right-radius: 5px !important;
-  border-bottom-left-radius: 5px !important ;
+  /* border-bottom-right-radius: 5px !important; */
+  /* border-bottom-left-radius: 5px !important ; */
   margin: 0px !important;
   border-left: black 8px solid;
   padding-left: 10px !important;

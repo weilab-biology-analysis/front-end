@@ -1081,106 +1081,114 @@ function Result(store) {
 
     return list;
   };
-  return (
-    <div className="Result-Result-body">
-      <div className="Result-Result-body-Breadcrumb">
-        <Breadcrumb>
-          <Breadcrumb.Item className="Breadcrumb-Item-text">
-            Home
-          </Breadcrumb.Item>
-          <Breadcrumb.Item className="Breadcrumb-Item-text">
-            Job List
-          </Breadcrumb.Item>
-          <Breadcrumb.Item className="Breadcrumb-Item-text">
-            Result Details
-          </Breadcrumb.Item>
-        </Breadcrumb>
-      </div>
 
-      <div className="Result-Result-title">
-        <div className="Result-Result-title-line-left"></div>
-        <div className="Result-Result-title-content">Result</div>
-        <div className="Result-Result-title-line-right"></div>
-      </div>
-      <List
-        header={
-          <div className="Data-load">
-            <strong className="Data-load-List-title">
-              Job ID: {store.store.results.data.requestTime.slice(0, 4)}
-              {store.store.results.data.requestTime.slice(5, 7)}
-              {store.store.results.data.requestTime.slice(8, 10)}
-              {store.store.results.data.jobId}
-            </strong>
-            <Button
-              type="default"
-              onClick={() => {
-                if (
-                  store.store.results.data.result
-                    ? store.store.results.data.result.zip
-                      ? false
+  if(store.store.results.data.param.mode==="train-test"){
+    return (
+      <div className="Result-Result-body">
+        <div className="Result-Result-body-Breadcrumb">
+          <Breadcrumb>
+            <Breadcrumb.Item className="Breadcrumb-Item-text">
+              Home
+            </Breadcrumb.Item>
+            <Breadcrumb.Item className="Breadcrumb-Item-text">
+              Job List
+            </Breadcrumb.Item>
+            <Breadcrumb.Item className="Breadcrumb-Item-text">
+              Result Details
+            </Breadcrumb.Item>
+          </Breadcrumb>
+        </div>
+  
+        <div className="Result-Result-title">
+          <div className="Result-Result-title-line-left"></div>
+          <div className="Result-Result-title-content">Result</div>
+          <div className="Result-Result-title-line-right"></div>
+        </div>
+        <List
+          header={
+            <div className="Data-load">
+              <strong className="Data-load-List-title">
+                Job ID: {store.store.results.data.requestTime.slice(0, 4)}
+                {store.store.results.data.requestTime.slice(5, 7)}
+                {store.store.results.data.requestTime.slice(8, 10)}
+                {store.store.results.data.jobId}
+              </strong>
+              <Button
+                type="default"
+                onClick={() => {
+                  if (
+                    store.store.results.data.result
+                      ? store.store.results.data.result.zip
+                        ? false
+                        : true
                       : true
-                    : true
-                ) {
-                  message.info(
-                    "Your result hasn't been already, please wait. Or it is failed"
-                  );
-                } else {
-                  window.location.href = store.store.results.data.result.zip;
-                }
-              }}
-              className="result-button-basck-head"
-            >
-              Download
-            </Button>
-          </div>
-        }
-        bordered
-        footer={
-          <div className="result-button-basck-outer"></div>
-          //   <div className="Result-Result-result">
-          //     {store.store.results.data.result ? (
-          //       store.store.results.data.result.zip ? (
-          //         <div>
-          //           <div>
-          //             {" "}
-          //             <a href={store.store.results.data.result.zip}>Result zip</a>
-          //           </div>
-          //         </div>
-          //       ) : (
-          //         "There is no result zip"
-          //       )
-          //     ) : (
-          //       <div className="warn-text">There is no result</div>
-          //     )}
-          //   </div>
-        }
-        dataSource={[
-          <div className="Result-Result-body-outline">
-            <div className="Result-Result-row">
-              <div>
-                {store.store.results.data.result ? (
-                  store.store.results.data.result.pictures ? (
-                    <Tabs
-                      type="card"
-                      defaultActiveKey="1"
-                      onChange={() => {}}
-                      className="ServerPage-tabs"
-                    >
-                      {resultPictures()}
-                    </Tabs>
+                  ) {
+                    message.info(
+                      "Your result hasn't been already, please wait. Or it is failed"
+                    );
+                  } else {
+                    window.location.href = store.store.results.data.result.zip;
+                  }
+                }}
+                className="result-button-basck-head"
+              >
+                Download
+              </Button>
+            </div>
+          }
+          bordered
+          footer={
+            <div className="result-button-basck-outer"></div>
+            //   <div className="Result-Result-result">
+            //     {store.store.results.data.result ? (
+            //       store.store.results.data.result.zip ? (
+            //         <div>
+            //           <div>
+            //             {" "}
+            //             <a href={store.store.results.data.result.zip}>Result zip</a>
+            //           </div>
+            //         </div>
+            //       ) : (
+            //         "There is no result zip"
+            //       )
+            //     ) : (
+            //       <div className="warn-text">There is no result</div>
+            //     )}
+            //   </div>
+          }
+          dataSource={[
+            <div className="Result-Result-body-outline">
+              <div className="Result-Result-row">
+                <div>
+                  {store.store.results.data.result ? (
+                    store.store.results.data.result.pictures ? (
+                      <Tabs
+                        type="card"
+                        defaultActiveKey="1"
+                        onChange={() => {}}
+                        className="ServerPage-tabs"
+                      >
+                        {resultPictures()}
+                      </Tabs>
+                    ) : (
+                      ""
+                    )
                   ) : (
                     ""
-                  )
-                ) : (
-                  ""
-                )}
+                  )}
+                </div>
               </div>
-            </div>
-          </div>,
-        ]}
-        renderItem={(item) => <List.Item>{item}</List.Item>}
-      />
-    </div>
-  );
+            </div>,
+          ]}
+          renderItem={(item) => <List.Item>{item}</List.Item>}
+        />
+      </div>
+    );
+  }else{
+return(
+  <div></div>
+)
+  }
+
 }
 export default inject("store")(observer(Result));

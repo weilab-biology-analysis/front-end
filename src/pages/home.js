@@ -87,7 +87,7 @@ function Home(store) {
     switch (page) {
       case 1:
         return (
-          <div className="submit-depart-pages">
+          <div className="submit-depart-pages-home">
             {/* <div className="Result-Result-body-Breadcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item className="Breadcrumb-Item-text">
@@ -554,7 +554,7 @@ function Home(store) {
           </Menu> */}
         </div>
       </Header>
-      <Content style={{ padding: "0 50px", backgroundColor: "white" }}>
+      <Content style={{ padding: "0 0px", backgroundColor: "white" }}>
       <BackTop/>
         <PageCon />
       </Content>
