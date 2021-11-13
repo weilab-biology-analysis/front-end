@@ -125,3 +125,47 @@
     font-weight: 500;
     text-align: justify;
 }
+.homepage-quick-entry{
+  width: 80%;
+  margin: 50px auto;
+}
+.homepage-quick-entry{
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+.homepage-quick-entry-depart-text{
+  width: 100%;
+  text-align: center;
+}
+.homepage-quick-entry-pridict{
+  
+}
+.homepage-quick-entry-depart{
+  width:32%;
+
+}
+
+.homepage-quick-entry-depart-title{
+  font-size: 30px;
+}
+.homepage-quick-entry-depart-con{
+  margin: 20px;
+  font-size: 18px;
+  text-align: justify;
+  
+}
+.homepage-quick-entry-depart-btn{
+width: 100%;
+}
+.homepage-quick-entry-depart-btn-con{
+  float: right;
+  font-size: medium;
+  margin: 0px 30px;
+  border: none;
+  background-color: cadetblue;
+  color: white;
+  font-weight: 600;
+}

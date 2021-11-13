@@ -4,6 +4,7 @@ import { jobInfo, jobListGet } from "../../stores/request";
 import "./homePage.css";
 import BLMs_v1 from "../../constants/img/BLMs_v1.png";
 import homeImg from "../../constants/img/homepage.png";
+import { Button } from "antd";
 function HomePage(store) {
   useEffect(() => {
     console.log(store);
@@ -36,7 +37,20 @@ function HomePage(store) {
           </div>
           <div className="right-title-home">
             <div className="right-title-home-title">DeepBIO</div>
-            <div className="right-title-home-con">Undesirable pharmacokinetics and toxicity of candidate compounds are the main reasons for the failure of drug development, and it has been widely recognized that absorption, distribution, metabolism, excretion and toxicity (ADMET) of chemicals should be evaluated as early as possible. ADMETlab 2.0 is an enhanced version of the widely used ADMETlab for systematical evaluation of ADMET properties, as well as some physicochemical properties and medicinal chemistry friendliness. With significant updates to functional modules, predictive models, explanations, and the user interface, ADMETlab 2.0 has greater capacity to assist medicinal chemists in accelerating the drug research and development process.</div>
+            <div className="right-title-home-con">
+              Undesirable pharmacokinetics and toxicity of candidate compounds
+              are the main reasons for the failure of drug development, and it
+              has been widely recognized that absorption, distribution,
+              metabolism, excretion and toxicity (ADMET) of chemicals should be
+              evaluated as early as possible. ADMETlab 2.0 is an enhanced
+              version of the widely used ADMETlab for systematical evaluation of
+              ADMET properties, as well as some physicochemical properties and
+              medicinal chemistry friendliness. With significant updates to
+              functional modules, predictive models, explanations, and the user
+              interface, ADMETlab 2.0 has greater capacity to assist medicinal
+              chemists in accelerating the drug research and development
+              process.
+            </div>
           </div>
         </div>
       </div>
@@ -58,6 +72,53 @@ function HomePage(store) {
           </div>
         </div>
       </div> */}
+
+      <div className="homepage-quick-entry">
+        <div className="homepage-quick-entry-pridict homepage-quick-entry-depart">
+          <div className="homepage-quick-entry-depart-text">
+            <div className="homepage-quick-entry-depart-title">
+              Deep learning based prediction
+            </div>
+            <div className="homepage-quick-entry-depart-con">
+              ADMET Evaluation function module is composed of a series of
+              high-quality prediction models trained by multi-task graph
+              attention framework. It enables the users to conveniently and
+              efficiently implement the calculation and prediction of 17
+              physicochemical properties, 13 medicinal chemistry measures, 23
+              ADME endpoints, and 27 toxicity endpoints and 8 toxicophore rules
+              (751 substructures), thereby selecting promising lead compounds
+              for further exploration.
+            </div>
+          </div>
+
+          <div className="homepage-quick-entry-depart-btn">
+            <Button className="homepage-quick-entry-depart-btn-con" onClick={()=>{
+              store.store.servers.changeHomeStatue(2);
+            }}>Get Start</Button>
+          </div>
+        </div>
+        <div className="homepage-quick-entry-annotation  homepage-quick-entry-depart">
+          <div className="homepage-quick-entry-depart-text">
+            <div className="homepage-quick-entry-depart-title">
+              Sequence functional annotation
+            </div>
+            <div className="homepage-quick-entry-depart-con">
+              ADMET Screening is the batch mode of evaluation, designed for the
+              prediction of molecular datasets. SMILES strings and SDF/TXT
+              formatted files are supported molecular submission approaches.
+              This module is suitable for the evaluation of empirically designed
+              or visually screened molecules before chemical synthesis and
+              biochemical assays, which allows scientists to better focus their
+              experiments on the most promising compounds.
+            </div>
+          </div>
+          <div className="homepage-quick-entry-depart-btn">
+            <Button className="homepage-quick-entry-depart-btn-con" onClick={()=>{
+              store.store.servers.changeHomeStatue(8);
+            }}>Get Start</Button>
+          </div>
+        </div>
+      </div>
       <div className="homepage-works-show">
         <div className="homepage-works-show-img">
           <img src={BLMs_v1} className="img-homepage"></img>

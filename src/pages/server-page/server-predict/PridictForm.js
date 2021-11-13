@@ -93,26 +93,26 @@ function ServerForm(store) {
   const [stepStatus_step_3, setStepStatus_step_3] = useState("gray");
   const [stepStatus_step_4, setStepStatus_step_4] = useState("gray");
 
-
-
   useEffect(() => {
-    if(DAN_text!==""||fileList[0]){
-      setStepStatus_step_2("blue")
-    }else{
-      setStepStatus_step_2("gray")
+    if (DAN_text !== "" || fileList[0]) {
+      setStepStatus_step_2("blue");
+    } else {
+      setStepStatus_step_2("gray");
     }
 
-    if((switchCol&&jobIdModelCurrent!=="")||(switchColDefault&&type!==0)){
-      setStepStatus_step_1("blue")
-    }else{
-      setStepStatus_step_1("gray")
+    if (
+      (switchCol && jobIdModelCurrent !== "") ||
+      (switchColDefault && type !== 0)
+    ) {
+      setStepStatus_step_1("blue");
+    } else {
+      setStepStatus_step_1("gray");
     }
-    if (eMail!==""){
-      setStepStatus_step_3("blue")
-    }else{
-      setStepStatus_step_3("gray")
+    if (eMail !== "") {
+      setStepStatus_step_3("blue");
+    } else {
+      setStepStatus_step_3("gray");
     }
-
   }, [
     DAN_text,
     jobIdModelCurrent,
@@ -123,13 +123,17 @@ function ServerForm(store) {
     eMail,
   ]);
 
-  useEffect(()=>{
-    if(stepStatus_step_1=="blue"&&stepStatus_step_2=="blue"&&stepStatus_step_3=="blue"){
-      setStepStatus_step_4("blue")
-    }else{
-      setStepStatus_step_4("gray")
+  useEffect(() => {
+    if (
+      stepStatus_step_1 == "blue" &&
+      stepStatus_step_2 == "blue" &&
+      stepStatus_step_3 == "blue"
+    ) {
+      setStepStatus_step_4("blue");
+    } else {
+      setStepStatus_step_4("gray");
     }
-  },[stepStatus_step_1,stepStatus_step_2,stepStatus_step_3])
+  }, [stepStatus_step_1, stepStatus_step_2, stepStatus_step_3]);
 
   const showModal = async (data) => {
     await setResultData({
@@ -183,7 +187,9 @@ function ServerForm(store) {
     if (fileList[0]) {
       formData.append("dataFile", fileList[0], fileList[0].name);
     }
-    formData.append("dataStr", eMail);
+    formData.append("mail", eMail);
+
+    formData.append("dataStr", DAN_text);
 
     let minimode = "";
     if (switchColDefault) {
@@ -229,6 +235,9 @@ function ServerForm(store) {
         "'datatype':'userprovide'" +
         "}"
     );
+    console.log(
+      formData
+    );
 
     // formData.append(
     //   "param",
@@ -249,7 +258,6 @@ function ServerForm(store) {
     //     "}"
     // );
 
-    formData.append("mail", eMail);
 
     // console.log(formData);
     // if (DAN_text != "") {
@@ -297,8 +305,6 @@ function ServerForm(store) {
     // let file =new File(testSet)
     setDAN_text(text);
   };
-
-
 
   const onCangeType = (e) => {
     console.log(e.target.value);
