@@ -222,6 +222,9 @@ function ServerForm(store) {
         "'chooseID':'" +
         chooseID +
         "'," +
+        "'jobID':'" +
+        chooseID +
+        "'," +
         "'dataArgumentation':''," +
         "'dataEnhancement':''," +
         "'balancedData':''," +
@@ -235,8 +238,35 @@ function ServerForm(store) {
         "'datatype':'userprovide'" +
         "}"
     );
+    console.log(chooseID,jobResult.data)
     console.log(
-      formData
+      "{" +
+        "'type':'DNA'," +
+        "'mode':'annotation'," +
+        "'minimode':'" +
+        minimode +
+        "'," +
+        "'default':'" +
+        type +
+        "'," +
+        "'chooseID':'" +
+        chooseID +
+        "'," +
+        "'jobID':'" +
+        chooseID +
+        "'," +
+        "'dataArgumentation':''," +
+        "'dataEnhancement':''," +
+        "'balancedData':''," +
+        "'paramCompare':''," +
+        "'CDHit':''," +
+        "'paramCompareModel':''," +
+        "'modelCompare':''," +
+        "'model':'" +
+        jobIdModelCurrent +
+        "'," +
+        "'datatype':'userprovide'" +
+        "}"
     );
 
     // formData.append(
@@ -272,6 +302,7 @@ function ServerForm(store) {
     // }
 
     if (DAN_text != "" || fileList[0]) {
+      // if (false) {
       store.store.servers.request();
       let result = await submitForm(formData);
       console.log(result);

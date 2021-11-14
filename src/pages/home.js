@@ -43,7 +43,7 @@ function Home(store) {
       </div>
     ),
     2: (
-      <div >
+      <div>
         <CloudServerOutlined
           className="headerCon-tab"
           style={{ fontSize: "20px" }}
@@ -441,7 +441,6 @@ function Home(store) {
                       }
                       key={keyValue}
                       className="Menu-header-home-item-SubMenu"
-
                     >
                       <Menu.ItemGroup className="My-Menu-ItemGroup">
                         <Menu.Item
@@ -555,14 +554,36 @@ function Home(store) {
         </div>
       </Header>
       <Content style={{ padding: "0 0px", backgroundColor: "white" }}>
-      <BackTop/>
+        <BackTop />
         <PageCon />
       </Content>
-      <Footer style={{ textAlign: "center" }}>
-        <div>© 2021 Wei Lab | Contact us: mail </div>{" "}
-        <div>
-          This website is free and open to all users and there is no login
-          requirement
+      <Footer className="footer-home">
+        <div className="Global-isitors-earth">
+          <div class="col-md-2 footer-grids">
+            <h3>Global Visitors</h3>
+            <iframe
+              scrolling="no"
+              frameborder="0"
+              width="220"
+              height="220"
+              src="//rf.revolvermaps.com/w/1/a/a2.php?i=5ft2zulcgk2&amp;s=220&amp;m=0&amp;v=false&amp;r=false&amp;b=000000&amp;n=false&amp;c=ff0000"
+            ></iframe>
+            <script
+              type="text/javascript"
+              src="//rf.revolvermaps.com/0/0/1.js?i=5ft2zulcgk2&amp;s=220&amp;m=0&amp;v=false&amp;r=false&amp;b=000000&amp;n=false&amp;c=ff0000"
+              async="async"
+            ></script>
+          </div>
+        </div>
+        <div className="">
+              
+          </div>
+        <div className="context-us-footer">
+          <div>© 2021 Wei Lab | Contact us: mail@163.com </div>{" "}
+          <div>
+            This website is free and open to all users and there is no login
+            requirement
+          </div>
         </div>
         <div></div>{" "}
       </Footer>

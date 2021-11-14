@@ -1082,7 +1082,7 @@ function Result(store) {
     return list;
   };
 
-  if(store.store.results.data.param.mode==="train-test"){
+  if (store.store.results.data.param.mode === "train-test") {
     return (
       <div className="Result-Result-body">
         <div className="Result-Result-body-Breadcrumb">
@@ -1098,12 +1098,12 @@ function Result(store) {
             </Breadcrumb.Item>
           </Breadcrumb>
         </div>
-  
-        <div className="Result-Result-title">
+
+        {/* <div className="Result-Result-title">
           <div className="Result-Result-title-line-left"></div>
           <div className="Result-Result-title-content">Result</div>
           <div className="Result-Result-title-line-right"></div>
-        </div>
+        </div> */}
         <List
           header={
             <div className="Data-load">
@@ -1184,11 +1184,143 @@ function Result(store) {
         />
       </div>
     );
-  }else{
-return(
-  <div></div>
-)
-  }
+  } else {
+    return (
+      <div className="Result-Result-body">
+        <div className="Result-Result-body-Breadcrumb">
+          <Breadcrumb>
+            <Breadcrumb.Item className="Breadcrumb-Item-text">
+              Home
+            </Breadcrumb.Item>
+            <Breadcrumb.Item className="Breadcrumb-Item-text">
+              Job List
+            </Breadcrumb.Item>
+            <Breadcrumb.Item className="Breadcrumb-Item-text">
+              Result Details
+            </Breadcrumb.Item>
+          </Breadcrumb>
+        </div>
+{/* 
+        <div className="Result-Result-title">
+          <div className="Result-Result-title-line-left"></div>
+          <div className="Result-Result-title-content">Result</div>
+          <div className="Result-Result-title-line-right"></div>
+        </div> */}
+        <List
+          header={
+            <div className="Data-load">
+              <strong className="Data-load-List-title">
+                Job ID: {store.store.results.data.requestTime.slice(0, 4)}
+                {store.store.results.data.requestTime.slice(5, 7)}
+                {store.store.results.data.requestTime.slice(8, 10)}
+                {store.store.results.data.jobId}
+              </strong>
+              <Button
+                type="default"
+                onClick={() => {
+                  if (
+                    store.store.results.data.result
+                      ? store.store.results.data.result.zip
+                        ? false
+                        : true
+                      : true
+                  ) {
+                    message.info(
+                      "Your result hasn't been already, please wait. Or it is failed"
+                    );
+                  } else {
+                    window.location.href = store.store.results.data.result.zip;
+                  }
+                }}
+                className="result-button-basck-head"
+              >
+                Download
+              </Button>
+            </div>
+          }
+          bordered
+          footer={<div className="result-button-basck-outer"></div>}
+          dataSource={[
+            <div className="Result-Result-body-outline">
+              <div className="Result-Result-row">
+                <div>
+                  {store.store.results.data.result ? (
+                    store.store.results.data.result.table_data ? (
+                      <Tabs
+                        type="card"
+                        defaultActiveKey="1"
+                        onChange={() => {}}
+                        className="ServerPage-tabs"
+                      >
+                        <TabPane
+                          tab={"key"}
+                          key={1}
+                          className="picture-body-con"
+                        >
+                          {/* 
+                          <Table
+                      rowClassName={(record, index) =>
+                        getRowClassName(record, index)
+                      }
+                      dataSource={
+                        store.store.results.data.result.table_data_performance
+                      }
+                      columns={[
+                        {
+                          title: "index",
+                          dataIndex: "model_name",
+                          key: "model_name",
+                          className: "result-table-title",
+                        },
+                        {
+                          title: "ACC",
+                          dataIndex: "ACC",
+                          key: "ACC",
+                          className: "result-table-title",
+                        },
+                        {
+                          title: "Sensitivity",
+                          dataIndex: "Sensitivity",
+                          key: "Sensitivity",
+                          className: "result-table-title",
+                        },
+                        {
+                          title: "Specificity",
+                          dataIndex: "Specificity",
+                          key: "Specificity",
+                          className: "result-table-title",
+                        },
+                        {
+                          title: "AUC",
+                          dataIndex: "AUC",
+                          key: "AUC",
+                          className: "result-table-title",
+                        },
+                        {
+                          title: "MCC",
+                          dataIndex: "MCC",
+                          key: "MCC",
+                          className: "result-table-title",
+                        },
+                      ]}
+                    /> */}
 
+                        </TabPane>
+                      </Tabs>
+                    ) : (
+                      ""
+                    )
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+            </div>,
+          ]}
+          renderItem={(item) => <List.Item>{item}</List.Item>}
+        />
+      </div>
+    );
+  }
 }
 export default inject("store")(observer(Result));
