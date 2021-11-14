@@ -13,9 +13,11 @@ import {
   Breadcrumb,
   Collapse,
   Table,
+  Dropdown,Menu
 } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 import tSne from "../../constants/img/t-sne.png";
+
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
 
@@ -158,6 +160,28 @@ function Result(store) {
     return className;
   };
 
+  const menu = (list) => {
+    return (
+      <Menu>
+        <Menu.Item>
+          <a target="_blank" rel="noopener noreferrer" download href={list[0]}>
+            PNG
+          </a>
+        </Menu.Item>
+        <Menu.Item>
+          <a target="_blank" rel="noopener noreferrer" download href={list[0]}>
+            JPG
+          </a>
+        </Menu.Item>
+        <Menu.Item>
+          <a target="_blank" rel="noopener noreferrer" download href={list[0]}>
+            PDF
+          </a>
+        </Menu.Item>
+      </Menu>
+    );
+  };
+
   const resultPictures = () => {
     let list = [];
     if (store.store.results.data.result.pictures) {
@@ -262,13 +286,21 @@ function Result(store) {
                           />
                         }
                       >
-                        <a
+                        <Dropdown
+                          overlay={menu([compositionalAnalysis[0]])}
+                          placement="bottomCenter"
+                          arrow
+                          className="download-button"
+                        >
+                          <Button >Download</Button>
+                        </Dropdown>
+                        {/* <a
                           href={compositionalAnalysis[0]}
                           className="download-button"
                           download
                         >
-                          <Button> Download</Button>
-                        </a>
+
+                        </a> */}
                       </Card>
                     ) : (
                       ""
@@ -286,13 +318,16 @@ function Result(store) {
                           />
                         }
                       >
-                        <a
-                          href={compositionalAnalysis[0]}
+                  
+                         <Dropdown
+                          overlay={menu([compositionalAnalysis[0]])}
+                          placement="bottomCenter"
+                          arrow
                           className="download-button"
-                          download
                         >
-                          <Button> Download</Button>
-                        </a>
+                          <Button >Download</Button>
+                        </Dropdown>
+                        
                       </Card>
                     ) : (
                       ""
@@ -336,13 +371,15 @@ function Result(store) {
                           />
                         }
                       >
-                        <a
-                          href={motifStatistics[0]}
+                        <Dropdown
+                          overlay={menu([motifStatistics[0]])}
+                          placement="bottomCenter"
+                          arrow
                           className="download-button"
-                          download
                         >
-                          <Button> Download</Button>
-                        </a>
+                          <Button >Download</Button>
+                        </Dropdown>
+                        
                       </Card>
                     ) : (
                       ""
@@ -360,13 +397,15 @@ function Result(store) {
                           />
                         }
                       >
-                        <a
-                          href={motifStatistics[1]}
+                        <Dropdown
+                          overlay={menu([motifStatistics[1]])}
+                          placement="bottomCenter"
+                          arrow
                           className="download-button"
-                          download
                         >
-                          <Button> Download</Button>
-                        </a>
+                          <Button >Download</Button>
+                        </Dropdown>
+                       
                       </Card>
                     ) : (
                       ""
@@ -384,13 +423,15 @@ function Result(store) {
                           />
                         }
                       >
-                        <a
-                          href={motifStatistics[2]}
+                        <Dropdown
+                          overlay={menu([motifStatistics[2]])}
+                          placement="bottomCenter"
+                          arrow
                           className="download-button"
-                          download
                         >
-                          <Button> Download</Button>
-                        </a>
+                          <Button >Download</Button>
+                        </Dropdown>
+                       
                       </Card>
                     ) : (
                       ""
@@ -408,13 +449,15 @@ function Result(store) {
                           />
                         }
                       >
-                        <a
-                          href={motifStatistics[3]}
+                        <Dropdown
+                          overlay={menu([motifStatistics[3]])}
+                          placement="bottomCenter"
+                          arrow
                           className="download-button"
-                          download
                         >
-                          <Button> Download</Button>
-                        </a>
+                          <Button >Download</Button>
+                        </Dropdown>
+                       
                       </Card>
                     ) : (
                       ""
@@ -494,13 +537,15 @@ function Result(store) {
                         />
                       }
                     >
-                      <a
-                        href={result_historyGram[0]}
-                        className="download-button"
-                        download
-                      >
-                        <Button> Download</Button>
-                      </a>
+                      <Dropdown
+                          overlay={menu([result_historyGram[0]])}
+                          placement="bottomCenter"
+                          arrow
+                          className="download-button"
+                        >
+                          <Button >Download</Button>
+                        </Dropdown>
+                      
                     </Card>{" "}
                     <Table
                       rowClassName={(record, index) =>
@@ -587,13 +632,15 @@ function Result(store) {
                           />
                         }
                       >
-                        <a
-                          href={ROC_PR_Deep_all[0]}
+                        <Dropdown
+                          overlay={menu([ROC_PR_Deep_all[0]])}
+                          placement="bottomCenter"
+                          arrow
                           className="download-button"
-                          download
                         >
-                          <Button> Download</Button>
-                        </a>
+                          <Button >Download</Button>
+                        </Dropdown>
+                       
                       </Card>
                     ) : (
                       ""
@@ -627,13 +674,15 @@ function Result(store) {
                           />
                         }
                       >
-                        <a
-                          href={result_epochplot[0]}
+                        <Dropdown
+                          overlay={menu([result_epochplot[0]])}
+                          placement="bottomCenter"
+                          arrow
                           className="download-button"
-                          download
                         >
-                          <Button> Download</Button>
-                        </a>
+                          <Button >Download</Button>
+                        </Dropdown>
+                        
                       </Card>
                     ) : (
                       ""
@@ -727,13 +776,15 @@ function Result(store) {
                           />
                         }
                       >
-                        <a
-                          href={ROC_PR_Tra_all[0]}
+                        <Dropdown
+                          overlay={menu([ROC_PR_Tra_all[0]])}
+                          placement="bottomCenter"
+                          arrow
                           className="download-button"
-                          download
                         >
-                          <Button> Download</Button>
-                        </a>
+                          <Button >Download</Button>
+                        </Dropdown>
+                       
                       </Card>
                     ) : (
                       ""
@@ -776,13 +827,15 @@ function Result(store) {
                           />
                         }
                       >
-                        <a
-                          href={UMAP_picture[0]}
+                        <Dropdown
+                          overlay={menu([UMAP_picture[0]])}
+                          placement="bottomCenter"
+                          arrow
                           className="download-button"
-                          download
                         >
-                          <Button> Download</Button>
-                        </a>
+                          <Button >Download</Button>
+                        </Dropdown>
+                        
                       </Card>
                     ) : (
                       ""
@@ -816,13 +869,15 @@ function Result(store) {
                           />
                         }
                       >
-                        <a
-                          href={result_ShapPict[0]}
+                        <Dropdown
+                          overlay={menu([result_ShapPict[0]])}
+                          placement="bottomCenter"
+                          arrow
                           className="download-button"
-                          download
                         >
-                          <Button> Download</Button>
-                        </a>
+                          <Button >Download</Button>
+                        </Dropdown>
+                       
                       </Card>
                     ) : (
                       ""
@@ -1082,6 +1137,77 @@ function Result(store) {
     return list;
   };
 
+  const prob_sequence = () => {
+    let reSeqList = [];
+    if (store.store.results.data.result.table_data.dataset) {
+      store.store.results.data.result.table_data.dataset.map(
+        (value, index, array) => {
+          if (store.store.results.data.result.table_data.problist) {
+            let dirty = false;
+            for (
+              let i = 0;
+              i < store.store.results.data.result.table_data.problist.length;
+              i++
+            ) {
+              if (
+                store.store.results.data.result.table_data.problist[i][0] ===
+                index
+              ) {
+                reSeqList.push([
+                  value.slice(
+                    0,
+                    store.store.results.data.result.table_data.problist[i][1]
+                  ),
+                  value[
+                    store.store.results.data.result.table_data.problist[i][1]
+                  ],
+                  value.slice(
+                    [
+                      store.store.results.data.result.table_data.problist[
+                        i
+                      ][1] + 1,
+                    ],
+                    value.length + 1
+                  ),
+                  store.store.results.data.result.table_data.problist[i][2],
+                ]);
+                console.log(reSeqList);
+                dirty = true;
+              }
+            }
+            if (!dirty) {
+              reSeqList.push([value]);
+            }
+          }
+        }
+      );
+    }
+    let reqDivSeqList = [];
+    console.log(reSeqList);
+    reSeqList.map((v, i, a) => {
+      if (v.length > 2) {
+        reqDivSeqList.push(
+          <div className="target-con">
+            {/* <div className="target-edge"></div> */}
+            {v[0]}
+            <Popover content={"confidence:" + v[3]} className="target-seq">
+              {/* <div className="target-seq"></div> */}
+              {v[1]}
+            </Popover>
+            {v[2]}
+            {/* <div className="target-edge"></div> */}
+          </div>
+        );
+      } else {
+        reqDivSeqList.push(
+          <div className="target-con">
+            <text>{v[0]}</text>
+          </div>
+        );
+      }
+    });
+    return reqDivSeqList;
+  };
   if (store.store.results.data.param.mode === "train-test") {
     return (
       <div className="Result-Result-body">
@@ -1200,7 +1326,7 @@ function Result(store) {
             </Breadcrumb.Item>
           </Breadcrumb>
         </div>
-{/* 
+        {/* 
         <div className="Result-Result-title">
           <div className="Result-Result-title-line-left"></div>
           <div className="Result-Result-title-content">Result</div>
@@ -1257,54 +1383,9 @@ function Result(store) {
                           key={1}
                           className="picture-body-con"
                         >
-                          {/* 
-                          <Table
-                      rowClassName={(record, index) =>
-                        getRowClassName(record, index)
-                      }
-                      dataSource={
-                        store.store.results.data.result.table_data_performance
-                      }
-                      columns={[
-                        {
-                          title: "index",
-                          dataIndex: "model_name",
-                          key: "model_name",
-                          className: "result-table-title",
-                        },
-                        {
-                          title: "ACC",
-                          dataIndex: "ACC",
-                          key: "ACC",
-                          className: "result-table-title",
-                        },
-                        {
-                          title: "Sensitivity",
-                          dataIndex: "Sensitivity",
-                          key: "Sensitivity",
-                          className: "result-table-title",
-                        },
-                        {
-                          title: "Specificity",
-                          dataIndex: "Specificity",
-                          key: "Specificity",
-                          className: "result-table-title",
-                        },
-                        {
-                          title: "AUC",
-                          dataIndex: "AUC",
-                          key: "AUC",
-                          className: "result-table-title",
-                        },
-                        {
-                          title: "MCC",
-                          dataIndex: "MCC",
-                          key: "MCC",
-                          className: "result-table-title",
-                        },
-                      ]}
-                    /> */}
-
+                          {store.store.results.data.result.table_data.dataset
+                            ? prob_sequence()
+                            : ""}
                         </TabPane>
                       </Tabs>
                     ) : (

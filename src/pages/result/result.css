@@ -214,3 +214,24 @@ th.result-table-title{
 .Result-Result-row-pictures-card{
 margin: 20px 0;
 }
+.target-seq{
+  width: fit-content;
+  font-size: x-large;
+  font-weight: 700;
+  color: #08f3d4;
+  border:#0aa08c 1px solid;
+  padding: 3px;
+  margin: 3px;
+  border-radius: 5px;
+}
+.target-edge{
+  width: fit-content;
+
+}
+.target-con{
+  width: 100%;
+  /* overflow-x:scroll; */
+  padding: 40px;
+  text-align:justify;
+  word-wrap:break-word !important;
+}
