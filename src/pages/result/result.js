@@ -13,7 +13,8 @@ import {
   Breadcrumb,
   Collapse,
   Table,
-  Dropdown,Menu
+  Dropdown,
+  Menu,
 } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 import tSne from "../../constants/img/t-sne.png";
@@ -52,6 +53,7 @@ function Result(store) {
   const [result_historyGram, setResult_historyGram] = useState([]);
   const [result_ShapPict, setResult_ShapPict] = useState([]);
   const [result_epochplot, setResult_epochplot] = useState([]);
+
   useEffect(() => {
     if (store.store.results.data.result) {
       if (store.store.results.data.result.pictures) {
@@ -66,7 +68,7 @@ function Result(store) {
         let epochPlot = [];
         for (let index in store.store.results.data.result.pictures) {
           let str = store.store.results.data.result.pictures[index];
-          if (str.substring(str.length - 12, str.length) === "atistics.jpg") {
+          if (str.substring(str.length - 12, str.length) === "atistics.png") {
             compositionalAnalysis_current.push(str);
           } else if (
             str.substring(str.length - 12, str.length) === "/motif_0.png"
@@ -85,11 +87,11 @@ function Result(store) {
           ) {
             motifStatistics_current.push(str);
           } else if (
-            str.substring(str.length - 12, str.length) === "/ROC_PRC.jpg"
+            str.substring(str.length - 12, str.length) === "/ROC_PRC.png"
           ) {
             ROC_PR_Deep.push(str);
           } else if (
-            str.substring(str.length - 12, str.length) === "_ROC_PRC.jpg"
+            str.substring(str.length - 12, str.length) === "_ROC_PRC.png"
           ) {
             ROC_PR_Tra.push(str);
           } else if (
@@ -97,11 +99,11 @@ function Result(store) {
           ) {
             UMAP_pic.push(str);
           } else if (
-            str.substring(str.length - 12, str.length) === "_density.jpg"
+            str.substring(str.length - 12, str.length) === "_density.png"
           ) {
             density_pic.push(str);
           } else if (
-            str.substring(str.length - 12, str.length) === "istogram.jpg"
+            str.substring(str.length - 12, str.length) === "istogram.png"
           ) {
             result_histogram.push(str);
           } else if (
@@ -109,7 +111,7 @@ function Result(store) {
           ) {
             ShapPict.push(str);
           } else if (
-            str.substring(str.length - 12, str.length) === "och_plot.jpg"
+            str.substring(str.length - 12, str.length) === "och_plot.png"
           ) {
             epochPlot.push(str);
           }
@@ -203,17 +205,6 @@ function Result(store) {
                   key="1"
                 >
                   <div className="Result-Result-row-pictures-card">
-                    {/* <Card
-                          hoverable
-                          style={{ width: "70%" }}
-                          cover={
-                            <img
-                              alt="example"
-                              src={store.store.results.data.result.pictures[i]}
-                              className="Result-Result-row-pictures-item"
-                            />
-                          }
-                        ></Card>{" "} */}
                     <Table
                       rowClassName={(record, index) =>
                         getRowClassName(record, index)
@@ -263,16 +254,6 @@ function Result(store) {
                   key="1"
                 >
                   <div className="Result-Result-row-pictures-card">
-                    {/* <Popover
-                  className="resultPictures-Popover-contant-card"
-                  content={
-                    <img
-                      src={store.store.results.data.result.pictures[i]}
-                      className="resultPictures-Popover-contant"
-                    />
-                  }
-                  title={result_title[i]}
-                > */}
                     {compositionalAnalysis[0] ? (
                       <Card
                         className="Result-Result-row-pictures-card"
@@ -292,15 +273,8 @@ function Result(store) {
                           arrow
                           className="download-button"
                         >
-                          <Button >Download</Button>
+                          <Button>Download</Button>
                         </Dropdown>
-                        {/* <a
-                          href={compositionalAnalysis[0]}
-                          className="download-button"
-                          download
-                        >
-
-                        </a> */}
                       </Card>
                     ) : (
                       ""
@@ -318,16 +292,14 @@ function Result(store) {
                           />
                         }
                       >
-                  
-                         <Dropdown
+                        <Dropdown
                           overlay={menu([compositionalAnalysis[0]])}
                           placement="bottomCenter"
                           arrow
                           className="download-button"
                         >
-                          <Button >Download</Button>
+                          <Button>Download</Button>
                         </Dropdown>
-                        
                       </Card>
                     ) : (
                       ""
@@ -377,9 +349,8 @@ function Result(store) {
                           arrow
                           className="download-button"
                         >
-                          <Button >Download</Button>
+                          <Button>Download</Button>
                         </Dropdown>
-                        
                       </Card>
                     ) : (
                       ""
@@ -403,9 +374,8 @@ function Result(store) {
                           arrow
                           className="download-button"
                         >
-                          <Button >Download</Button>
+                          <Button>Download</Button>
                         </Dropdown>
-                       
                       </Card>
                     ) : (
                       ""
@@ -429,9 +399,8 @@ function Result(store) {
                           arrow
                           className="download-button"
                         >
-                          <Button >Download</Button>
+                          <Button>Download</Button>
                         </Dropdown>
-                       
                       </Card>
                     ) : (
                       ""
@@ -455,9 +424,8 @@ function Result(store) {
                           arrow
                           className="download-button"
                         >
-                          <Button >Download</Button>
+                          <Button>Download</Button>
                         </Dropdown>
-                       
                       </Card>
                     ) : (
                       ""
@@ -538,14 +506,13 @@ function Result(store) {
                       }
                     >
                       <Dropdown
-                          overlay={menu([result_historyGram[0]])}
-                          placement="bottomCenter"
-                          arrow
-                          className="download-button"
-                        >
-                          <Button >Download</Button>
-                        </Dropdown>
-                      
+                        overlay={menu([result_historyGram[0]])}
+                        placement="bottomCenter"
+                        arrow
+                        className="download-button"
+                      >
+                        <Button>Download</Button>
+                      </Dropdown>
                     </Card>{" "}
                     <Table
                       rowClassName={(record, index) =>
@@ -638,9 +605,8 @@ function Result(store) {
                           arrow
                           className="download-button"
                         >
-                          <Button >Download</Button>
+                          <Button>Download</Button>
                         </Dropdown>
-                       
                       </Card>
                     ) : (
                       ""
@@ -680,9 +646,8 @@ function Result(store) {
                           arrow
                           className="download-button"
                         >
-                          <Button >Download</Button>
+                          <Button>Download</Button>
                         </Dropdown>
-                        
                       </Card>
                     ) : (
                       ""
@@ -718,7 +683,16 @@ function Result(store) {
                             className="Result-Result-row-pictures-item"
                           />
                         }
-                      ></Card>
+                      >
+                        <Dropdown
+                          overlay={menu([density_picture[0]])}
+                          placement="bottomCenter"
+                          arrow
+                          className="download-button"
+                        >
+                          <Button>Download</Button>
+                        </Dropdown>
+                      </Card>
                     ) : (
                       ""
                     )}{" "}
@@ -734,7 +708,16 @@ function Result(store) {
                             className="Result-Result-row-pictures-item"
                           />
                         }
-                      ></Card>
+                      >
+                        <Dropdown
+                          overlay={menu([density_picture[1]])}
+                          placement="bottomCenter"
+                          arrow
+                          className="download-button"
+                        >
+                          <Button>Download</Button>
+                        </Dropdown>
+                      </Card>
                     ) : (
                       ""
                     )}
@@ -782,9 +765,8 @@ function Result(store) {
                           arrow
                           className="download-button"
                         >
-                          <Button >Download</Button>
+                          <Button>Download</Button>
                         </Dropdown>
-                       
                       </Card>
                     ) : (
                       ""
@@ -833,9 +815,8 @@ function Result(store) {
                           arrow
                           className="download-button"
                         >
-                          <Button >Download</Button>
+                          <Button>Download</Button>
                         </Dropdown>
-                        
                       </Card>
                     ) : (
                       ""
@@ -875,9 +856,8 @@ function Result(store) {
                           arrow
                           className="download-button"
                         >
-                          <Button >Download</Button>
+                          <Button>Download</Button>
                         </Dropdown>
-                       
                       </Card>
                     ) : (
                       ""
@@ -1139,11 +1119,15 @@ function Result(store) {
 
   const prob_sequence = () => {
     let reSeqList = [];
+    // console.log(store.store.results.data.result.table_data)
     if (store.store.results.data.result.table_data.dataset) {
+      // console.log(store.store.results.data.result.table_data.problist)
       store.store.results.data.result.table_data.dataset.map(
         (value, index, array) => {
           if (store.store.results.data.result.table_data.problist) {
             let dirty = false;
+            let list_problist_dataset_single = [];
+            let current_data_dataset = [];
             for (
               let i = 0;
               i < store.store.results.data.result.table_data.problist.length;
@@ -1153,59 +1137,244 @@ function Result(store) {
                 store.store.results.data.result.table_data.problist[i][0] ===
                 index
               ) {
-                reSeqList.push([
-                  value.slice(
-                    0,
-                    store.store.results.data.result.table_data.problist[i][1]
-                  ),
-                  value[
-                    store.store.results.data.result.table_data.problist[i][1]
-                  ],
-                  value.slice(
-                    [
-                      store.store.results.data.result.table_data.problist[
-                        i
-                      ][1] + 1,
-                    ],
-                    value.length + 1
-                  ),
-                  store.store.results.data.result.table_data.problist[i][2],
-                ]);
-                console.log(reSeqList);
                 dirty = true;
+                list_problist_dataset_single.push(
+                  store.store.results.data.result.table_data.problist[i]
+                );
               }
             }
+            for (let i = 0; i < list_problist_dataset_single.length; i++) {
+              if (i < list_problist_dataset_single - 1 && i > 0) {
+                current_data_dataset.push([
+                  value.slice(
+                    list_problist_dataset_single[i - 1][1],
+                    list_problist_dataset_single[i][1]
+                  ),
+                  value[list_problist_dataset_single[i][1]],
+                  value.slice(
+                    [list_problist_dataset_single[i][1] + 1],
+                    list_problist_dataset_single[i + 1][1]
+                  ),
+                  list_problist_dataset_single[i][2],
+                ]);
+              } else if (i < list_problist_dataset_single - 1 && i === 0) {
+                current_data_dataset.push([
+                  value.slice(0, list_problist_dataset_single[i][1]),
+                  value[list_problist_dataset_single[i][1]],
+                  value.slice(
+                    [list_problist_dataset_single[i][1] + 1],
+                    list_problist_dataset_single[i + 1][1]
+                  ),
+                  list_problist_dataset_single[i][2],
+                ]);
+              } else {
+                current_data_dataset.push([
+                  value.slice(
+                    list_problist_dataset_single[i - 1],
+                    list_problist_dataset_single[i][1]
+                  ),
+                  value[list_problist_dataset_single[i][1]],
+                  value.slice(
+                    [list_problist_dataset_single[i][1] + 1],
+                    value.length + 1
+                  ),
+                  list_problist_dataset_single[i][2],
+                ]);
+              }
+              reSeqList.push(current_data_dataset);
+            }
+            console.log(reSeqList);
+            // for (
+            //   let i = 0;
+            //   i < store.store.results.data.result.table_data.problist.length;
+            //   i++
+            // ) {
+            //   if (
+            //     store.store.results.data.result.table_data.problist[i][0] ===
+            //     index
+            //   ) {
+            //     reSeqList.push([
+            //       value.slice(
+            //         0,
+            //         store.store.results.data.result.table_data.problist[i][1]
+            //       ),
+            //       value[
+            //         store.store.results.data.result.table_data.problist[i][1]
+            //       ],
+            //       value.slice(
+            //         [
+            //           store.store.results.data.result.table_data.problist[
+            //             i
+            //           ][1] + 1,
+            //         ],
+            //         value.length + 1
+            //       ),
+            //       store.store.results.data.result.table_data.problist[i][2],
+            //     ]);
+            //     console.log(reSeqList);
+            //     dirty = true;
+            //   }
+            // }
             if (!dirty) {
-              reSeqList.push([value]);
+              reSeqList.push([[value]]);
             }
           }
         }
       );
     }
+
+    let table_data_of_mark = [];
+    store.store.results.data.result.table_data.problist.map(
+      (valu, inde, arra) => {
+        table_data_of_mark.push({
+          table_data_index: valu[0],
+          table_data_position: valu[1],
+          table_data_confidence: valu[2],
+          className: "result-table-title",
+          table_data_sequence_mark: (
+            <div className="table-mark-sequence">
+              {store.store.results.data.result.table_data.dataset[
+                valu[0]
+              ].slice(0, valu[1])}
+
+              <Popover content={"confidence:" + valu[2]} className="target-seq">
+                {/* <div className="target-seq"></div> */}
+                {
+                  store.store.results.data.result.table_data.dataset[valu[0]][
+                    valu[1]
+                  ]
+                }
+              </Popover>
+              {store.store.results.data.result.table_data.dataset[
+                valu[0]
+              ].slice(
+                valu[1] + 1,
+                store.store.results.data.result.table_data.dataset[valu[0]]
+                  .length + 1
+              )}
+            </div>
+          ),
+        });
+      }
+    );
+
     let reqDivSeqList = [];
     console.log(reSeqList);
     reSeqList.map((v, i, a) => {
-      if (v.length > 2) {
-        reqDivSeqList.push(
-          <div className="target-con">
-            {/* <div className="target-edge"></div> */}
-            {v[0]}
-            <Popover content={"confidence:" + v[3]} className="target-seq">
-              {/* <div className="target-seq"></div> */}
-              {v[1]}
-            </Popover>
-            {v[2]}
-            {/* <div className="target-edge"></div> */}
-          </div>
-        );
+      if (v[0].length > 1) {
+        // console.log(v[0].length, v[2].length);
+        let reqDivSeqList_current_data = [];
+        if (v.length === 1) {
+          reqDivSeqList.push(
+            <div className="target-con">
+              {/* <div className="target-edge"></div> */}
+              {v[0][0]}
+
+              <Popover content={"confidence:" + v[0][3]} className="target-seq">
+                {/* <div className="target-seq"></div> */}
+                {v[0][1]}
+              </Popover>
+              {v[0][2]}
+              {/* <div className="target-edge"></div> */}
+            </div>
+          );
+        } else {
+          v.map((val, ind, num) => {
+            if (ind === 0) {
+              reqDivSeqList_current_data.push(
+                <>
+                  {val[0]}
+                  <Popover
+                    content={"confidence:" + val[3]}
+                    className="target-seq"
+                  >
+                    {/* <div className="target-seq"></div> */}
+                    {val[1]}
+                  </Popover>
+                  {val[2]}
+                </>
+              );
+            } else {
+              reqDivSeqList_current_data.push(
+                <>
+                  <Popover
+                    content={"confidence:" + v[3]}
+                    className="target-seq"
+                  >
+                    {/* <div className="target-seq"></div> */}
+                    {val[1]}
+                  </Popover>
+                  {val[2]}
+                </>
+              );
+            }
+          });
+          reqDivSeqList.push(
+            <div className="target-con">{reqDivSeqList_current_data}</div>
+          );
+        }
+
+        // reqDivSeqList_current_data.push()
+        // reqDivSeqList.push(
+        //   <div className="target-con">
+        //     {/* <div className="target-edge"></div> */}
+        //     {v[0]}
+        //     <Popover content={"confidence:" + v[3]} className="target-seq">
+        //       {/* <div className="target-seq"></div> */}
+        //       {v[1]}
+        //     </Popover>
+        //     {v[2]}
+        //     {/* <div className="target-edge"></div> */}
+        //   </div>
+        // );
       } else {
         reqDivSeqList.push(
           <div className="target-con">
-            <text>{v[0]}</text>
+            <text>{v[0][0]}</text>
           </div>
         );
       }
     });
+
+    if (store.store.results.data.result.table_data.dataset) {
+      reqDivSeqList.push(
+        <div className="table-reqdivseqlist-out">
+          
+          <Table
+            className="table-reqdivseqlist"
+            rowClassName={(record, index) => getRowClassName(record, index)}
+            dataSource={table_data_of_mark}
+            columns={[
+              {
+                title: "Index",
+                dataIndex: "table_data_index",
+                key: "table_data_index",
+                className: "result-table-title",
+              },
+              {
+                title: "Position",
+                dataIndex: "table_data_position",
+                key: "table_data_position",
+                className: "result-table-title",
+              },
+              {
+                title: "Confidence",
+                dataIndex: "table_data_confidence",
+                key: "table_data_confidence",
+                className: "result-table-title",
+              },
+              {
+                title: "Sequence Mark",
+                dataIndex: "table_data_sequence_mark",
+                key: "table_data_sequence_mark",
+                className: "result-table-title",
+              },
+            ]}
+          />
+        </div>
+      );
+    }
+
     return reqDivSeqList;
   };
   if (store.store.results.data.param.mode === "train-test") {

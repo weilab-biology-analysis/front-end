@@ -235,3 +235,15 @@ margin: 20px 0;
   text-align:justify;
   word-wrap:break-word !important;
 }
+.table-mark-sequence{
+  width: 350px;
+  text-align: justify;
+}
+/* .table-reqdivseqlist{  
+  width:80%;  
+  
+}  */
+.table-reqdivseqlist-out{
+  width: 95%;
+  margin: 20px auto;
+} 
