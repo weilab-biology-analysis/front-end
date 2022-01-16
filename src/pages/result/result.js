@@ -743,7 +743,9 @@ function Result(store) {
                       </strong>
                     </div>
                   }
+                  
                   key="1"
+
                 >
                   <div className="Result-Result-row-pictures-card">
                     {ROC_PR_Tra_all[0] ? (
@@ -1010,18 +1012,7 @@ function Result(store) {
                   }
                   title={result_title[i]}
                 > */}
-                  {/* <Card
-                    hoverable
-                    style={{ width: "70%" }}
-                    cover={
-                      <img
-                        alt="example"
-                        src={tSne}
-                        className="Result-Result-row-pictures-item"
-                      />
-                    }
-                  ></Card>{" "} */}
-                  {/* </Popover> */}
+
                 </div>
               </Panel>
             </Collapse>
