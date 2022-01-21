@@ -2,7 +2,7 @@ import { inject, observer } from "mobx-react";
 import { useEffect, useState } from "react";
 import { jobInfo, jobListGet } from "../../stores/request";
 import "./homePage.css";
-import BLMs_v1 from "../../constants/img/BLMs_v1.png";
+import frameworkIMG from "../../constants/img/framework.png";
 import homeImg from "../../constants/img/homepage.png";
 import { Button } from "antd";
 function HomePage(store) {
@@ -121,7 +121,7 @@ function HomePage(store) {
       </div>
       <div className="homepage-works-show">
         <div className="homepage-works-show-img">
-          <img src={BLMs_v1} className="img-homepage"></img>
+          <img src={frameworkIMG} className="img-homepage"></img>
         </div>
         <div className="homepage-works-show-intro">
           <div>

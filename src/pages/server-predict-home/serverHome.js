@@ -24,13 +24,13 @@ function ServerPredictHome(store) {
             Server Select
           </Breadcrumb.Item>
           <Breadcrumb.Item className="Breadcrumb-Item-text">
-            Trianing
+          Sequence functional annotation
           </Breadcrumb.Item>
         </Breadcrumb>
       </div>
 
       <div className="title-serverHome-deeplearn">
-      Training Your Deep Learning Models!
+      Selecting Your Deep Learning Models!
       </div>
 
       <div className="serverhome-body">
@@ -38,7 +38,7 @@ function ServerPredictHome(store) {
           <div
             className="function-select-con"
             onClick={() => {
-              //gotoPage();
+
               store.store.servers.changeHomeStatue(9);
             }}
           >
@@ -108,7 +108,6 @@ function ServerPredictHome(store) {
             <div className="function-select-img-outer">
               <img src={DNA} className="function-select-left-img" />
             </div>
-
             <div className="function-select-context">
               Integrating the functionality of feature calculation / extraction,
               clustering, feature normalization, feature selection, dimension

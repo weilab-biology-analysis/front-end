@@ -23,7 +23,7 @@
 .home-head {
   width: 100%;
   height: 300px;
-  background-image: url("../constants/img/1.jpg");
+  /* background-image: url("../constants/img/1.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
 }

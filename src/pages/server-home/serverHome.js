@@ -24,7 +24,7 @@ function ServerHome(store) {
             Server Select
           </Breadcrumb.Item>
           <Breadcrumb.Item className="Breadcrumb-Item-text">
-            Training
+          Deep learning based prediction
           </Breadcrumb.Item>
         </Breadcrumb>
       </div>

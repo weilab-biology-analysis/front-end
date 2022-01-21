@@ -1,6 +1,6 @@
 import { inject, observer } from "mobx-react";
 import { useEffect, useState } from "react";
-import { Layout, Menu, Tabs, Breadcrumb, Button, BackTop } from "antd";
+import { Layout, Menu, Tabs, Breadcrumb, BackTop } from "antd";
 import "./home.css";
 import HomePage from "./home/homePage";
 import ServerHome from "./server-home/serverHome";
@@ -12,20 +12,17 @@ import RNAServerForm from "./server-page/RNA-form/serverForm";
 import ServerPredictForm from "./server-page/server-predict/PridictForm";
 import RNAPredictForm from "./server-page/RNA-predict/serverForm";
 import PeptidePredictForm from "./server-page/Peptide-predict/serverForm";
-
 import PeptideServerForm from "./server-page/Peptide-form/serverForm";
 import Result from "./result/result";
 import {
   HomeOutlined,
   CloudServerOutlined,
   UnorderedListOutlined,
-  MailOutlined,
-  AppstoreOutlined,
-  SettingOutlined,
+
   FileSearchOutlined,
   ContactsOutlined,
 } from "@ant-design/icons";
-import logo from "../constants/img/2.svg";
+
 import Tutorial from "./tutorial/tutorial";
 const { Header, Content, Footer } = Layout;
 const { TabPane } = Tabs;
@@ -88,16 +85,6 @@ function Home(store) {
       case 1:
         return (
           <div className="submit-depart-pages-home">
-            {/* <div className="Result-Result-body-Breadcrumb">
-              <Breadcrumb>
-                <Breadcrumb.Item className="Breadcrumb-Item-text">
-                  Home
-                </Breadcrumb.Item>
-                <Breadcrumb.Item className="Breadcrumb-Item-text">
-                  Related Work
-                </Breadcrumb.Item>
-              </Breadcrumb>
-            </div> */}
             <HomePage />
           </div>
         );
@@ -405,12 +392,6 @@ function Home(store) {
     }
   };
 
-  const [current, setCurrent] = useState("mail");
-
-  const handleClick = (e) => {
-    console.log("click ", e);
-    this.setState({ current: e.key });
-  };
 
   return (
     <Layout>
@@ -419,7 +400,6 @@ function Home(store) {
           <div className="Menu-header-home">
             <div className="logo-welab">
               DeepBIO
-              {/* <img src={logo} className="logo-welab-img" /> */}
             </div>
 
             <Menu
@@ -431,126 +411,94 @@ function Home(store) {
             >
               {new Array(5).fill(null).map((_, index) => {
                 const keyValue = index + 1;
-                if (keyValue === 2) {
-                  return (
-                    <SubMenu
-                      title={
-                        <div className="SubMenu-title-text">
-                          {headerCon[keyValue]}
-                        </div>
-                      }
-                      key={keyValue}
-                      className="Menu-header-home-item-SubMenu"
-                    >
-                      <Menu.ItemGroup className="My-Menu-ItemGroup">
-                        <Menu.Item
-                          key={2}
-                          className="SubMenu-Menu-ItemGroup-Item-up"
-                          onClick={() => {
-                            store.store.servers.changeHomeStatue(2);
-                          }}
-                        >
-                          Deep learning based prediction
-                        </Menu.Item>
-                        <Menu.Item
-                          key={8}
-                          className="SubMenu-Menu-ItemGroup-Item-down"
-                          onClick={() => {
-                            store.store.servers.changeHomeStatue(8);
-                          }}
-                        >
-                          Sequence functional annotation
-                        </Menu.Item>
-                      </Menu.ItemGroup>
-                    </SubMenu>
-                  );
-                } else if (keyValue === 4) {
-                  return (
-                    <Menu.Item
-                      key={keyValue}
-                      onClick={() => {
-                        store.store.servers.changeHomeStatue(12);
-                      }}
-                      className="commen-Menu-Item"
-                    >
-                      {headerCon[keyValue]}
-                    </Menu.Item>
-                  );
-                } else if (keyValue === 5) {
-                  return (
-                    <Menu.Item
-                      key={keyValue}
-                      onClick={() => {
-                        store.store.servers.changeHomeStatue(3);
-                      }}
-                      className="commen-Menu-Item"
-                    >
-                      {headerCon[keyValue]}
-                    </Menu.Item>
-                  );
-                } else if (keyValue === 3) {
-                  return (
-                    <Menu.Item
-                      key={keyValue}
-                      onClick={() => {
-                        store.store.servers.changeHomeStatue(13);
-                      }}
-                      className="commen-Menu-Item"
-                    >
-                      {headerCon[keyValue]}
-                    </Menu.Item>
-                  );
-                } else {
-                  return (
-                    <Menu.Item
-                      key={keyValue}
-                      onClick={() => {
-                        store.store.servers.changeHomeStatue(keyValue);
-                      }}
-                      className="commen-Menu-Item"
-                    >
-                      {headerCon[keyValue]}
-                    </Menu.Item>
-                  );
+                switch (keyValue) {
+                  case 2:
+                    return (
+                      <SubMenu
+                        title={
+                          <div className="SubMenu-title-text">
+                            {headerCon[keyValue]}
+                          </div>
+                        }
+                        key={keyValue}
+                        className="Menu-header-home-item-SubMenu"
+                      >
+                        <Menu.ItemGroup className="My-Menu-ItemGroup">
+                          <Menu.Item
+                            key={2}
+                            className="SubMenu-Menu-ItemGroup-Item-up"
+                            onClick={() => {
+                              store.store.servers.changeHomeStatue(2);
+                            }}
+                          >
+                            Deep learning based prediction
+                          </Menu.Item>
+                          <Menu.Item
+                            key={8}
+                            className="SubMenu-Menu-ItemGroup-Item-down"
+                            onClick={() => {
+                              store.store.servers.changeHomeStatue(8);
+                            }}
+                          >
+                            Sequence functional annotation
+                          </Menu.Item>
+                        </Menu.ItemGroup>
+                      </SubMenu>
+                    );
+                  case 3:
+                    return (
+                      <Menu.Item
+                        key={keyValue}
+                        onClick={() => {
+                          store.store.servers.changeHomeStatue(13);
+                        }}
+                        className="commen-Menu-Item"
+                      >
+                        {headerCon[keyValue]}
+                      </Menu.Item>
+                    );
+                  case 4:
+                    return (
+                      <Menu.Item
+                        key={keyValue}
+                        onClick={() => {
+                          store.store.servers.changeHomeStatue(12);
+                        }}
+                        className="commen-Menu-Item"
+                      >
+                        {headerCon[keyValue]}
+                      </Menu.Item>
+                    );
+
+                  case 5:
+                    return (
+                      <Menu.Item
+                        key={keyValue}
+                        onClick={() => {
+                          store.store.servers.changeHomeStatue(3);
+                        }}
+                        className="commen-Menu-Item"
+                      >
+                        {headerCon[keyValue]}
+                      </Menu.Item>
+                    );
+
+                  default:
+                    return (
+                      <Menu.Item
+                        key={keyValue}
+                        onClick={() => {
+                          store.store.servers.changeHomeStatue(keyValue);
+                        }}
+                        className="commen-Menu-Item"
+                      >
+                        {headerCon[keyValue]}
+                      </Menu.Item>
+                    );
                 }
               })}
             </Menu>
           </div>
-          {/* <Menu
-            onClick={e=>{setCurrent(e.target)}}
-            selectedKeys={[current]}
-            mode="horizontal"
-          >
-            <Menu.Item key="mail" icon={<MailOutlined />}>
-              Navigation One
-            </Menu.Item>
-            <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
-              Navigation Two
-            </Menu.Item>
-            <SubMenu
-              key="SubMenu"
-              icon={<SettingOutlined />}
-              title="Navigation Three - Submenu"
-            >
-              <Menu.ItemGroup title="Item 1">
-                <Menu.Item key="setting:1">Option 1</Menu.Item>
-                <Menu.Item key="setting:2">Option 2</Menu.Item>
-              </Menu.ItemGroup>
-              <Menu.ItemGroup title="Item 2">
-                <Menu.Item key="setting:3">Option 3</Menu.Item>
-                <Menu.Item key="setting:4">Option 4</Menu.Item>
-              </Menu.ItemGroup>
-            </SubMenu>
-            <Menu.Item key="alipay">
-              <a
-                href="https://ant.design"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Navigation Four - Link
-              </a>
-            </Menu.Item>
-          </Menu> */}
         </div>
       </Header>
       <Content style={{ padding: "0 0px", backgroundColor: "white" }}>
@@ -575,9 +523,7 @@ function Home(store) {
             ></script>
           </div>
         </div>
-        <div className="">
-              
-          </div>
+        <div className=""></div>
         <div className="context-us-footer">
           <div>© 2021 Wei Lab | Contact us: mail@163.com </div>{" "}
           <div>
