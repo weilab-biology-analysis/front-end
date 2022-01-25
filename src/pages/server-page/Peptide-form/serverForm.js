@@ -61,7 +61,8 @@ function ServerForm(store) {
   const [switchCol, setSwitchCol] = useState(false);
   
   useEffect(() => {
-    console.log(store);
+    // document.documentElement.scrollTop = 0;
+
   }, []);
   useEffect(() => {
     if (store.store.servers.status === REQUEST) {

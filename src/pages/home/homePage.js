@@ -30,26 +30,29 @@ function HomePage(store) {
   return (
     <div className="homepage-body">
       <div className="fixbackground bg-pan-br header-con">
+       
+      <div className="right-title-home-title">DeepBIO</div>
         <div className="title-home-con">
-          {" "}
           <div className="left-title-home">
             <img src={homeImg} className="left-title-home-img" />
           </div>
           <div className="right-title-home">
-            <div className="right-title-home-title">DeepBIO</div>
             <div className="right-title-home-con">
-              Undesirable pharmacokinetics and toxicity of candidate compounds
-              are the main reasons for the failure of drug development, and it
-              has been widely recognized that absorption, distribution,
-              metabolism, excretion and toxicity (ADMET) of chemicals should be
-              evaluated as early as possible. ADMETlab 2.0 is an enhanced
-              version of the widely used ADMETlab for systematical evaluation of
-              ADMET properties, as well as some physicochemical properties and
-              medicinal chemistry friendliness. With significant updates to
-              functional modules, predictive models, explanations, and the user
-              interface, ADMETlab 2.0 has greater capacity to assist medicinal
-              chemists in accelerating the drug research and development
-              process.
+              The large amount of biological sequence data obtained from
+              high-throughput sequencing makes automated biological sequence
+              analysis platforms good aids for biologists. Although several
+              platforms based on traditional machine learning have been
+              developed for biological sequence analysis, no deep learning-based
+              prediction platform is developed; moreover, no existing tools can
+              provide the functional annotation for biological sequences, which
+              is essentially important for sequence analysis. Here, we present
+              DeepBIO, a deep learning-based web service to predict and annotate
+              the functions for biological sequences. DeepBIO provides two main
+              functions, including Deep learning-based prediction and Sequence
+              functional annotation. Our platform enables end-to-end model
+              training, optimization, and prediction. The parameter-free
+              workflow effectively reduces the running complexity and makes our
+              platform more user-friendly.
             </div>
           </div>
         </div>
@@ -80,21 +83,25 @@ function HomePage(store) {
               Deep learning based prediction
             </div>
             <div className="homepage-quick-entry-depart-con">
-              ADMET Evaluation function module is composed of a series of
-              high-quality prediction models trained by multi-task graph
-              attention framework. It enables the users to conveniently and
-              efficiently implement the calculation and prediction of 17
-              physicochemical properties, 13 medicinal chemistry measures, 23
-              ADME endpoints, and 27 toxicity endpoints and 8 toxicophore rules
-              (751 substructures), thereby selecting promising lead compounds
-              for further exploration.
+              DeepBIO deep learning-based prediction module combines the
+              advantages of other platforms while integrating more deep learning
+              models, enhancing the interpretability of the analysis results,
+              and providing researchers a one-stop-shop service to construct
+              deep-learning models with their uploaded data and a series of
+              result visualization analyses, including model interpretability,
+              feature analysis, etc.
             </div>
           </div>
 
           <div className="homepage-quick-entry-depart-btn">
-            <Button className="homepage-quick-entry-depart-btn-con" onClick={()=>{
-              store.store.servers.changeHomeStatue(2);
-            }}>Get Start</Button>
+            <Button
+              className="homepage-quick-entry-depart-btn-con"
+              onClick={() => {
+                store.store.servers.changeHomeStatue(2);
+              }}
+            >
+              Get Start
+            </Button>
           </div>
         </div>
         <div className="homepage-quick-entry-annotation  homepage-quick-entry-depart">
@@ -103,19 +110,25 @@ function HomePage(store) {
               Sequence functional annotation
             </div>
             <div className="homepage-quick-entry-depart-con">
-              ADMET Screening is the batch mode of evaluation, designed for the
-              prediction of molecular datasets. SMILES strings and SDF/TXT
-              formatted files are supported molecular submission approaches.
-              This module is suitable for the evaluation of empirically designed
-              or visually screened molecules before chemical synthesis and
-              biochemical assays, which allows scientists to better focus their
-              experiments on the most promising compounds.
+              We experimentally and creatively added a sequence functional
+              annotation module to our server. This part of the work runs after
+              the prediction module is completed and mines for the methylation
+              status annotations for DNA and RNA sequences and ligand-binding
+              site recognition for protein sequences., which aims to annotate
+              the functional sites (i.e. DNA modifications, RNA modifications,
+              and protein-binding specificity) with pre-trained deep learning
+              models.
             </div>
           </div>
           <div className="homepage-quick-entry-depart-btn">
-            <Button className="homepage-quick-entry-depart-btn-con" onClick={()=>{
-              store.store.servers.changeHomeStatue(8);
-            }}>Get Start</Button>
+            <Button
+              className="homepage-quick-entry-depart-btn-con"
+              onClick={() => {
+                store.store.servers.changeHomeStatue(8);
+              }}
+            >
+              Get Start
+            </Button>
           </div>
         </div>
       </div>
@@ -125,18 +138,17 @@ function HomePage(store) {
         </div>
         <div className="homepage-works-show-intro">
           <div>
-            testText:Our lab aims to developing an automated computational
-            pipeline for peptide drug design and discovery, which involves
-            bioactive peptide generation, prediction, and functional analysis
-            (such as peptide toxicity)and developing computational methods to
-            accurately annotate epigenetic modifications in whole-genome scale,
-            and study their functions in gene regulatory network.
-          </div>
-          <div>
-            testText:Our lab aims to developing an automated computational
-            pipeline for peptide drug design and discovery, which involves
-            bioactive peptide generation, prediction, and functional analysis
-            (such as peptide
+            The main components and workflow of DeepBIO. (A) DeepBIO accepts
+            DNA, RNA, and protein sequence data as input, with some additional
+            user-defined parameters. (B) The deep learning-based prediction
+            module constructs one or more SOTA deep learning binary classifiers,
+            while we do plenty of design on the presentation and
+            interpretability of the results. (C) The sequence functional
+            annotation takes one or more sequences selected by users to analyze
+            the presence of motifs and queries the online database to help users
+            understand motif functionality. (D) DeepBIO integrates the results
+            of the above two functional modules into a single report for users
+            to download freely.
           </div>
         </div>
       </div>

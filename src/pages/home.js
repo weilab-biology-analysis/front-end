@@ -525,7 +525,7 @@ function Home(store) {
         </div>
         <div className=""></div>
         <div className="context-us-footer">
-          <div>© 2021 Wei Lab | Contact us: mail@163.com </div>{" "}
+          <div>© 2021 Wei Lab | Contact us: weileyi@sdu.edu.cn </div>{" "}
           <div>
             This website is free and open to all users and there is no login
             requirement

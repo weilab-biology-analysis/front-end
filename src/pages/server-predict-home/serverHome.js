@@ -4,10 +4,12 @@ import "./serverHome.css";
 import { useHistory } from "react-router";
 // @ts-ignore
 import DNA from "../../constants/img/DNA.png";
+import Protein from "../../constants/img/Protein.png";
+import RNA from "../../constants/img/RNA.png";
 import { Breadcrumb } from "antd";
 function ServerPredictHome(store) {
   useEffect(() => {
-    console.log(store);
+    document.documentElement.scrollTop = 0;
   }, []);
   const history = useHistory();
   const gotoPage = () => {
@@ -24,13 +26,13 @@ function ServerPredictHome(store) {
             Server Select
           </Breadcrumb.Item>
           <Breadcrumb.Item className="Breadcrumb-Item-text">
-          Sequence functional annotation
+            Sequence functional annotation
           </Breadcrumb.Item>
         </Breadcrumb>
       </div>
 
       <div className="title-serverHome-deeplearn">
-      Selecting Your Deep Learning Models!
+        Selecting Your Deep Learning Models!
       </div>
 
       <div className="serverhome-body">
@@ -38,7 +40,7 @@ function ServerPredictHome(store) {
           <div
             className="function-select-con"
             onClick={() => {
-
+              //gotoPage();
               store.store.servers.changeHomeStatue(9);
             }}
           >
@@ -51,15 +53,14 @@ function ServerPredictHome(store) {
                 <div></div>
               </div>
             </div>
-            <div className="function-select-img-outer">
-              <img src={DNA} className="function-select-left-img" />
+            <div className="function-select-img-outer-DNA">
+              <img src={DNA} className="function-select-left-img-DNA" />
             </div>
 
             <div className="function-select-context">
-              Integrating the functionality of feature calculation / extraction,
-              clustering, feature normalization, feature selection, dimension
-              reduction, model construction for classification and result
-              visualization for DNA sequence.
+              This part of the work runs after the DNA prediction module is
+              completed and mines for the methylation status annotations for DNA
+              sequences.
             </div>
           </div>
           <div
@@ -79,14 +80,13 @@ function ServerPredictHome(store) {
               </div>
             </div>
             <div className="function-select-img-outer">
-              <img src={DNA} className="function-select-left-img" />
+              <img src={RNA} className="function-select-left-img" />
             </div>
 
             <div className="function-select-context">
-              Integrating the functionality of feature calculation / extraction,
-              clustering, feature normalization, feature selection, dimension
-              reduction, model construction for classification and result
-              visualization for RNA sequence.
+              This part of the work runs after the RNA prediction module is
+              completed and mines for the methylation status annotations for RNA
+              sequences.
             </div>
           </div>
           <div
@@ -106,13 +106,13 @@ function ServerPredictHome(store) {
               </div>
             </div>
             <div className="function-select-img-outer">
-              <img src={DNA} className="function-select-left-img" />
+              <img src={Protein} className="function-select-left-img" />
             </div>
+
             <div className="function-select-context">
-              Integrating the functionality of feature calculation / extraction,
-              clustering, feature normalization, feature selection, dimension
-              reduction, model construction for classification and result
-              visualization for Protein sequence.
+              This part of the work runs after the prediction module is
+              completed and mines for the ligand-binding site recognition for
+              protein sequences.
             </div>
           </div>
         </div>

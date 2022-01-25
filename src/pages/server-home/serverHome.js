@@ -4,10 +4,14 @@ import "./serverHome.css";
 import { useHistory } from "react-router";
 // @ts-ignore
 import DNA from "../../constants/img/DNA.png";
+import Protein from "../../constants/img/Protein.png";
+import RNA from "../../constants/img/RNA.png";
 import { Breadcrumb } from "antd";
 function ServerHome(store) {
   useEffect(() => {
-    console.log(store);
+    // console.log(store);
+    // document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }, []);
   const history = useHistory();
   const gotoPage = () => {
@@ -24,13 +28,13 @@ function ServerHome(store) {
             Server Select
           </Breadcrumb.Item>
           <Breadcrumb.Item className="Breadcrumb-Item-text">
-          Deep learning based prediction
+            Deep learning based prediction
           </Breadcrumb.Item>
         </Breadcrumb>
       </div>
 
       <div className="title-serverHome-deeplearn">
-      Training Your Deep Learning Models!
+        Training Your Deep Learning Models!
       </div>
 
       <div className="serverhome-body">
@@ -51,15 +55,14 @@ function ServerHome(store) {
                 <div></div>
               </div>
             </div>
-            <div className="function-select-img-outer">
-              <img src={DNA} className="function-select-left-img" />
+            <div className="function-select-img-outer-DNA">
+              <img src={DNA} className="function-select-left-img-DNA" />
             </div>
 
             <div className="function-select-context">
-              Integrating the functionality of feature calculation / extraction,
-              clustering, feature normalization, feature selection, dimension
-              reduction, model construction for classification and result
-              visualization for DNA sequence.
+              Integrating and visualizing the functionality of statistical
+              analysis, deep learning model result analysis, feature analysis,
+              and parameter optimization analysis for DNA sequences.
             </div>
           </div>
           <div
@@ -79,14 +82,13 @@ function ServerHome(store) {
               </div>
             </div>
             <div className="function-select-img-outer">
-              <img src={DNA} className="function-select-left-img" />
+              <img src={RNA} className="function-select-left-img" />
             </div>
 
             <div className="function-select-context">
-              Integrating the functionality of feature calculation / extraction,
-              clustering, feature normalization, feature selection, dimension
-              reduction, model construction for classification and result
-              visualization for RNA sequence.
+              Integrating and visualizing the functionality of statistical
+              analysis, deep learning model result analysis, feature analysis,
+              and parameter optimization analysis for RNA sequences.
             </div>
           </div>
           <div
@@ -106,14 +108,13 @@ function ServerHome(store) {
               </div>
             </div>
             <div className="function-select-img-outer">
-              <img src={DNA} className="function-select-left-img" />
+              <img src={Protein} className="function-select-left-img" />
             </div>
 
             <div className="function-select-context">
-              Integrating the functionality of feature calculation / extraction,
-              clustering, feature normalization, feature selection, dimension
-              reduction, model construction for classification and result
-              visualization for Protein sequence.
+              Integrating and visualizing the functionality of statistical
+              analysis, deep learning model result analysis, feature analysis,
+              and parameter optimization analysis for protein sequences.
             </div>
           </div>
         </div>
