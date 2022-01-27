@@ -15,13 +15,18 @@ import {
   Table,
   Dropdown,
   Menu,
+  Slider,
+  Select,
+  Space,
 } from "antd";
-import { LikeOutlined } from "@ant-design/icons";
-import tSne from "../../constants/img/t-sne.png";
+import { PlusCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
+// import tSne from "../../constants/img/t-sne.png";
+// import igv from 'igv'
+// import igv from "https://cdn.jsdelivr.net/npm/igv@2.10.5/dist/igv.esm.min.js"
 
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
-
+const { Option } = Select;
 const { Meta } = Card;
 const CodingMap = {
   0: "DNN",
@@ -55,6 +60,25 @@ function Result(store) {
   const [result_epochplot, setResult_epochplot] = useState([]);
 
   useEffect(() => {
+    // var igvDiv = document.getElementById("igv-div");
+    // var options =
+    //   {
+    //       genome: "hg38",
+    //       locus: "chr8:127,736,588-127,739,371",
+    //       // tracks: [
+    //       //     {
+    //       //         "name": "HG00103",
+    //       //         "url": "https://s3.amazonaws.com/1000genomes/data/HG00103/alignment/HG00103.alt_bwamem_GRCh38DH.20150718.GBR.low_coverage.cram",
+    //       //         "indexURL": "https://s3.amazonaws.com/1000genomes/data/HG00103/alignment/HG00103.alt_bwamem_GRCh38DH.20150718.GBR.low_coverage.cram.crai",
+    //       //         "format": "cram"
+    //       //     }
+    //       // ]
+    //   };
+
+    //   igv.createBrowser(igvDiv, options)
+    //           .then(function (browser) {
+    //               console.log("Created IGV browser");
+    //           })
     if (store.store.results.data.result) {
       if (store.store.results.data.result.pictures) {
         let compositionalAnalysis_current = [];
@@ -743,9 +767,7 @@ function Result(store) {
                       </strong>
                     </div>
                   }
-                  
                   key="1"
-
                 >
                   <div className="Result-Result-row-pictures-card">
                     {ROC_PR_Tra_all[0] ? (
@@ -1012,7 +1034,6 @@ function Result(store) {
                   }
                   title={result_title[i]}
                 > */}
-
                 </div>
               </Panel>
             </Collapse>
@@ -1107,7 +1128,16 @@ function Result(store) {
 
     return list;
   };
+  const [sequence_selection_item, setSequence_selection_item] = useState(0);
+  const [length_selection_item, setLength_selection_item] = useState(30);
 
+  const sequence_selection = (value) => {
+    setSequence_selection_item(value);
+    console.log(`selected ${value}`);
+  };
+  const length_selection = (value) => {
+    setLength_selection_item(value);
+  };
   const prob_sequence = () => {
     let reSeqList = [];
     // console.log(store.store.results.data.result.table_data)
@@ -1328,9 +1358,113 @@ function Result(store) {
     });
 
     if (store.store.results.data.result.table_data.dataset) {
+      let options_data = [];
+      let sequence_data_index = {};
+      store.store.results.data.result.table_data.problist.map(
+        (value_, index_, array_) => {
+          if (sequence_data_index[value_[0]]) {
+            sequence_data_index[value_[0]][value_[1]] = value_[2];
+          } else {
+            sequence_data_index[value_[0]] = { [value_[1]]: value_[2] };
+          }
+        }
+      );
+      store.store.results.data.result.table_data.dataset.map((v, i, a) => {
+        options_data.push(
+          <Option value={i} key={i + Option}>
+            sequence{i + 1}
+          </Option>
+        );
+      });
+      let sequence_body_con =
+        store.store.results.data.result.table_data.dataset[
+          sequence_selection_item
+        ];
+      console.log(store.store.results.data.result.table_data);
+      let sequence_body_con_div = [];
+
+      sequence_body_con.split("").map((v, i, a) => {
+        // console.log(v)
+        let AGCT_color = "";
+        switch (v) {
+          case "A":
+            AGCT_color = "green";
+            break;
+          case "G":
+            AGCT_color = "darkgoldenrod";
+            break;
+          case "T":
+            AGCT_color = "red";
+            break;
+          case "C":
+            AGCT_color = "blue";
+            break;
+          default:
+            AGCT_color = "purple";
+        }
+
+        sequence_body_con_div.push(
+          <div
+            className="sequence_body_con_div_part"
+            key={i + sequence_body_con_div}
+          >
+            <div
+              style={{
+                color: `${AGCT_color}`,
+                width: `${107 - length_selection_item}px`,
+                backgroundColor: `${
+                  length_selection_item > 92 ? AGCT_color : "#f6f6f6"
+                }`,
+                fontSize: "15px",
+                textAlign: "center",
+              }}
+            >
+              {/* {length_selection_item > 92 ? "." : v} */}
+              {v}
+            </div>
+            <div>
+              {sequence_data_index[sequence_selection_item] ? (
+                sequence_data_index[sequence_selection_item][i] ? (
+                  <div className="sequence_body_con_div_part_problist">
+                    <Popover
+                      content={
+                        "confidence:" +
+                        sequence_data_index[sequence_selection_item][i]
+                      }
+                      
+                    >
+                      <div
+                        style={{
+                          width: `${(107 - length_selection_item) * 0.7}px`,
+                          height: `${
+                            100 *
+                            sequence_data_index[sequence_selection_item][i]
+                          }px`,
+                          backgroundColor: "lightblue",
+                          marginTop: "30px",
+                        }}
+                      >
+                        .
+                      </div>
+                    </Popover>
+                  </div>
+                ) : (
+                  ""
+                )
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+        );
+      });
+      let sequence_body = (
+        <div className="igv-fake-body-inner-sequence_body" style={{}}>
+          {sequence_body_con_div}
+        </div>
+      );
       reqDivSeqList.push(
         <div className="table-reqdivseqlist-out">
-          
           <Table
             className="table-reqdivseqlist"
             rowClassName={(record, index) => getRowClassName(record, index)}
@@ -1362,6 +1496,50 @@ function Result(store) {
               },
             ]}
           />
+          <div className="igv-fake">
+            <div className="igv-fake-head">
+              <div className="igv-fake-select">
+                <Select
+                  // defaultValue="sequence1"
+                  style={{ width: 120 }}
+                  onChange={sequence_selection}
+                >
+                  {options_data}
+                </Select>
+              </div>
+
+              <div className="igv-fake-slider-outline">
+                <div className="igv-fake-slider-percent">
+                  {length_selection_item}%
+                </div>
+                <PlusCircleOutlined
+                  className="igv-fake-select-icon"
+                  onClick={() => {
+                    if (length_selection_item + 0.5 <= 100)
+                      setLength_selection_item(length_selection_item + 0.5);
+                  }}
+                />
+
+                <Slider
+                  // defaultValue={30}
+                  value={length_selection_item}
+                  className="igv-fake-slider"
+                  onChange={length_selection}
+                  step={0.1}
+                />
+                <MinusCircleOutlined
+                  className="igv-fake-select-icon"
+                  onClick={() => {
+                    if (length_selection_item - 1 > 0)
+                      setLength_selection_item(length_selection_item - 1);
+                  }}
+                />
+              </div>
+            </div>
+            <div className="igv-fake-body">
+              <div className="igv-fake-body-inner">{sequence_body}</div>
+            </div>
+          </div>
         </div>
       );
     }
@@ -1394,7 +1572,7 @@ function Result(store) {
           header={
             <div className="Data-load">
               <strong className="Data-load-List-title">
-                Job ID: {store.store.results.data.requestTime.slice(0, 4)}
+                Job ID: {store.store.resuxlts.data.requestTime.slice(0, 4)}
                 {store.store.results.data.requestTime.slice(5, 7)}
                 {store.store.results.data.requestTime.slice(8, 10)}
                 {store.store.results.data.jobId}

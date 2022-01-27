@@ -13,12 +13,12 @@ import ServerPredictForm from "./server-page/server-predict/PridictForm";
 import RNAPredictForm from "./server-page/RNA-predict/serverForm";
 import PeptidePredictForm from "./server-page/Peptide-predict/serverForm";
 import PeptideServerForm from "./server-page/Peptide-form/serverForm";
+import Reference from "./reference/ reference";
 import Result from "./result/result";
 import {
   HomeOutlined,
   CloudServerOutlined,
   UnorderedListOutlined,
-
   FileSearchOutlined,
   ContactsOutlined,
 } from "@ant-design/icons";
@@ -73,6 +73,15 @@ function Home(store) {
           style={{ fontSize: "20px" }}
         />
         Tutorial
+      </div>
+    ),
+    6: (
+      <div>
+        <FileSearchOutlined
+          className="headerCon-tab"
+          style={{ fontSize: "20px" }}
+        />
+        Reference
       </div>
     ),
   };
@@ -385,6 +394,22 @@ function Home(store) {
             <Tutorial />
           </div>
         );
+      case 14:
+        return (
+          <div className="submit-depart-pages">
+            <div className="Result-Result-body-Breadcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  Home
+                </Breadcrumb.Item>
+                <Breadcrumb.Item className="Breadcrumb-Item-text">
+                  ReferenceÎ
+                </Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
+            <Reference />
+          </div>
+        );
       default:
         window.location.href = "http://wei-group.net/contact";
 
@@ -392,15 +417,12 @@ function Home(store) {
     }
   };
 
-
   return (
     <Layout>
       <Header className="Menu-header-home-outer-inite">
         <div className="Menu-header-home-outer-in-item">
           <div className="Menu-header-home">
-            <div className="logo-welab">
-              DeepBIO
-            </div>
+            <div className="logo-welab">DeepBIO</div>
 
             <Menu
               theme="light"
@@ -409,7 +431,7 @@ function Home(store) {
               className="Menu-header-home-item"
               triggerSubMenuAction="click"
             >
-              {new Array(5).fill(null).map((_, index) => {
+              {new Array(6).fill(null).map((_, index) => {
                 const keyValue = index + 1;
                 switch (keyValue) {
                   case 2:
@@ -476,6 +498,19 @@ function Home(store) {
                         key={keyValue}
                         onClick={() => {
                           store.store.servers.changeHomeStatue(3);
+                        }}
+                        className="commen-Menu-Item"
+                      >
+                        {headerCon[keyValue]}
+                      </Menu.Item>
+                    );
+
+                  case 6:
+                    return (
+                      <Menu.Item
+                        key={keyValue}
+                        onClick={() => {
+                          store.store.servers.changeHomeStatue(14);
                         }}
                         className="commen-Menu-Item"
                       >

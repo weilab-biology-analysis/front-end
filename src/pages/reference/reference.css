@@ -1,0 +1,28 @@
+.Publications-body{
+    width: 100%;
+    display: flex;
+    position: relative;
+    width: 100%;
+    /* height: 100vh; */
+    background-size: cover;
+}
+.Publications-outline{
+    width: 95%;
+    border-radius: 20px;
+    border:solid 1px rgba(197, 197, 197, 0.246);
+    height: fit-content;
+    padding: 40px;
+    margin: 50px auto;
+}
+.Publications-outline div{
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.Publications-title{
+    font-weight: 400;
+    font-size: medium;
+}
+.Publications-infor{
+    padding-left: 30px;
+    font-size: medium !important;
+}
